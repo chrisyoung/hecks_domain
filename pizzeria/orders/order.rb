@@ -13,11 +13,15 @@ module Pizzeria
       end
 
       def self.fetch(id)
-        Repository.fetch(id)
+        repository.fetch(id)
       end
 
       def self.save(object)
-        Repository.save(object)
+        repository.save(object)
+      end
+
+      def self.repository
+        Repository
       end
     end
   end
