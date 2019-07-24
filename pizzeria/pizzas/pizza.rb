@@ -8,8 +8,8 @@ module Pizzeria
           Topping.new(object)
         end
         @named_by = Chef.new(named_by)
-        @name = name
-        @description = description
+        @name = PizzaName.new(name)
+        @description = PizzaDescription.new(description)
       end
       def self.reference(id)
         Struct.new(:type, :id).new(self, id)

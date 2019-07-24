@@ -4,7 +4,7 @@ module Pizzeria
       attr_reader :name
 
       def initialize name:
-        @name = name
+        @name = ChefName.new(name)
       end
       def self.reference(id)
         Struct.new(:type, :id).new(self, id)

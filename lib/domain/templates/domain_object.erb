@@ -13,6 +13,8 @@ module <%= @aggregate.domain.name %>
         @<%= field.name %> = <%= field.get_as.keys.first %>::<%= field.get_as.values.first %>.reference(<%= field.name %>)
           <% elsif field.is_a?(EntityField) %>
         @<%= field.name %> = <%= field.get_as %>.new(<%= field.name %>)
+          <% elsif field.get_as %>
+        @<%= field.name %> = <%= field.get_as %>.new(<%= field.name %>)
           <% else %>
         @<%= field.name %> = <%= field.name %>
           <% end %>

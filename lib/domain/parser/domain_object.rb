@@ -17,21 +17,29 @@ class Domain
       def list(name)
         ListField.new(name).tap { |list| @lists << list }
       end
-    
-      def string_value(name, options={})
-        @value_objects << StringField.new(name, options)
+
+      def optional(value)
+        value.optional = true
       end
     
-      def integer_value(name)
+      def string(name, options={})
+        StringField.new(name, options).tap do |field|
+          @value_objects << field
+        end
+      end
+    
+      def integer(name)
         @value_objects << IntegerField.new(name)
       end
       
-      def currency_value(name)
+      def currency(name)
         @value_objects << CurrencyField.new(name)
       end
     
-      def value_object(name)
-        @value_objects << ValueObject.new(name)
+      def value(name)
+        ValueField.new(name).tap do |field|
+          @value_objects << field
+        end
       end
 
       def entity(name)
