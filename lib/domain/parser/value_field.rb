@@ -17,7 +17,7 @@ class Domain
         name.to_s + ': nil'
       end
 
-      def get_as
+      def module_name
         @as
       end
 

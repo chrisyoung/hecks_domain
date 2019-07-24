@@ -7,14 +7,14 @@ module <%= @aggregate.domain.name %>
         <% @fields.each do |field| %>
           <% if field.is_a?(ListField) %>
         @<%= field.name %> = <%= field.name %>.map do |object|
-          <%= field.get_as %>.new(object)
+          <%= field.module_name %>.new(object)
         end
           <% elsif field.is_a?(ReferenceField) %>
-        @<%= field.name %> = <%= field.get_as.keys.first %>::<%= field.get_as.values.first %>.reference(<%= field.name %>)
+        @<%= field.name %> = <%= field.module_name %>.reference(<%= field.name %>)
           <% elsif field.is_a?(EntityField) %>
-        @<%= field.name %> = <%= field.get_as %>.new(<%= field.name %>)
-          <% elsif field.get_as %>
-        @<%= field.name %> = <%= field.get_as %>.new(<%= field.name %>)
+        @<%= field.name %> = <%= field.module_name %>.new(<%= field.name %>)
+          <% elsif field.module_name %>
+        @<%= field.name %> = <%= field.module_name %>.new(<%= field.name %>)
           <% else %>
         @<%= field.name %> = <%= field.name %>
           <% end %>

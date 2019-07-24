@@ -18,17 +18,15 @@ describe 'Playground' do
           list(:toppings).as :Topping
         end
         entity(:Chef) { value(:name).as :ChefName }
-        value_object(:ChefName) { string :value }
-        value_object(:Topping) { string :name }
-        value_object(:PizzaName) { string :value }
-        value_object(:PizzaDescription) { string :value }
+        value(:ChefName) { string :value }
+        value(:Topping) { string :name }
+        value(:PizzaName) { string :value }
+        value(:PizzaDescription) { string :value }
       end
     
       aggregate :Orders do
-        head :Order do
-          list(:line_items).as :LineItem
-        end
-        value_object :LineItem do
+        head(:Order) { list(:line_items).as :LineItem }
+        value :LineItem do
           string :pizza_name
           integer :quantity
           currency :price

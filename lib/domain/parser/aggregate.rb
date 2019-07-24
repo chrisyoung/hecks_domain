@@ -31,7 +31,7 @@ class Domain
         @head = entity(name, &block)
       end
 
-      def value_object(name, &block)
+      def value(name, &block)
         @value_objects << ValueObject.new(name, self, &block)
       end
 

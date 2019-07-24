@@ -11,7 +11,7 @@ class Domain
         @as = name
       end
 
-      def get_as
+      def module_name
         @as
       end
 

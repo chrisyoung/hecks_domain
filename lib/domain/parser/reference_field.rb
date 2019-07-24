@@ -1,17 +1,9 @@
 class Domain
     class Parser
-      class ReferenceField
+      class ReferenceField < EntityField
         attr_reader :name
-        def initialize(name)
-          @name = name
-        end
-  
-        def as(name)
-          @as = name
-        end
-  
-        def get_as
-          @as
+        def module_name
+          @as.keys.first.to_s + '::' + @as.values.first.to_s
         end
       end
     end
