@@ -2,8 +2,7 @@ class Domain
   class Parser
     class EntityField
       attr_reader :name
-      def initialize(name, options={})
-        @optional = options[:optional]
+      def initialize(name)
         @name = name
       end
 

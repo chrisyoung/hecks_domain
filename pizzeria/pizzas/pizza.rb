@@ -1,15 +1,15 @@
 module Pizzeria
   module Pizzas
     class Pizza
-      attr_reader :toppings, :named_by, :name, :description
+      attr_reader :name, :description, :named_by, :toppings
 
-      def initialize toppings:, named_by:, name:, description:
+      def initialize name:, description:, named_by:, toppings:
+        @name = PizzaName.new(name)
+        @description = PizzaDescription.new(description)
+        @named_by = Chef.new(named_by)
         @toppings = toppings.map do |object|
           Topping.new(object)
         end
-        @named_by = Chef.new(named_by)
-        @name = PizzaName.new(name)
-        @description = PizzaDescription.new(description)
       end
       def self.reference(id)
         Struct.new(:type, :id).new(self, id)

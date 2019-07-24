@@ -6,48 +6,41 @@ class Domain
       
       def initialize(name, aggregate, &block)
         @name = name
-        @value_objects = []
-        @entities = []
-        @lists = []
         @aggregate = aggregate
+        @fields = []
         instance_eval &block
-        @fields = @lists + @entities + @value_objects
-      end
-
-      def list(name)
-        ListField.new(name).tap { |list| @lists << list }
       end
 
       def optional(value)
         value.optional = true
       end
+
+      def list(name)
+        add_field(name, ListField)
+      end
     
-      def string(name, options={})
-        StringField.new(name, options).tap do |field|
-          @value_objects << field
-        end
+      def string(name)
+        add_field(name, StringField)
       end
     
       def integer(name)
-        @value_objects << IntegerField.new(name)
+        add_field(name, IntegerField)
       end
       
       def currency(name)
-        @value_objects << CurrencyField.new(name)
+        add_field(name, CurrencyField)        
       end
     
       def value(name)
-        ValueField.new(name).tap do |field|
-          @value_objects << field
-        end
+        add_field(name, ValueField)
       end
 
       def entity(name)
-        EntityField.new(name).tap { |entity| @entities << entity }
+        add_field(name, EntityField)
       end
 
       def reference(name)
-        ReferenceField.new(name).tap { |entity| @entities << entity }
+        add_field(name, ReferenceField) 
       end
 
       def file_name
@@ -61,7 +54,12 @@ class Domain
       def get_binding
         binding
       end
-    end
-    
+
+      private
+
+      def add_field(name, type)
+        type.new(name).tap { |field| @fields << field }
+      end
+    end 
   end
 end

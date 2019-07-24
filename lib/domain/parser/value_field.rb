@@ -3,8 +3,8 @@ class Domain
     class ValueField
       attr_reader :name
       attr_writer :optional
-      def initialize(name, options={})
-        @optional = options[:optional]
+      
+      def initialize(name)
         @name = name
       end
 
