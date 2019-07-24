@@ -18,7 +18,6 @@ class Domain
     class StringField < ValueField;end
     class IntegerField < ValueField;end
     class CurrencyField < ValueField;end
-    
     class ListField < EntityField;end
   end
 end

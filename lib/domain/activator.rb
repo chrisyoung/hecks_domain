@@ -16,6 +16,7 @@ class Domain
         aggregate.ruby_file = build_file('aggregate', aggregate.get_binding)
         aggregate.domain_objects.each do |domain_object|
           domain_object.ruby_file = build_file('domain_object', domain_object.get_binding)
+          domain_object.repository_file = build_file('repository', domain_object.get_binding)
         end
       end
 

@@ -1,7 +1,7 @@
 class Domain
   class Parser
     class DomainObject
-      attr_accessor :ruby_file
+      attr_accessor :ruby_file, :repository_file
       attr_reader :name
       
       def initialize(name, aggregate, &block)
@@ -45,6 +45,10 @@ class Domain
 
       def file_name
         folder_name + '.rb'
+      end
+
+      def repository_file_name
+        folder_name + '_repository.rb'
       end
 
       def folder_name

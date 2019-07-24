@@ -12,7 +12,7 @@ require_relative 'domain/file_maker'
 class Domain
   def initialize(name, &block)
     @parser = Parser.new(name, &block)
-    @file_maker = FileMaker    
+    @file_maker = Parser::FileMaker    
   end
 
   def activate
@@ -20,7 +20,7 @@ class Domain
   end
 
   def dump
-    FileMaker.dump(@parser.domain)
+    @file_maker.dump(@parser.domain)
   end
 
   def self.domain name, &block

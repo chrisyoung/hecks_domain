@@ -1,15 +1,6 @@
 describe 'Playground' do
-  let(:pizza) do
-    Pizzeria::Pizzas::Pizza.new(
-      name: {value: "Hello"},
-      toppings: [{ name: 'pepperoni' }],
-      named_by: { name: { value: 'karl' } }, 
-      description: { value: 'okay' }
-    )
-  end
-  
-  before do
-    domain(:Pizzeria) do
+  let(:domain) do
+    Domain.domain(:Pizzeria) do
       aggregate :Pizzas do
         head :Pizza do 
           value(:name).as :PizzaName
@@ -34,13 +25,24 @@ describe 'Playground' do
           reference(:pizza).as Pizzas: :Pizza
         end
       end
-    end.tap do |domain|
-      domain.activate
-      domain.dump
     end
   end
-  
-  it 'builds the domain' do
-    expect(pizza.name.value).to eq('Hello')
+
+  let(:pizza) do
+    Pizzeria::Pizzas::Pizza.new(
+      name: { value: "Hello" },
+      toppings: [{ name: 'pepperoni' }],
+      named_by: { name: { value: 'karl' } }, 
+      description: { value: 'okay' }
+    )
   end
-end 
+    
+  it 'builds the domain' do    
+    domain.activate
+    domain.dump
+    id = Pizzeria::Pizzas::Pizza.save(pizza)
+    gotten = Pizzeria::Pizzas::Pizza.fetch(id)
+
+    expect(gotten.name.value).to eq('Hello')
+  end
+end

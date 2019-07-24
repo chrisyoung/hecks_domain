@@ -1,6 +1,6 @@
-module <%= @aggregate.domain.name %>
-  module <%= @aggregate.name %>
-    class <%= @name %>
+module Pizzeria
+  module Orders
+    class Order
       class Repository
         include Singleton
         def self.save(object)
@@ -28,3 +28,4 @@ module <%= @aggregate.domain.name %>
     end
   end
 end
+
