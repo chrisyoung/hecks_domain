@@ -27,21 +27,27 @@ describe 'Playground' do
       end
     end
   end
-
-  let(:pizza) do
-    Pizzeria::Pizzas::Pizza.new(
-      name: { value: "Hello" },
-      toppings: [{ name: 'pepperoni' }],
-      named_by: { name: { value: 'karl' } }, 
-      description: { value: 'okay' }
-    )
-  end
     
   it 'builds the domain' do    
     domain.activate
     domain.dump
-    id = Pizzeria::Pizzas::Pizza.save(pizza)
-    gotten = Pizzeria::Pizzas::Pizza.fetch(id)
+
+    chef = Pizzeria::Pizzas::Chef.new(
+      name: { value: 'Tom' }
+    )
+
+    chef_id = chef.save
+
+    pizza = Pizzeria::Pizzas::Pizza.new(
+      name: { value: "Hello" },
+      toppings: [{ name: 'pepperoni' }],
+      named_by: { name: { value: 'karl' } },
+      description: { value: 'okay' }
+    )
+
+    pizza.save
+    gotten = Pizzeria::Pizzas::Pizza.fetch(pizza.id)
+    puts gotten.named_by
 
     expect(gotten.name.value).to eq('Hello')
   end

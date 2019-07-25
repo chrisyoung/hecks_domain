@@ -28,7 +28,9 @@ class Domain
       end
 
       def head(name, &block)
-        @head = entity(name, &block)
+        @head = Head.new(name, self, &block).tap do |head|
+          @entities << head
+        end
       end
 
       def value(name, &block)

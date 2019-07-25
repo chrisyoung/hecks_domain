@@ -1,9 +1,10 @@
 module Pizzeria
   module Pizzas
     class Pizza
-      attr_reader :name, :description, :named_by, :toppings
+      attr_reader :id, :name, :description, :named_by, :toppings
 
-      def initialize name:, description:, named_by:, toppings:
+      def initialize id: nil, name:, description:, named_by:, toppings:
+        @id = id
         @name = PizzaName.new(name)
         @description = PizzaDescription.new(description)
         @named_by = Chef.new(named_by)
@@ -11,6 +12,7 @@ module Pizzeria
           Topping.new(object)
         end
       end
+      
       def self.reference(id)
         Struct.new(:type, :id).new(self, id)
       end
@@ -19,8 +21,8 @@ module Pizzeria
         repository.fetch(id)
       end
 
-      def self.save(object)
-        repository.save(object)
+      def save
+        @id = self.class.repository.save(self)
       end
 
       def self.repository

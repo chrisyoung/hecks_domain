@@ -11,15 +11,14 @@ module <%= @aggregate.domain.name %>
         end
           <% elsif field.is_a?(ReferenceField) %>
         @<%= field.name %> = <%= field.module_name %>.reference(<%= field.name %>)
-          <% elsif field.is_a?(EntityField) %>
-        @<%= field.name %> = <%= field.module_name %>.new(<%= field.name %>)
-          <% elsif field.module_name %>
+          <% elsif field.is_a?(EntityField) || field.module_name %>
         @<%= field.name %> = <%= field.module_name %>.new(<%= field.name %>)
           <% else %>
         @<%= field.name %> = <%= field.name %>
           <% end %>
         <% end %>
       end
+      
       <% if self.is_a?(Entity) %>
       def self.reference(id)
         Struct.new(:type, :id).new(self, id)
@@ -29,8 +28,8 @@ module <%= @aggregate.domain.name %>
         repository.fetch(id)
       end
 
-      def self.save(object)
-        repository.save(object)
+      def save
+        @id = self.class.repository.save(self)
       end
 
       def self.repository

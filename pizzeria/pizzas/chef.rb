@@ -1,11 +1,13 @@
 module Pizzeria
   module Pizzas
     class Chef
-      attr_reader :name
+      attr_reader :id, :name
 
-      def initialize name:
+      def initialize id: nil, name:
+        @id = id
         @name = ChefName.new(name)
       end
+      
       def self.reference(id)
         Struct.new(:type, :id).new(self, id)
       end
@@ -14,8 +16,8 @@ module Pizzeria
         repository.fetch(id)
       end
 
-      def self.save(object)
-        repository.save(object)
+      def save
+        @id = self.class.repository.save(self)
       end
 
       def self.repository

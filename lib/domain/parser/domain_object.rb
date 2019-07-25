@@ -7,7 +7,9 @@ class Domain
       def initialize(name, aggregate, &block)
         @name = name
         @aggregate = aggregate
-        @fields = []
+        id = StringField.new(:id)
+        id.optional = true
+        @fields = [id]
         instance_eval &block
       end
 
