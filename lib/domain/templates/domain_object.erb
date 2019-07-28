@@ -1,3 +1,7 @@
+<% if is_a?(Entity) %>
+  require_relative '<%= folder_name %>/repository'
+<% end %>
+
 module <%= @aggregate.domain.name %>
   module <%= @aggregate.name %>
     class <%= @name %>

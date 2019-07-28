@@ -7,9 +7,15 @@ class Domain
       def initialize(name, &block)
         @name = name
         @aggregates = []
+        @spec_helper = SpecHelper.new
   
         instance_eval &block
       end
+
+      def spec_helper
+        @spec_helper
+      end
+      
       def aggregate(name, &block)
         @aggregates << Aggregate.new(name, self, &block)
       end

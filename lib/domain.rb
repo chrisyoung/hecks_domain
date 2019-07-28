@@ -5,9 +5,8 @@ require 'erubis'
 require_relative 'domain/top_level_methods'
 require_relative 'domain/support'
 require_relative 'domain/parser'
-require_relative 'domain/activator'
+require_relative 'domain/builder'
 require_relative 'domain/file_maker'
-
 
 class Domain
   def initialize(name, &block)
@@ -15,8 +14,8 @@ class Domain
     @file_maker = Parser::FileMaker    
   end
 
-  def activate
-    Activator.call(@parser.domain)
+  def build
+    Builder.call(@parser.domain)
   end
 
   def dump

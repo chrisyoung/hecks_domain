@@ -1,3 +1,7 @@
+<% @domain_objects.each do |object| %>
+require_relative '<%= folder_name %>/<%= object.folder_name %>'
+<% end %>
+
 module <%= @domain.name %>
   module <%= @name %>
     def self.head

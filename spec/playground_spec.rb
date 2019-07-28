@@ -22,14 +22,13 @@ describe 'Playground' do
           integer :quantity
           currency :price
           optional string :foo
-          reference(:pizza).as Pizzas: :Pizza
         end
       end
     end
   end
     
   it 'builds the domain' do    
-    domain.activate
+    domain.build
     domain.dump
 
     chef = Pizzeria::Pizzas::Chef.new(

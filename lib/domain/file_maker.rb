@@ -1,29 +1,47 @@
 class Domain
   class Parser
     module FileMaker
-      def self.dump(parser)
-        File.open(parser.file_name, 'w') do |file|
-          file.write(parser.ruby_file + "\n")
-        end
-        FileUtils.mkdir_p(parser.folder_name)
-        
-        parser.aggregates.each do |aggregate|
-          File.open(parser.folder_name + "/" + aggregate.file_name, 'w') do |file|
-            file.write(aggregate.ruby_file + "\n")
-          end
-          FileUtils.mkdir_p(parser.folder_name + "/" + aggregate.folder_name)
-          
-          aggregate.domain_objects.each do |domain_object|
-            FileUtils.mkdir_p(parser.folder_name + "/" + aggregate.folder_name + '/' + domain_object.folder_name) if domain_object.is_a?(Entity)
-            File.open(parser.folder_name + "/" + aggregate.folder_name + "/" + domain_object.file_name, 'w') do |file|
-              file.write(domain_object.ruby_file + "\n")
-            end
-            File.open(parser.folder_name + "/" + aggregate.folder_name + "/" + domain_object.folder_name + '/repository.rb', 'w') do |file|
-              file.write(domain_object.repository_file + "\n")
-            end if domain_object.is_a?(Entity)
-          end
-        end
+      def self.dump(domain)
+        write_and_change_dir(ENV['ROOT_PATH'] || 'lib')
+        write_file(domain)
+        write_and_change_dir(domain.folder_name)
+        dump_aggregates(domain)
+        Dir.chdir '../..'
+        write_and_change_dir('spec')
+        write_file(domain.spec_helper)
       end    
+
+      def self.dump_domain_objects(aggregate)
+        aggregate.domain_objects.each do |domain_object|
+          write_file(domain_object)
+          next unless domain_object.is_a?(Entity)
+          
+          FileUtils.mkdir_p(domain_object.folder_name) 
+          write_and_change_dir(domain_object.folder_name)
+          write_file(domain_object.repository)
+          Dir.chdir '..'
+        end
+      end
+
+      def self.dump_aggregates(domain)
+        domain.aggregates.each do |aggregate|
+          write_file(aggregate)
+          write_and_change_dir(aggregate.folder_name)
+          dump_domain_objects(aggregate)
+          Dir.chdir '..'
+        end
+      end
+      
+      def self.write_and_change_dir(name)
+        FileUtils.mkdir_p name
+        Dir.chdir name
+      end
+
+      def self.write_file(object)
+        File.open(object.file_name, 'w') do |file|
+          file.write(object.ruby_file + "\n")
+        end
+      end
     end
   end
 end

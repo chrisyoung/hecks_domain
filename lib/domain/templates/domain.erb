@@ -1,2 +1,7 @@
+require 'singleton'
+<% @aggregates.each do |aggregate| %>
+require_relative '<%= folder_name %>/<%= aggregate.folder_name %>'
+<% end %>
+
 module <%= @name %>
 end

@@ -1,26 +1,26 @@
 class Domain
-  class Activator
+  class Builder
     include Singleton
 
     def self.call(domain)
-      instance.activate(domain)
+      instance.build(domain)
     end
 
     def initialize
       @files = []
     end
 
-    def activate(domain)
+    def build(domain)
       domain.ruby_file = build_file('domain', domain.get_binding)
+      domain.spec_helper.ruby_file = build_file('spec_helper', domain.get_binding)
       domain.aggregates.each do |aggregate|
         aggregate.ruby_file = build_file('aggregate', aggregate.get_binding)
         aggregate.domain_objects.each do |domain_object|
           domain_object.ruby_file = build_file('domain_object', domain_object.get_binding)
-          domain_object.repository_file = build_file('repository', domain_object.get_binding)
+          domain_object.repository.ruby_file  = build_file('repository', domain_object.get_binding)
         end
       end
 
-      @files.each { |file| TOPLEVEL_BINDING.eval(file) }
       self
     end
 
