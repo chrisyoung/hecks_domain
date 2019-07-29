@@ -3,6 +3,12 @@ class Domain
     module FileMaker
       def self.dump(domain)
         write_and_change_dir(ENV['ROOT_PATH'] || 'lib')
+        write_and_change_dir('helpers')
+        write_file(domain.command_loader)
+        Dir.chdir '..'
+        write_and_change_dir('support')
+        write_file(domain.string_support)
+        Dir.chdir '..'
         write_file(domain)
         write_and_change_dir(domain.folder_name)
         dump_aggregates(domain)

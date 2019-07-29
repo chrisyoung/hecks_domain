@@ -1,5 +1,4 @@
   require_relative 'order/repository'
-  require_relative 'commands/create'
 
 module Pizzeria
   module Orders

@@ -3,13 +3,13 @@
 module Pizzeria
   module Pizzas
     class Pizza
-      attr_reader :id, :name, :description, :named_by, :toppings
+      attr_reader :id, :name, :description, :price, :toppings
 
-      def initialize id: nil, name:, description:, named_by:, toppings:
+      def initialize id: nil, name:, description:, price:, toppings:
         @id = id
         @name = PizzaName.new(name)
         @description = PizzaDescription.new(description)
-        @named_by = Chef.new(named_by)
+        @price = price
         @toppings = toppings.map do |object|
           Topping.new(object)
         end

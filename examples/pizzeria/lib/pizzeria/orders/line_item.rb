@@ -1,4 +1,3 @@
-require_relative 'line_item/factories/from_pizza'
 
 module Pizzeria
   module Orders

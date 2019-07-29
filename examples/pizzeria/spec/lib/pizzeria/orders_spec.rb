@@ -19,7 +19,7 @@ describe Pizzeria::Orders do
   
   describe '#create' do
     it 'saves the order' do
-      order.line_items << Pizzeria::Orders::LineItem::Factories.from_pizza(pizza)
+      # order.line_items << Pizzeria::Orders::LineItem::Factories.from_pizza(pizza)
       Pizzeria::Orders.create(order)
       expect(Pizzeria::Orders::Order.fetch(order.id)).to eq order  
     end

@@ -4,6 +4,8 @@ require_relative '<%= folder_name %>/<%= object.folder_name %>'
 
 module <%= @domain.name %>
   module <%= @name %>
+    include Helpers::CommandLoader
+    
     def self.head
       <%= @head.name %>
     end

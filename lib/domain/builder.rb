@@ -13,6 +13,8 @@ class Domain
     def build(domain)
       domain.ruby_file = build_file('domain', domain.get_binding)
       domain.spec_helper.ruby_file = build_file('spec_helper', domain.get_binding)
+      domain.command_loader.ruby_file = build_file('helpers/command_loader', domain.get_binding)
+      domain.string_support.ruby_file = build_file('support/string', domain.get_binding)
       domain.aggregates.each do |aggregate|
         aggregate.ruby_file = build_file('aggregate', aggregate.get_binding)
         aggregate.domain_objects.each do |domain_object|

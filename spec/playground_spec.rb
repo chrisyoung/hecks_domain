@@ -5,11 +5,9 @@ describe 'Playground' do
         head :Pizza do 
           value(:name).as :PizzaName
           value(:description).as :PizzaDescription
-          entity(:named_by).as :Chef
+          currency(:price)
           list(:toppings).as :Topping
         end
-        entity(:Chef) { value(:name).as :ChefName }
-        value(:ChefName) { string :value }
         value(:Topping) { string :name }
         value(:PizzaName) { string :value }
         value(:PizzaDescription) { string :value }

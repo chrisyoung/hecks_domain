@@ -1,3 +1,6 @@
+require_relative 'domain/command_loader'
+require_relative 'domain/string_support'
+
 class Domain
   class Parser
     class Domain
@@ -8,6 +11,8 @@ class Domain
         @name = name
         @aggregates = []
         @spec_helper = SpecHelper.new
+        @command_loader = CommandLoader.new
+        @string_support = StringSupport.new
   
         instance_eval &block
       end
@@ -16,8 +21,16 @@ class Domain
         @spec_helper
       end
       
+      def string_support
+        @string_support
+      end
+
       def aggregate(name, &block)
         @aggregates << Aggregate.new(name, self, &block)
+      end
+
+      def command_loader
+        @command_loader
       end
     
       def get_binding
