@@ -16,6 +16,7 @@ class Domain
       domain.command_loader.ruby_file = build_file('helpers/command_loader', domain.get_binding)
       domain.string_support.ruby_file = build_file('support/string', domain.get_binding)
       domain.aggregates.each do |aggregate|
+        aggregate.commands.ruby_file = build_file('aggregate/commands', aggregate.get_binding)
         aggregate.ruby_file = build_file('aggregate', aggregate.get_binding)
         aggregate.domain_objects.each do |domain_object|
           domain_object.ruby_file = build_file('domain_object', domain_object.get_binding)

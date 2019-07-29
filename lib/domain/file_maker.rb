@@ -33,6 +33,7 @@ class Domain
         domain.aggregates.each do |aggregate|
           write_file(aggregate)
           write_and_change_dir(aggregate.folder_name)
+          write_file(aggregate.commands)
           dump_domain_objects(aggregate)
           Dir.chdir '..'
         end
