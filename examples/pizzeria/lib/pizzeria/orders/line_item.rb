@@ -1,7 +1,10 @@
+require_relative 'line_item/factories'
+require_relative '../../helpers/factory_loader'
 
 module Pizzeria
   module Orders
     class LineItem
+      include Helpers::FactoryLoader
       attr_reader :id, :pizza_name, :quantity, :price, :foo
 
       def initialize id: nil, pizza_name:, quantity:, price:, foo: nil

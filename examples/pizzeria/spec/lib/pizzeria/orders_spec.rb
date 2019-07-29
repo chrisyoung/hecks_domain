@@ -1,7 +1,12 @@
 require 'spec_helper'
 describe Pizzeria::Orders do
   let(:pizza) do
-    Pizzeria::Pizzas::Pizza.new(name: {value: 'pepperoni'}, description: {value: 'a classic'}, named_by: {name: {value: 'Chris'}}, toppings: [{name: 'pepperoni'}])
+    Pizzeria::Pizzas::Pizza.new(
+      name: { value: 'pepperoni' }, 
+      description: { value: 'a classic' }, 
+      toppings: [{ name: 'pepperoni' }],
+      price: 1.00
+    )
   end
   let(:line_item) do 
     {
@@ -19,9 +24,10 @@ describe Pizzeria::Orders do
   
   describe '#create' do
     it 'saves the order' do
-      # order.line_items << Pizzeria::Orders::LineItem::Factories.from_pizza(pizza)
-      Pizzeria::Orders.create(order)
-      expect(Pizzeria::Orders::Order.fetch(order.id)).to eq order  
+      Pizzeria::Orders.create order
+      expect(Pizzeria::Orders::Order.fetch(order.id)).to eq order
+      order.line_items << Pizzeria::Orders::LineItem.from_pizza(pizza)
+      expect(order.line_items.count).to eq 2
     end
   end
 end
