@@ -1,12 +1,12 @@
-Dir[File.dirname(__FILE__) + '/factories/*.rb'].each {|file| require_relative file }
+require_relative '<%= folder_name %>/factories'
 <% if is_a?(Entity) %>
 require_relative '<%= folder_name %>/repository'
 <% end %>
 
 module <%= @aggregate.domain.name %>
   module <%= @aggregate.name %>
-    include FactoryLoader
     class <%= @name %>
+      include Helpers::FactoryLoader
       attr_reader <%= @fields.map { |field| ':' + field.name.to_s }.join(', ') %>
 
       def initialize <%= @fields.map { |field| field.attribute_name}.join(', ') %>

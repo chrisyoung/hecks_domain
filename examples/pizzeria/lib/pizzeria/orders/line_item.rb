@@ -1,5 +1,4 @@
 require_relative 'line_item/factories'
-require_relative '../../helpers/factory_loader'
 
 module Pizzeria
   module Orders

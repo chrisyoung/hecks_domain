@@ -1,7 +1,7 @@
 Dir[File.dirname(__FILE__) + '/factories/*.rb'].each {|file| require_relative file }
-module Pizzeria
-  module Orders
-    class LineItem
+module <%= @aggregate.domain.name %>
+  module <%= @aggregate.name %>
+    class <%= @name %>
       module Factories
       end
     end

@@ -5,6 +5,7 @@ class Domain
         write_and_change_dir(ENV['ROOT_PATH'] || 'lib')
         write_and_change_dir('helpers')
         write_file(domain.command_loader)
+        write_file(domain.factory_loader)
         Dir.chdir '..'
         write_and_change_dir('support')
         write_file(domain.string_support)
@@ -20,10 +21,11 @@ class Domain
       def self.dump_domain_objects(aggregate)
         aggregate.domain_objects.each do |domain_object|
           write_file(domain_object)
-          next unless domain_object.is_a?(Entity)
-          
           FileUtils.mkdir_p(domain_object.folder_name) 
           write_and_change_dir(domain_object.folder_name)
+          FileUtils.mkdir_p('factories')
+          write_file(domain_object.factories)
+          Dir.chdir '..' and next unless domain_object.is_a?(Entity)
           write_file(domain_object.repository)
           Dir.chdir '..'
         end

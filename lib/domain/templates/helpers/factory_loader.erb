@@ -5,7 +5,7 @@ module <%= name %>
         base::Factories.constants.each do |constant|
           base.class_eval "
             def self.#{constant.to_s.underscore}(args)
-              Factories::#{constant}.new(*args).call  
+              Factories::#{constant}.factory(*args)
             end
           "
         end

@@ -1,3 +1,4 @@
+require_relative 'domain_object/factories'
 class Domain
   class Parser
     class DomainObject
@@ -8,6 +9,7 @@ class Domain
         @name = name
         @aggregate = aggregate
         @repository = Repository.new
+        @factories = Factories.new
         id = StringField.new(:id)
         id.optional = true
         @fields = [id]
@@ -57,6 +59,10 @@ class Domain
 
       def get_binding
         binding
+      end
+
+      def factories
+        @factories
       end
 
       private

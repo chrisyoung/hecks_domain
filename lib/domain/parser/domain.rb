@@ -1,4 +1,5 @@
 require_relative 'domain/command_loader'
+require_relative 'domain/factory_loader'
 require_relative 'domain/string_support'
 
 class Domain
@@ -12,6 +13,7 @@ class Domain
         @aggregates = []
         @spec_helper = SpecHelper.new
         @command_loader = CommandLoader.new
+        @factory_loader = FactoryLoader.new
         @string_support = StringSupport.new
   
         instance_eval &block
@@ -32,6 +34,11 @@ class Domain
       def command_loader
         @command_loader
       end
+
+      def factory_loader
+        @factory_loader
+      end
+
     
       def get_binding
         binding
