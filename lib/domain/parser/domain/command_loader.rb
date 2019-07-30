@@ -1,4 +1,4 @@
-class Domain
+class HecksDomain
   class Parser
     class Domain
       class CommandLoader

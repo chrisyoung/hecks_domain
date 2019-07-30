@@ -1,5 +1,5 @@
 require_relative 'domain_object/factories'
-class Domain
+class HecksDomain
   class Parser
     class DomainObject
       attr_accessor :ruby_file, :repository

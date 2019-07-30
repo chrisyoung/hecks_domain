@@ -1,4 +1,4 @@
-class Domain
+class HecksDomain
   class Builder
     include Singleton
 

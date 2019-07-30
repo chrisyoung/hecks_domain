@@ -1,4 +1,4 @@
-class Domain
+class HecksDomain
   class Parser
     class Repository
       attr_accessor :ruby_file

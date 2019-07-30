@@ -9,7 +9,7 @@ require_relative 'domain/parser'
 require_relative 'domain/builder'
 require_relative 'domain/file_maker'
 
-class Domain
+class HecksDomain
   def initialize(name, &block)
     @parser = Parser.new(name, &block)
     @file_maker = FileMaker
@@ -24,7 +24,7 @@ class Domain
   end
 
   def self.domain name, &block
-    Domain.new name, &block
+    new name, &block
   end
 end
 

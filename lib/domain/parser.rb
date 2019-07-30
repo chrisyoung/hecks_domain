@@ -8,7 +8,7 @@ require_relative 'parser/reference_field'
 require_relative 'parser/spec_helper'
 require_relative 'parser/aggregate/commands'
 
-class Domain
+class HecksDomain
   class Parser
     attr_accessor :domain
     

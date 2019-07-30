@@ -1,4 +1,4 @@
-Domain.domain(:Pizzeria) do
+domain(:Pizzeria) do
   aggregate :Pizzas do
     head :Pizza do
       value(:name).as :PizzaName

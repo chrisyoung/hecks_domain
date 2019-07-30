@@ -2,7 +2,7 @@ require_relative 'domain/command_loader'
 require_relative 'domain/factory_loader'
 require_relative 'domain/string_support'
 
-class Domain
+class HecksDomain
   class Parser
     class Domain
       attr_reader :name, :aggregates

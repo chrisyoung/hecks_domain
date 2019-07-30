@@ -1,3 +1,3 @@
 def domain(name, &block)
-  Domain.domain(name, &block)
+  HecksDomain.domain(name, &block)
 end

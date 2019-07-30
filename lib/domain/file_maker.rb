@@ -1,6 +1,6 @@
 require_relative 'file_maker/create_file'
 
-class Domain
+class HecksDomain
     class FileMaker
       attr_reader :domain
 
