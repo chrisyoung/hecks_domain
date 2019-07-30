@@ -1,5 +1,4 @@
 require 'spec_helper'
-require_relative '../../../../../lib/domain'
 
 describe "Playground" do
   let(:pizza) do
