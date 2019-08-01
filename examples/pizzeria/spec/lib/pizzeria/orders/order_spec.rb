@@ -1,11 +1,11 @@
 require 'spec_helper'
 describe Pizzeria::Orders::Order do
   let(:line_item) do 
-    {
+    Pizzeria::Orders::LineItem.new(
       pizza_name: 'Pepperoni',
       quantity: 1,
       price: 1.00
-    }
+    )
   end
 
   subject { described_class.new(line_items: [line_item]) }

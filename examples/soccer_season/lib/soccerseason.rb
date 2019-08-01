@@ -4,8 +4,10 @@ require_relative 'helpers/factory_loader'
 require_relative 'helpers/repository'
 require 'singleton'
 
-require_relative 'pizzeria/pizzas'
-require_relative 'pizzeria/orders'
+require_relative 'soccerseason/matches'
+require_relative 'soccerseason/teams'
+require_relative 'soccerseason/players'
+require_relative 'soccerseason/pitches'
 
-module Pizzeria
+module SoccerSeason
 end

@@ -31,6 +31,7 @@ class HecksDomain
       def dump_helpers
         write_and_change_dir('helpers')
         write_file(domain.command_loader)
+        write_file(domain.repository_helper)
         write_file(domain.factory_loader)
         Dir.chdir '..'
       end

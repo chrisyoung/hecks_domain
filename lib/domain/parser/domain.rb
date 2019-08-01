@@ -1,5 +1,6 @@
 require_relative 'domain/command_loader'
 require_relative 'domain/factory_loader'
+require_relative 'domain/repository_helper'
 require_relative 'domain/string_support'
 
 class HecksDomain
@@ -13,6 +14,7 @@ class HecksDomain
         @aggregates = []
         @spec_helper = SpecHelper.new
         @command_loader = CommandLoader.new
+        @repository_helper = RepositoryHelper.new
         @factory_loader = FactoryLoader.new
         @string_support = StringSupport.new
   
@@ -35,6 +37,10 @@ class HecksDomain
         @command_loader
       end
 
+      def repository_helper
+        @repository_helper
+      end
+      
       def factory_loader
         @factory_loader
       end

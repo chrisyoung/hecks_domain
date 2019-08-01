@@ -1,0 +1,48 @@
+domain(:SoccerSeason) do
+  aggregate :Matches do
+    head :Match do
+      value(:fixture).as :Fixture
+      list(:goals).as :Goal
+      list(:teams).as Teams: :Team
+      entity(:pitch).as :Pitch
+      entity(:result).as :Result
+    end
+
+    value(:Result) do
+      reference(:loser).as :Teams => :Team
+      reference(:winner).as :Teams => :Team
+    end
+
+    value(:Goal) do
+      string :time
+      reference(:player).as :Players => :Player
+    end
+
+    value(:Fixture) do
+      string :season
+      string :date
+      string :time
+    end
+
+    value(:Pitch) do
+      string :name
+    end
+  end
+
+  aggregate :Teams do
+    head(:Team) { string :name }
+  end
+
+  aggregate :Players do
+    head(:Player) do
+      string :name
+      reference(:team).as :Teams => :Team
+    end
+  end
+
+  aggregate :Pitches do
+    head(:Pitch) do
+      string :name
+    end
+  end
+end

@@ -4,13 +4,12 @@ module Pizzeria
   module Pizzas
     class PizzaDescription
       include Helpers::FactoryLoader
-      attr_reader :id, :value
+      
+      attr_reader :value
 
-      def initialize id: nil, value:
-        @id = id
+      def initialize value:
         @value = value
       end
-      
     end
   end
 end

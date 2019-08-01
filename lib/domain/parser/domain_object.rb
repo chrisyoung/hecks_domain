@@ -10,9 +10,7 @@ class HecksDomain
         @aggregate = aggregate
         @repository = Repository.new
         @factories = Factories.new
-        id = StringField.new(:id)
-        id.optional = true
-        @fields = [id]
+        @fields = []
         @repository = Repository.new
         instance_eval &block
       end

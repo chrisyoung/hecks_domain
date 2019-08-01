@@ -1,10 +1,10 @@
 class HecksDomain
   class Parser
     class Domain
-      class StringSupport
+      class RepositoryHelper
         attr_accessor :ruby_file
         def file_name
-          'string.rb'
+          'repository.rb'
         end
       end
     end

@@ -5,32 +5,14 @@ module Pizzeria
   module Pizzas
     class Pizza
       include Helpers::FactoryLoader
+      include Helpers::Repository
       attr_reader :id, :name, :description, :price, :toppings
 
-      def initialize id: nil, name:, description:, price:, toppings:
-        @id = id
-        @name = PizzaName.new(name)
-        @description = PizzaDescription.new(description)
+      def initialize name:, description:, price:, toppings:
+        @name = name
+        @description = description
         @price = price
-        @toppings = toppings.map do |object|
-          Topping.new(object)
-        end
-      end
-      
-      def self.reference(id)
-        Struct.new(:type, :id).new(self, id)
-      end
-
-      def self.fetch(id)
-        repository.fetch(id)
-      end
-
-      def save
-        @id = self.class.repository.save(self)
-      end
-
-      def self.repository
-        Repository
+        @toppings = toppings
       end
     end
   end

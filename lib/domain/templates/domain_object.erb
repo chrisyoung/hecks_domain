@@ -7,41 +7,14 @@ module <%= @aggregate.domain.name %>
   module <%= @aggregate.name %>
     class <%= @name %>
       include Helpers::FactoryLoader
-      attr_reader <%= @fields.map { |field| ':' + field.name.to_s }.join(', ') %>
+      <%= 'include Helpers::Repository' if is_a?(Entity) %>
+      attr_reader <%= ':id, ' if is_a?(Entity) %><%= @fields.map { |field| ':' + field.name.to_s }.join(', ') %>
 
       def initialize <%= @fields.map { |field| field.attribute_name}.join(', ') %>
         <% @fields.each do |field| %>
-          <% if field.is_a?(ListField) %>
-        @<%= field.name %> = <%= field.name %>.map do |object|
-          <%= field.module_name %>.new(object)
-        end
-          <% elsif field.is_a?(ReferenceField) %>
-        @<%= field.name %> = <%= field.module_name %>.reference(<%= field.name %>)
-          <% elsif field.is_a?(EntityField) || field.module_name %>
-        @<%= field.name %> = <%= field.module_name %>.new(<%= field.name %>)
-          <% else %>
         @<%= field.name %> = <%= field.name %>
-          <% end %>
         <% end %>
       end
-      
-      <% if self.is_a?(Entity) %>
-      def self.reference(id)
-        Struct.new(:type, :id).new(self, id)
-      end
-
-      def self.fetch(id)
-        repository.fetch(id)
-      end
-
-      def save
-        @id = self.class.repository.save(self)
-      end
-
-      def self.repository
-        Repository
-      end
-      <% end %>
     end
   end
 end

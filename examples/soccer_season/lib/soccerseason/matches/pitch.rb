@@ -1,8 +1,8 @@
-require_relative 'topping/factories'
+require_relative 'pitch/factories'
 
-module Pizzeria
-  module Pizzas
-    class Topping
+module SoccerSeason
+  module Matches
+    class Pitch
       include Helpers::FactoryLoader
       
       attr_reader :name
