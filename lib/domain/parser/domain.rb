@@ -6,9 +6,10 @@ require_relative 'domain/string_support'
 class HecksDomain
   class Parser
     class Domain
-      attr_reader :name, :aggregates
+      attr_reader :name, :aggregates, :spec_helper, :string_support, 
+                  :command_loader, :repository_helper, :factory_loader
       attr_accessor :ruby_file
-  
+
       def initialize(name, &block)
         @name = name
         @aggregates = []
@@ -17,46 +18,25 @@ class HecksDomain
         @repository_helper = RepositoryHelper.new
         @factory_loader = FactoryLoader.new
         @string_support = StringSupport.new
-  
-        instance_eval &block
-      end
 
-      def spec_helper
-        @spec_helper
-      end
-      
-      def string_support
-        @string_support
+        instance_eval(&block)
       end
 
       def aggregate(name, &block)
         @aggregates << Aggregate.new(name, self, &block)
       end
 
-      def command_loader
-        @command_loader
-      end
-
-      def repository_helper
-        @repository_helper
-      end
-      
-      def factory_loader
-        @factory_loader
-      end
-
-    
       def get_binding
         binding
       end
-    
+
       def file_name
         folder_name + '.rb'
       end
-    
+
       def folder_name
         @name.to_s.downcase
-      end  
+      end
     end
   end
 end

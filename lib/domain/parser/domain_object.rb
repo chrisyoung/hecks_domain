@@ -3,8 +3,8 @@ class HecksDomain
   class Parser
     class DomainObject
       attr_accessor :ruby_file, :repository
-      attr_reader :name
-      
+      attr_reader :name, :factories
+
       def initialize(name, aggregate, &block)
         @name = name
         @aggregate = aggregate
@@ -22,19 +22,19 @@ class HecksDomain
       def list(name)
         add_field(name, ListField)
       end
-    
+
       def string(name)
         add_field(name, StringField)
       end
-    
+
       def integer(name)
         add_field(name, IntegerField)
       end
-      
+
       def currency(name)
-        add_field(name, CurrencyField)        
+        add_field(name, CurrencyField)
       end
-    
+
       def value(name)
         add_field(name, ValueField)
       end
@@ -44,7 +44,7 @@ class HecksDomain
       end
 
       def reference(name)
-        add_field(name, ReferenceField) 
+        add_field(name, ReferenceField)
       end
 
       def file_name
@@ -59,15 +59,11 @@ class HecksDomain
         binding
       end
 
-      def factories
-        @factories
-      end
-
       private
 
       def add_field(name, type)
         type.new(name).tap { |field| @fields << field }
       end
-    end 
+    end
   end
 end
