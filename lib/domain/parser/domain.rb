@@ -35,7 +35,7 @@ class HecksDomain
       end
 
       def folder_name
-        @name.to_s.downcase
+        @name.to_s.underscore
       end
     end
   end
