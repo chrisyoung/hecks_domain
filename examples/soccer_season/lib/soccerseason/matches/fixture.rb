@@ -5,7 +5,9 @@ module SoccerSeason
     class Fixture
       include Helpers::FactoryLoader
       
-      attr_reader :season, :date, :time
+      
+
+      attr_accessor :season, :date, :time
 
       def initialize season:, date:, time:
         @season = season

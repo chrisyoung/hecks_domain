@@ -18,9 +18,9 @@ class HecksDomain
       domain.factory_loader.ruby_file = build_file('helpers/factory_loader', domain.get_binding)
       domain.string_support.ruby_file = build_file('support/string', domain.get_binding)
       domain.aggregates.each do |aggregate|
-        aggregate.commands.ruby_file = build_file('aggregate/commands', aggregate.get_binding)
         aggregate.ruby_file = build_file('aggregate', aggregate.get_binding)
         aggregate.domain_objects.each do |domain_object|
+          domain_object.commands.ruby_file = build_file('domain_object/commands', domain_object.get_binding)
           domain_object.ruby_file = build_file('domain_object', domain_object.get_binding)
           domain_object.factories.ruby_file = build_file('domain_object/factories', domain_object.get_binding)
           domain_object.repository.ruby_file  = build_file('repository', domain_object.get_binding)

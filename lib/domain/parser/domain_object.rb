@@ -1,4 +1,6 @@
 require_relative 'domain_object/factories'
+require_relative 'domain_object/commands'
+
 class HecksDomain
   class Parser
     class DomainObject
@@ -10,6 +12,7 @@ class HecksDomain
         @aggregate = aggregate
         @repository = Repository.new
         @factories = Factories.new
+        @commands = Commands.new
         @fields = []
         @repository = Repository.new
         instance_eval &block
@@ -18,6 +21,11 @@ class HecksDomain
       def optional(value)
         value.optional = true
       end
+
+      def commands
+        @commands
+      end
+
 
       def list(name)
         add_field(name, ListField)
@@ -39,6 +47,10 @@ class HecksDomain
         add_field(name, ValueField)
       end
 
+      def boolean(name)
+        add_field(name, BooleanField)
+      end
+
       def entity(name)
         add_field(name, EntityField)
       end
@@ -53,6 +65,11 @@ class HecksDomain
 
       def folder_name
         @name.to_s.underscore
+      end
+
+      def read_only(value)
+        value.read_only = true
+        value
       end
 
       def get_binding

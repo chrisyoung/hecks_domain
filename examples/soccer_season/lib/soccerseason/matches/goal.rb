@@ -5,7 +5,9 @@ module SoccerSeason
     class Goal
       include Helpers::FactoryLoader
       
-      attr_reader :time, :player
+      
+
+      attr_accessor :time, :player
 
       def initialize time:, player:
         @time = time

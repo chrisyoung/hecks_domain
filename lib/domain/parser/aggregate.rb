@@ -9,7 +9,6 @@ class HecksDomain
         @entities = []
         @value_objects = []      
         @domain = domain
-        @commands = Commands.new
         instance_eval &block
         @domain_objects = @entities + @value_objects
       end
@@ -32,10 +31,6 @@ class HecksDomain
         @head = Head.new(name, self, &block).tap do |head|
           @entities << head
         end
-      end
-
-      def commands
-        @commands
       end
 
       def value(name, &block)

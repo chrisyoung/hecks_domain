@@ -2,6 +2,7 @@ class HecksDomain
   class Parser
     class EntityField
       attr_reader :name
+
       def initialize(name)
         @name = name
       end
@@ -12,6 +13,14 @@ class HecksDomain
 
       def module_name
         @as
+      end
+
+      def read_only=(value)
+        @read_only = value
+      end
+
+      def read_only?
+        @read_only
       end
 
       def optional?

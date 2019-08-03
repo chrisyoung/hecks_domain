@@ -1,6 +1,6 @@
 class HecksDomain
   class Parser
-    class Aggregate
+    class DomainObject
       class Commands
         attr_accessor :ruby_file
         def file_name

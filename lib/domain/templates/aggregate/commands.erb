@@ -1,8 +1,0 @@
-Dir[File.dirname(__FILE__) + '/commands/*.rb'].each {|file| require_relative file }
-
-module <%= @domain.name %>
-  module <%= @name %>
-    module Commands
-    end
-  end
-end

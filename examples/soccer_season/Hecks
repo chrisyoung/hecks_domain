@@ -9,13 +9,14 @@ domain(:SoccerSeason) do
     end
 
     value(:Result) do
-      reference(:loser).as :Teams => :Team
-      reference(:winner).as :Teams => :Team
+      entity(:loser).as :Teams => :Team
+      entity(:winner).as :Teams => :Team
+      read_only boolean(:tied)
     end
 
     value(:Goal) do
       string :time
-      reference(:player).as :Players => :Player
+      entity(:player).as :Players => :Player
     end
 
     value(:Fixture) do
@@ -36,7 +37,7 @@ domain(:SoccerSeason) do
   aggregate :Players do
     head(:Player) do
       string :name
-      reference(:team).as :Teams => :Team
+      entity(:team).as :Teams => :Team
     end
   end
 

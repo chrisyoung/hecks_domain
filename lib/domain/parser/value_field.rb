@@ -3,7 +3,8 @@ class HecksDomain
     class ValueField
       attr_reader :name
       attr_writer :optional
-      
+      attr_writer :read_only
+
       def initialize(name)
         @name = name
       end
@@ -19,6 +20,10 @@ class HecksDomain
 
       def module_name
         @as
+      end
+
+      def read_only?
+        @read_only
       end
 
       def as(name)

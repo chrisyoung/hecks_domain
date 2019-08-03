@@ -6,7 +6,6 @@ require_relative 'parser/value_field'
 require_relative 'parser/entity_field'
 require_relative 'parser/reference_field'
 require_relative 'parser/spec_helper'
-require_relative 'parser/aggregate/commands'
 
 class HecksDomain
   class Parser
@@ -19,6 +18,7 @@ class HecksDomain
     class Entity < DomainObject;end
     class Head < Entity;end
     class ValueObject < DomainObject;end
+    class BooleanField < ValueField;end
     class StringField < ValueField;end
     class IntegerField < ValueField;end
     class CurrencyField < ValueField;end
