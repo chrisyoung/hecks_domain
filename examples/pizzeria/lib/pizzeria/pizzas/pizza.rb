@@ -1,12 +1,15 @@
 require_relative 'pizza/factories'
 require_relative 'pizza/repository'
+require_relative 'pizza/commands'
 
 module Pizzeria
   module Pizzas
     class Pizza
       include Helpers::FactoryLoader
       include Helpers::Repository
-      attr_reader :id, :name, :description, :price, :toppings
+      include Helpers::CommandLoader
+
+      attr_accessor :id, :name, :description, :price, :toppings
 
       def initialize name:, description:, price:, toppings:
         @name = name
@@ -14,6 +17,7 @@ module Pizzeria
         @price = price
         @toppings = toppings
       end
+
     end
   end
 end

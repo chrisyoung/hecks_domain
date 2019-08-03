@@ -5,11 +5,14 @@ module Pizzeria
     class Topping
       include Helpers::FactoryLoader
       
-      attr_reader :name
+      
+
+      attr_accessor :name
 
       def initialize name:
         @name = name
       end
+
     end
   end
 end

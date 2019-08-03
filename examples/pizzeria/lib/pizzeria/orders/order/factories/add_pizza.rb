@@ -1,10 +1,10 @@
 module Pizzeria
   module Orders
-    class LineItem
+    class Order
       module Factories
-        module FromPizza
-          def self.factory(pizza)
-            LineItem.new(
+        module AddPizza
+          def self.factory(order, pizza)
+            order.line_items << LineItem.new(
               pizza_name: pizza.name,
               quantity: 1,
               price: pizza.price
