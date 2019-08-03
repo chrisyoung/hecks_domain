@@ -13,6 +13,7 @@ module SoccerSeason
         @time = time
         @player = player
       end
+
     end
   end
 end

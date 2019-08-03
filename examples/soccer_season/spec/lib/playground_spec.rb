@@ -65,6 +65,7 @@ describe "Playground" do
       match.add_goal(Time.now, player_clayton)
       match.score
       expect(match.result.winner).to be_nil
+      expect(match.result.tied?).to be true
     end
   end
 end

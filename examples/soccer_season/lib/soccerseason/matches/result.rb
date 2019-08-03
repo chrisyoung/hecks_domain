@@ -5,14 +5,16 @@ module SoccerSeason
     class Result
       include Helpers::FactoryLoader
       
-      
-
       attr_accessor :loser, :winner, :tied
 
       def initialize loser:, winner:
         @loser = loser
         @winner = winner
-        @tied = nil
+        @tied = true unless loser && winner
+      end
+
+      def tied?
+        @tied
       end
     end
   end

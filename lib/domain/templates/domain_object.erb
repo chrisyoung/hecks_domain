@@ -28,6 +28,14 @@ module <%= @aggregate.domain.name %>
         <% end %>
         <% end %>
       end
+
+      <% @fields.each do |field| %>
+      <% if field.is_a?(BooleanField) %>
+      def <%= field.name %>?
+        @<%= field.name %>
+      end
+      <% end %>
+      <% end %>
     end
   end
 end

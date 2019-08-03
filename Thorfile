@@ -1,4 +1,5 @@
 require_relative 'lib/hecks_domain'
+# ENV['THOR_MERGE'] = 'vscode'
 class HecksDomain < Thor
   
   desc "new", "Create a new domain"

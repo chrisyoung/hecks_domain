@@ -15,6 +15,7 @@ module SoccerSeason
         @name = name
         @team = team
       end
+
     end
   end
 end

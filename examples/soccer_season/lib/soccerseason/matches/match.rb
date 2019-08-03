@@ -18,6 +18,7 @@ module SoccerSeason
         @pitch = pitch
         @result = result
       end
+
     end
   end
 end

@@ -14,6 +14,7 @@ module SoccerSeason
         @date = date
         @time = time
       end
+
     end
   end
 end
