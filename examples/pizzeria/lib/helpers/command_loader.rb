@@ -4,7 +4,7 @@ module Pizzeria
       def self.included(base)
         base::Commands.constants.each do |constant|
           base.class_eval "
-            def #{constant.to_s.underscore}(*args)
+            def #{constant.to_s.underscore}!(*args)
               Commands::#{constant}.new(self, *args).call  
             end
           "

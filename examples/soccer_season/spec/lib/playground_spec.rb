@@ -52,18 +52,16 @@ describe "Playground" do
 
   describe '#create' do
     before do
-      match.add_goal(Time.now, player_foster)
-      match.add_goal(Time.now, player_chris)
-      match.add_goal(Time.now, player_chris)
-      match.add_goal(Time.now, player_clayton)
-      match.add_goal(Time.now, player_clayton)
+      [player_foster, player_chris, player_chris, player_clayton, player_clayton].each do |player|
+        match.add_goal(Time.now, player)
+      end
     end
 
     it 'saves the order' do
-      match.score
+      match.score!
       expect(match.result.winner).to eq redteam
       match.add_goal(Time.now, player_clayton)
-      match.score
+      match.score!
       expect(match.result.winner).to be_nil
       expect(match.result.tied?).to be true
     end

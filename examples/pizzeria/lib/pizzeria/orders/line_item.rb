@@ -5,6 +5,8 @@ module Pizzeria
     class LineItem
       include Helpers::FactoryLoader
       
+      
+
       attr_accessor :pizza_name, :quantity, :price, :foo
 
       def initialize pizza_name:, quantity:, price:, foo: nil

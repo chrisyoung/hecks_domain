@@ -26,7 +26,7 @@ describe "Playground" do
 
   describe '#create' do
     it 'saves the order' do
-      order.create
+      order.create!
       expect(Pizzeria::Orders::Order.fetch(order.id)).to eq order
       order.add_pizza(pizza)
       expect(order.line_items.count).to eq 2
