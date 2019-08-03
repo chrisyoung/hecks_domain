@@ -12,10 +12,16 @@ module <%= @aggregate.domain.name %>
       <%= 'include Helpers::CommandLoader' if is_a?(Head) %>
 
       attr_accessor <%= ':id, ' if is_a?(Entity) %><%= 
-        @fields.map { |field| ':' + field.name.to_s }.join(', ') 
+        @fields.map do |field|
+          "#{':'}#{field.name.to_s}" 
+        end.join(', ') 
       %>
 
-      def initialize <%= @fields.select {|field| !field.read_only?}.map { |field| field.attribute_name}.join(', ') %>
+      def initialize <%= @fields.select do |field| 
+        !field.read_only?
+      end.map do |field|
+        field.attribute_name
+      end.join(', ') %>
         <% @fields.each do |field| %>
         <% if field.read_only? %>
           <% if field.is_a?(ListField) %>
