@@ -1,0 +1,29 @@
+require_relative '<%= folder_name %>/factories'
+<% if is_a?(Head) %>
+require_relative '<%= folder_name %>/repository'
+require_relative '<%= folder_name %>/commands'
+<% end %>
+
+module <%= @aggregate.domain.name %>
+  module <%= @aggregate.name %>
+    class <%= @name %>
+      include Helpers::FactoryLoader
+      <%= 'include Helpers::Repository' if is_a?(Entity) %>
+      <%= 'include Helpers::CommandLoader' if is_a?(Head) %>
+
+      attr_accessor <%= accessors %>
+
+      def initialize <%= initializer_attributes %>
+      <% @fields.each do |field| %>
+        <%= "@#{field.name} = #{field.initial_state}" %>
+      <% end %>
+      end
+      <% boolean_accessors.each do |field| -%>
+      
+      def <%= field.name %>?
+        @<%= field.name %>
+      end
+      <% end %>
+    end
+  end
+end

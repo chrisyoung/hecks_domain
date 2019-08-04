@@ -3,11 +3,11 @@ require 'pry'
 require 'erubis'
 require 'thor'
 
-require_relative 'domain/top_level_methods'
-require_relative 'domain/support'
-require_relative 'domain/parser'
-require_relative 'domain/builder'
-require_relative 'domain/file_maker'
+require_relative 'hecks_domain/top_level_methods'
+require_relative 'hecks_domain/support'
+require_relative 'hecks_domain/parser'
+require_relative 'hecks_domain/builder'
+require_relative 'hecks_domain/file_maker'
 
 class HecksDomain
   def initialize(name, &block)

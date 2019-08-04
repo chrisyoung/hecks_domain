@@ -13,6 +13,10 @@ class HecksDomain
         @optional
       end
 
+      def initial_state
+        name
+      end
+
       def attribute_name
         return name.to_s + ':' unless optional?
         name.to_s + ': nil'

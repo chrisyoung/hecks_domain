@@ -15,6 +15,10 @@ class HecksDomain
         @as
       end
 
+      def initial_state
+        name
+      end
+
       def read_only=(value)
         @read_only = value
       end

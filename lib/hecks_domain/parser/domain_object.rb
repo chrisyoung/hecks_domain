@@ -22,10 +22,25 @@ class HecksDomain
         value.optional = true
       end
 
+      def initializer_attributes
+        @fields.reject(&:read_only?).map(&:attribute_name).join(', ')
+      end
+
+      def boolean_accessors
+        @fields.select { |field| field.is_a?(BooleanField) }
+      end
+
+      def accessors
+        @fields.map do |field|
+          ":#{field.name}"
+        end.tap do |fields| 
+          fields << ':id' if is_a?(Entity) 
+        end.join(', ')
+      end
+
       def commands
         @commands
       end
-
 
       def list(name)
         add_field(name, ListField)

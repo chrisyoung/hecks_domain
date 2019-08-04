@@ -9,7 +9,7 @@ module SoccerSeason
       include Helpers::Repository
       include Helpers::CommandLoader
 
-      attr_accessor :id, :fixture, :goals, :teams, :pitch, :result
+      attr_accessor :fixture, :goals, :teams, :pitch, :result, :id
 
       def initialize fixture:, goals:, teams:, pitch:, result:
         @fixture = fixture
@@ -18,7 +18,6 @@ module SoccerSeason
         @pitch = pitch
         @result = result
       end
-
     end
   end
 end

@@ -9,13 +9,12 @@ module SoccerSeason
       include Helpers::Repository
       include Helpers::CommandLoader
 
-      attr_accessor :id, :name, :team
+      attr_accessor :name, :team, :id
 
       def initialize name:, team:
         @name = name
         @team = team
       end
-
     end
   end
 end
