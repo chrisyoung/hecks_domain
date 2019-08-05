@@ -5,9 +5,9 @@ require_relative 'player/commands'
 module SoccerSeason
   module Players
     class Player
-      include Helpers::FactoryLoader
+      include HecksDomain::Factories::FactoryLoader
       include Helpers::Repository
-      include Helpers::CommandLoader
+      include HecksDomain::Commands::CommandLoader
 
       attr_accessor :name, :team, :id
 

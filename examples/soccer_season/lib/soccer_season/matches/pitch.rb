@@ -3,7 +3,7 @@ require_relative 'pitch/factories'
 module SoccerSeason
   module Matches
     class Pitch
-      include Helpers::FactoryLoader
+      include HecksDomain::Factories::FactoryLoader
       
       
 

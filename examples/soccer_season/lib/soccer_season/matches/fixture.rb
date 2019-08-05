@@ -3,7 +3,7 @@ require_relative 'fixture/factories'
 module SoccerSeason
   module Matches
     class Fixture
-      include Helpers::FactoryLoader
+      include HecksDomain::Factories::FactoryLoader
       
       
 

@@ -7,4 +7,3 @@ class String
     downcase
   end
 end
-

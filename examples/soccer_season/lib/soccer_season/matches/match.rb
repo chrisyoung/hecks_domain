@@ -5,9 +5,9 @@ require_relative 'match/commands'
 module SoccerSeason
   module Matches
     class Match
-      include Helpers::FactoryLoader
+      include HecksDomain::Factories::FactoryLoader
       include Helpers::Repository
-      include Helpers::CommandLoader
+      include HecksDomain::Commands::CommandLoader
 
       attr_accessor :fixture, :goals, :teams, :pitch, :result, :id
 

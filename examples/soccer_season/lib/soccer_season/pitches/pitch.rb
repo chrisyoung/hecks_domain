@@ -5,9 +5,9 @@ require_relative 'pitch/commands'
 module SoccerSeason
   module Pitches
     class Pitch
-      include Helpers::FactoryLoader
+      include HecksDomain::Factories::FactoryLoader
       include Helpers::Repository
-      include Helpers::CommandLoader
+      include HecksDomain::Commands::CommandLoader
 
       attr_accessor :name, :id
 

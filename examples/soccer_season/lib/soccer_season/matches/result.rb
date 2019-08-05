@@ -3,7 +3,7 @@ require_relative 'result/factories'
 module SoccerSeason
   module Matches
     class Result
-      include Helpers::FactoryLoader
+      include HecksDomain::Factories::FactoryLoader
       
       
 

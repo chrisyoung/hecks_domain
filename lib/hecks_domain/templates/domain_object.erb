@@ -7,9 +7,9 @@ require_relative '<%= folder_name %>/commands'
 module <%= @aggregate.domain.name %>
   module <%= @aggregate.name %>
     class <%= @name %>
-      include Helpers::FactoryLoader
+      include HecksDomain::Factories::FactoryLoader
       <%= 'include Helpers::Repository' if is_a?(Entity) %>
-      <%= 'include Helpers::CommandLoader' if is_a?(Head) %>
+      <%= 'include HecksDomain::Commands::CommandLoader' if is_a?(Head) %>
 
       attr_accessor <%= accessors %>
 

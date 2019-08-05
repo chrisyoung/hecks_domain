@@ -26,8 +26,7 @@ class HecksDomain
     end
 
     def dump_helpers
-      [domain.command_loader, domain.repository_helper,
-        domain.factory_loader].each do |file|
+      [domain.repository_helper].each do |file|
         write_file("lib/helpers/", file)
       end
     end

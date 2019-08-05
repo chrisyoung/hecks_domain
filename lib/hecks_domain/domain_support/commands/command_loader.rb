@@ -1,5 +1,5 @@
-module <%= name %>
-  module Helpers
+class HecksDomain
+  module Commands
     module CommandLoader
       def self.included(base)
         base::Commands.constants.each do |constant|

@@ -1,5 +1,5 @@
-module <%= name %>
-  module Helpers
+class HecksDomain
+  module Factories
     module FactoryLoader
       def self.included(base)
         base::Factories.constants.each do |constant|
