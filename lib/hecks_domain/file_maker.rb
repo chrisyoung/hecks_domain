@@ -38,8 +38,7 @@ class HecksDomain
     def dump_domain_objects(aggregate)
       aggregate.domain_objects.each do |domain_object|
         write_file("lib/#{aggregate.domain.folder_name}/#{aggregate.folder_name}/", domain_object)
-        
-        FileUtils.mkdir_p(domain_object.folder_name) 
+        FileUtils.mkdir_p(domain_object.folder_name)
         FileUtils.mkdir_p('factories')
         write_file("lib/#{aggregate.domain.folder_name}/#{aggregate.folder_name}/#{domain_object.folder_name}/", domain_object.commands)
         write_file("lib/#{aggregate.domain.folder_name}/#{aggregate.folder_name}/#{domain_object.folder_name}/", domain_object.factories)
