@@ -3,6 +3,8 @@ require 'pry'
 require 'erubis'
 require 'thor'
 
+require_relative 'hecks_domain/events'
+require_relative 'hecks_domain/commands'
 require_relative 'hecks_domain/top_level_methods'
 require_relative 'hecks_domain/support'
 require_relative 'hecks_domain/parser'

@@ -1,3 +1,4 @@
+require_relative '../../../lib/hecks_domain'
 require_relative 'support/string'
 require_relative 'helpers/command_loader'
 require_relative 'helpers/factory_loader'

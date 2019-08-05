@@ -4,15 +4,19 @@ module SoccerSeason
     class Match
       module Commands
         class Score
-          def initialize(match)
+          attr_reader :args, :head
+
+          def initialize(match, *args)
+            @head = match
+            @args = args
             @match = match
             @team_a = match.teams.first
             @team_b = match.teams.last
           end
 
           def get_goals
-            @team_a_goals = @match.goals.select{ |goal| goal.player.team == @team_a }.count
-            @team_b_goals = @match.goals.select{ |goal| goal.player.team == @team_b }.count
+            @team_a_goals = @match.goals.select { |goal| goal.player.team == @team_a }.count
+            @team_b_goals = @match.goals.select { |goal| goal.player.team == @team_b }.count
           end
 
           def get_winner_and_loser
@@ -28,7 +32,11 @@ module SoccerSeason
           def call
             get_goals
             get_winner_and_loser
-            @match.result = Result.new(winner: @winner, loser: @loser)
+            @match.result = Result.new(
+              winner: @winner,
+              loser: @loser
+            )
+            @match.save
             self
           end
         end
