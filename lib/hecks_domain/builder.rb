@@ -37,7 +37,7 @@ class HecksDomain
     end
 
     def read_template(name)
-      File.open(File.dirname(__FILE__) + "/../domain/templates/#{name}.erb").read
+      File.open(File.dirname(__FILE__) + "/templates/#{name}.erb").read
     end
   end
 end

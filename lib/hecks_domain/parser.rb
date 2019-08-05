@@ -1,12 +1,12 @@
-require_relative 'parser/domain'
-require_relative 'parser/repository'
-require_relative 'parser/aggregate'
-require_relative 'parser/domain_object'
-require_relative 'parser/value_field'
-require_relative 'parser/entity_field'
-require_relative 'parser/reference_field'
-require_relative 'parser/spec_helper'
-require_relative 'parser/fields'
+require_relative 'domain/domain'
+require_relative 'domain/repository'
+require_relative 'domain/aggregate'
+require_relative 'domain/domain_object'
+require_relative 'domain/value_field'
+require_relative 'domain/entity_field'
+require_relative 'domain/reference_field'
+require_relative 'domain/spec_helper'
+require_relative 'domain/fields'
 
 class HecksDomain
   class Parser
