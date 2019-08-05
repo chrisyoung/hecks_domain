@@ -1,10 +1,9 @@
 class HecksDomain
-  class DomainObject
-    class Factories
+  class Domain
+    class FactoryLoader
       attr_accessor :ruby_file
-
       def file_name
-        'factories.rb'
+        'factory_loader.rb'
       end
     end
   end

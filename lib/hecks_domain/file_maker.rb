@@ -44,7 +44,7 @@ class HecksDomain
         FileUtils.mkdir_p('factories')
         write_file("lib/#{aggregate.domain.folder_name}/#{aggregate.folder_name}/#{domain_object.folder_name}/", domain_object.commands)
         write_file("lib/#{aggregate.domain.folder_name}/#{aggregate.folder_name}/#{domain_object.folder_name}/", domain_object.factories)
-        next unless domain_object.is_a?(Parser::Entity)
+        next unless domain_object.is_a?(Entity)
 
         write_file("lib/#{aggregate.domain.folder_name}/#{aggregate.folder_name}/#{domain_object.folder_name}/", domain_object.repository)
       end
