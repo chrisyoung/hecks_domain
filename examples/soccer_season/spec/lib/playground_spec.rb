@@ -91,6 +91,9 @@ describe "Playground" do
       match.add_goal!(time: Time.now, player: player_clayton)
       match.score!
 
+      match.teams << redteam
+      expect { match.save }.to raise_error('Must have two teams')
+
       expect(match.result).to be_a(SoccerSeason::Matches::TiedResult)
     end
   end

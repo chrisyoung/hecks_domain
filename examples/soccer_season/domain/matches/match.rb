@@ -1,6 +1,7 @@
 require_relative 'match/factories'
 require_relative 'match/repository'
 require_relative 'match/commands'
+require_relative 'match/invariants'
 
 module SoccerSeason
   module Matches
@@ -8,6 +9,7 @@ module SoccerSeason
       include HecksDomain::Factories::FactoryLoader
       include Helpers::Repository
       include HecksDomain::Commands::CommandLoader
+      include Invariants
 
       attr_accessor :fixture, :goals, :teams, :pitch, :result, :id
 
