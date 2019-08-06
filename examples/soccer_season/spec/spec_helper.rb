@@ -1,1 +1,1 @@
-require_relative '../lib/soccer_season'
+require_relative '../soccer_season'

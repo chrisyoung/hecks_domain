@@ -16,7 +16,7 @@ class HecksDomain
       domain.repository_helper.ruby_file = build_file('helpers/repository', domain.get_binding)
       domain.string_support.ruby_file = build_file('support/string', domain.get_binding)
       domain.aggregates.each do |aggregate|
-        aggregate.ruby_file = build_file('aggregate', aggregate.get_binding)
+        aggregate.head_file.ruby_file = build_file('head', aggregate.get_binding)
         aggregate.domain_objects.each do |domain_object|
           domain_object.commands.ruby_file = build_file('domain_object/commands', domain_object.get_binding)
           domain_object.ruby_file = build_file('domain_object', domain_object.get_binding)

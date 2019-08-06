@@ -80,7 +80,7 @@ describe "Playground" do
 
     it 'saves the order' do
       HecksDomain::Events::DomainEventPublisher.subscribe(Subscriber)
-
+      
       match.score! do |event|
         Logger.log(event)
       end
@@ -88,8 +88,15 @@ describe "Playground" do
       expect(match.result.winner).to eq redteam
       match.add_goal!(time: Time.now, player: player_clayton)
       match.score!
+
+      require 'pry'
+      binding.pry
+      SoccerSeason::Pitches::Head
       expect(match.result.winner).to be_nil
       expect(match.result.tied?).to be true
+
+            
+
     end
   end
 end

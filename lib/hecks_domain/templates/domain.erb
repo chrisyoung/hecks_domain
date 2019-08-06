@@ -1,12 +1,10 @@
-require_relative '../../../lib/hecks_domain'
+require_relative '../../lib/hecks_domain'
 require_relative 'support/string'
-require_relative 'helpers/command_loader'
-require_relative 'helpers/factory_loader'
 require_relative 'helpers/repository'
 require 'singleton'
 
 <% @aggregates.each do |aggregate| %>
-require_relative '<%= folder_name %>/<%= aggregate.folder_name %>'
+require_relative 'domain/<%= aggregate.folder_name %>/head'
 <% end %>
 
 module <%= @name %>

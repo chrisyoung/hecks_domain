@@ -1,4 +1,4 @@
-
+require_relative 'domain/head_file'
 require_relative 'domain/factory_loader'
 require_relative 'domain/repository_helper'
 require_relative 'domain/string_support'

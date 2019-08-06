@@ -22,35 +22,35 @@ class HecksDomain
     end
 
     def dump_domain
-      write_file('lib/', domain)
+      write_file('', domain)
     end
 
     def dump_helpers
       [domain.repository_helper].each do |file|
-        write_file("lib/helpers/", file)
+        write_file("helpers/", file)
       end
     end
 
     def dump_support
-      write_file("lib/support/", domain.string_support)
+      write_file("support/", domain.string_support)
     end
 
     def dump_domain_objects(aggregate)
+      
+
       aggregate.domain_objects.each do |domain_object|
-        write_file("lib/#{aggregate.domain.folder_name}/#{aggregate.folder_name}/", domain_object)
-        FileUtils.mkdir_p(domain_object.folder_name)
-        FileUtils.mkdir_p('factories')
-        write_file("lib/#{aggregate.domain.folder_name}/#{aggregate.folder_name}/#{domain_object.folder_name}/", domain_object.commands)
-        write_file("lib/#{aggregate.domain.folder_name}/#{aggregate.folder_name}/#{domain_object.folder_name}/", domain_object.factories)
+        write_file("domain/#{aggregate.folder_name}/", domain_object)
+        write_file("domain/#{aggregate.folder_name}/#{domain_object.folder_name}/", domain_object.commands)
+        write_file("domain/#{aggregate.folder_name}/#{domain_object.folder_name}/", domain_object.factories)
         next unless domain_object.is_a?(Entity)
 
-        write_file("lib/#{aggregate.domain.folder_name}/#{aggregate.folder_name}/#{domain_object.folder_name}/", domain_object.repository)
+        write_file("domain/#{aggregate.folder_name}/#{domain_object.folder_name}/", domain_object.repository)
       end
     end
 
     def dump_aggregates
       domain.aggregates.each do |aggregate|
-        write_file("lib/#{aggregate.domain.folder_name}/", aggregate)
+        write_file("domain/#{aggregate.folder_name}/", aggregate.head_file)
         dump_domain_objects(aggregate)
       end
     end
