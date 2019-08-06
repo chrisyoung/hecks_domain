@@ -1,4 +1,3 @@
-require 'pry'
 module SoccerSeason
   module Matches
     class Match
@@ -32,10 +31,15 @@ module SoccerSeason
           def call
             get_goals
             get_winner_and_loser
-            @match.result = Result.new(
-              winner: @winner,
-              loser: @loser
-            )
+            if @winner
+              @match.result = Result.new(
+                winner: @winner,
+                loser: @loser
+              )
+            else
+              @match.result = TiedResult.new
+            end
+              
             @match.save
             self
           end

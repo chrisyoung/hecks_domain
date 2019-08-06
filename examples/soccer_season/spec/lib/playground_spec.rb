@@ -80,6 +80,7 @@ describe "Playground" do
     end
 
     it 'saves the order' do
+      expect(SoccerSeason::Pitches::Head.superclass).to eq SoccerSeason::Pitches::Pitch
       HecksDomain::Events::DomainEventPublisher.subscribe(Subscriber)
 
       match.score! do |event|
@@ -90,9 +91,7 @@ describe "Playground" do
       match.add_goal!(time: Time.now, player: player_clayton)
       match.score!
 
-      expect(SoccerSeason::Pitches::Head.superclass).to eq SoccerSeason::Pitches::Pitch
-      expect(match.result.winner).to be_nil
-      expect(match.result.tied?).to be true
+      expect(match.result).to be_a(SoccerSeason::Matches::TiedResult)
     end
   end
 end

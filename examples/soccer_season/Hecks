@@ -14,6 +14,9 @@ domain(:SoccerSeason) do
       read_only boolean(:tied)
     end
 
+    value(:TiedResult) do
+    end
+
     value(:Goal) do
       string :time
       entity(:player).as :Players => :Player
