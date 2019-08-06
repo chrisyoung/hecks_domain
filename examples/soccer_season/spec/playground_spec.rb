@@ -2,6 +2,8 @@ require 'spec_helper'
 require 'date'
 
 describe "Playground" do
+  include_examples 'subscriber'
+  
   let(:match) do
     SoccerSeason::Matches::Match.new(
       fixture: fixture,
@@ -69,19 +71,10 @@ describe "Playground" do
       end
     end
 
-    class Subscriber
-      def self.event_name
-        '*'
-      end
-
-      def self.notify(event)
-        Logger.log(event)
-      end
-    end
 
     it 'saves the order' do
       expect(SoccerSeason::Pitches::Head.superclass).to eq SoccerSeason::Pitches::Pitch
-      HecksDomain::Events::DomainEventPublisher.subscribe(Subscriber)
+      HecksDomain::Events::DomainEventPublisher.subscribe(LoggingSubscriber.new('*'))
 
       match.score! do |event|
         Logger.log(event)
