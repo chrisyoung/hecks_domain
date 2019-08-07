@@ -2,4 +2,4 @@
 DDD DSL
 
 # TODO
-# Add invariants to the generators
+Add invariants to the generators
