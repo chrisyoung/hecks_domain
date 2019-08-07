@@ -1,5 +1,5 @@
 # hecks_domain
-4DDDSL
+4DSL
 
 ## TODO
 Add invariants to the generators
