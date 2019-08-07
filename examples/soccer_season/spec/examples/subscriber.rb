@@ -20,4 +20,16 @@ RSpec.shared_examples "subscriber" do
       Logger.log(event)
     end
   end
+
+  class Logger
+    def self.log(event)
+      [
+        "\tEVENT FIRED!",
+        "\tevent name: " + event.name,
+        "\thead_id:" + event.head.id.to_s,
+        "\targs: " + event.args.to_s,
+        "\thead: " + event.command.head.inspect,
+      ].each { |value| puts value }
+    end
+  end
 end

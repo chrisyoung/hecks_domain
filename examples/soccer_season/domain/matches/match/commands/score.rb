@@ -6,42 +6,35 @@ module SoccerSeason
           attr_reader :args, :head
 
           def initialize(match, *args)
-            @head = match
+            @head = @match = match
             @args = args
-            @match = match
-            @team_a = match.teams.first
-            @team_b = match.teams.last
-          end
-
-          def get_goals
-            @team_a_goals = @match.goals.select { |goal| goal.player.team == @team_a }.count
-            @team_b_goals = @match.goals.select { |goal| goal.player.team == @team_b }.count
-          end
-
-          def get_winner_and_loser
-            if @team_a_goals > @team_b_goals
-              @winner = @team_a
-              @loser = @team_b
-            elsif @team_b_goals > @team_a_goals
-              @winner = @team_b
-              @loser = @team_a
-            end
+            @teams = match.teams
           end
 
           def call
-            get_goals
-            get_winner_and_loser
-            if @winner
-              @match.result = Result.new(
-                winner: @winner,
-                loser: @loser
-              )
-            else
-              @match.result = TiedResult.new
-            end
-              
+            order_teams_by_goals
+            @match.result = set_result
             @match.save
             self
+          end
+
+          private
+
+          def order_teams_by_goals
+            @teams.sort! { |team| team.goals.count }.reverse!
+          end
+
+          def set_result
+            return TiedResult.new if tied?
+
+            Result.new(
+              winner: @teams.first,
+              loser: @teams.last
+            )
+          end
+
+          def tied?
+            @teams.map { |team| team.goals.count }.uniq.count == 1
           end
         end
       end

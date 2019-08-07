@@ -9,10 +9,11 @@ module SoccerSeason
       include Helpers::Repository
       include HecksDomain::Commands::CommandLoader
 
-      attr_accessor :name, :id
+      attr_accessor :name, :goals, :id
 
       def initialize name:
         @name = name
+        @goals = []
       end
     end
   end
