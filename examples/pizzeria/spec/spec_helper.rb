@@ -1,1 +1,1 @@
-require_relative '../lib/pizzeria'
+require_relative '../pizzeria'
