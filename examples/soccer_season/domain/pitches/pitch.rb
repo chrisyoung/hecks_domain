@@ -7,7 +7,7 @@ module SoccerSeason
   module Pitches
     class Pitch
       include HecksDomain::Factories::FactoryLoader
-      include Invariants
+      include HecksDomain::Invariants::InvariantLoader
       include Helpers::Repository
       include HecksDomain::Commands::CommandLoader
 

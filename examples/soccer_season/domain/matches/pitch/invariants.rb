@@ -1,9 +1,9 @@
+Dir[File.dirname(__FILE__) + '/invariants/*.rb'].each {|file| require_relative file }
+
 module SoccerSeason
   module Matches
     class Pitch
       module Invariants
-        def test_invariants
-        end
       end
     end
   end

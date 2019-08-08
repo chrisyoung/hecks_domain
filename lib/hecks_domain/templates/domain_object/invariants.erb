@@ -1,8 +1,7 @@
 Dir[File.dirname(__FILE__) + '/invariants/*.rb'].each {|file| require_relative file }
-
-module SoccerSeason
-  module Matches
-    class Goal
+module <%= @aggregate.domain.name %>
+  module <%= @aggregate.name %>
+    class <%= @name %>
       module Invariants
       end
     end

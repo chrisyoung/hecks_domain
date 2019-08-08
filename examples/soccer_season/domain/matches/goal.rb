@@ -5,7 +5,7 @@ module SoccerSeason
   module Matches
     class Goal
       include HecksDomain::Factories::FactoryLoader
-      include Invariants
+      include HecksDomain::Invariants::InvariantLoader
       
       
 
