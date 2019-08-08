@@ -2,7 +2,7 @@ class HecksDomain
   class Aggregate  
     attr_reader :domain, :name, :domain_objects
     attr_accessor :ruby_file, :head_file
-    
+
     def initialize(name, domain, &block)
       @name = name
       @entities = []
@@ -21,10 +21,6 @@ class HecksDomain
 
     def file_name
       folder_name + '.rb'
-    end
-
-    def head_file
-      @head_file
     end
 
     def folder_name
