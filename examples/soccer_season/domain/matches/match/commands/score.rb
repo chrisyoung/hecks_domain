@@ -18,7 +18,7 @@ module SoccerSeason
           end
 
           private
-          
+
           def get_count(team)
             @goals.count { |goal| goal.player.team == team }
           end
@@ -26,7 +26,7 @@ module SoccerSeason
           def result
             counts = @teams.map { |team| get_count(team) }
 
-            if counts.first > counts.last
+            if counts.first == counts.last
               TiedResult.new
             elsif counts.first > counts.last
               Result.new(winner: @teams.first, loser: @teams.last)
