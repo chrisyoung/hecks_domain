@@ -34,10 +34,7 @@ domain :SoccerSeason do
   end
 
   aggregate :Teams do
-    head(:Team) { 
-      string :name 
-      list(:goals).as :Match => :Goal
-    }
+    head(:Team) { string :name }
   end
 
   aggregate :Players do

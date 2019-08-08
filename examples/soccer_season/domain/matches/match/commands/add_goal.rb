@@ -15,7 +15,6 @@ module SoccerSeason
           def call
             goal = Goal.new(time: @time, player: @player)
             @match.goals << Goal.new(time: @time, player: @player)
-            @player.team.goals << goal
             @match.save
           end
         end

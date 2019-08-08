@@ -5,13 +5,14 @@ module SoccerSeason
         class Score
           attr_reader :args, :head
 
-          def initialize(match, *args)
+          def initialize(match)
             @head = @match = match
-            @args = args
             @teams = match.teams
+            @goals = match.goals
           end
 
           def call
+            fetch_team_goals
             order_teams_by_goals
             @match.result = set_result
             @match.save
@@ -20,21 +21,23 @@ module SoccerSeason
 
           private
 
+          def fetch_team_goals
+            @team_goals = @goals.map { |goal| goal.player.team }
+          end
+
           def order_teams_by_goals
-            @teams.sort! { |team| team.goals.count }.reverse!
+            @ordered_teams =
+              @teams.sort { |team| @team_goals.count(team) }.reverse!
           end
 
           def set_result
             return TiedResult.new if tied?
 
-            Result.new(
-              winner: @teams.first,
-              loser: @teams.last
-            )
+            Result.new(winner: @ordered_teams.first, loser: @ordered_teams.last)
           end
 
           def tied?
-            @teams.map { |team| team.goals.count }.uniq.count == 1
+            @team_goals.map { |team| @team_goals.count(team) }.uniq.count == 1
           end
         end
       end
