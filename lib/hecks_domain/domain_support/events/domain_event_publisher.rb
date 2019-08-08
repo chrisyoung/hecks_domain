@@ -18,8 +18,8 @@ class HecksDomain
       def emit(domain_event, &block)
         yield domain_event if block
         @subscribers.each do |subscriber|
-          next unless subscriber.type == '*' ||
-                      subscriber.type == domain_event.type
+          next unless subscriber.domain_event == '*' ||
+                      subscriber.domain_event == domain_event.type
 
           subscriber.notify(domain_event)
         end

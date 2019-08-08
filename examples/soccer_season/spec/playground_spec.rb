@@ -23,43 +23,37 @@ describe "Playground" do
   end
 
   let(:redteam) do
-    SoccerSeason::Teams::Team.new(
-      name: 'redteam'
-    ).tap(&:save)
+    SoccerSeason::Teams::Team.new(name: 'redteam').tap(&:save)
   end
 
   let(:blueteam) do
-    SoccerSeason::Teams::Team.new(
-      name: 'blueteam'
-    ).tap(&:save)
+    SoccerSeason::Teams::Team.new(name: 'blueteam').tap(&:save)
   end
 
   let(:pitch) do
-    SoccerSeason::Pitches::Pitch.new(
-      name: 'downtown'
-    ).tap(&:save)
+    SoccerSeason::Pitches::Pitch.new(name: 'downtown').tap(&:save)
   end
 
-  let(:player_chris) do
+  let(:chris) do
     SoccerSeason::Players::Player.new(name: 'chris', team: redteam).tap(&:save)
   end
 
-  let(:player_foster) do
+  let(:foster) do
     SoccerSeason::Players::Player.new(name: 'foster', team: redteam).tap(&:save)
   end
 
-  let(:player_clayton) do
+  let(:clayton) do
     SoccerSeason::Players::Player.new(name: 'clayton', team: blueteam).tap(&:save)
   end
 
   describe 'Playground' do
     before do
       5.times do
-        match.add_goal!(time: Time.now, player: player_foster)
+        match.add_goal!(time: Time.now, player: foster)
       end
 
       4.times do
-        match.add_goal!(time: Time.now, player: player_clayton)
+        match.add_goal!(time: Time.now, player: clayton)
       end
     end
 
@@ -71,27 +65,32 @@ describe "Playground" do
 
     it 'Events' do
       # Events
-      HecksDomain::Events.subscribe(LoggingSubscriber.new('*'))
 
-      match.score! do |event|
-        Logger.log(event)
+      match.score!
+      expect(match.result.winner).to eq (redteam)
+
+      # I'm tired of calling score! every time I add a goal
+      HecksDomain::Events.subscribe(ScoreOnAddGoal.new)
+      3.times do
+        match.add_goal!(time: Time.now, player: clayton)
       end
+      expect(match.result.winner).to eq (blueteam)
     end
 
     it 'Winner!' do
       match.score!
       expect(match.result.winner).to eq redteam
+
       3.times do
-        match.add_goal!(time: Time.now, player: player_clayton)
+        match.add_goal!(time: Time.now, player: clayton)
       end
-      
 
       match.score!
       expect(match.result.winner).to eq blueteam
     end
 
     it 'Tied Result' do
-      match.add_goal!(time: Time.now, player: player_clayton)
+      match.add_goal!(time: Time.now, player: clayton)
       match.score!
       expect(match.result).to be_a(SoccerSeason::Matches::TiedResult)
     end

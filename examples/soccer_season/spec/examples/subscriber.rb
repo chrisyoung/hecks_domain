@@ -1,8 +1,8 @@
 RSpec.shared_examples "subscriber" do
   class Subscriber
-    attr_reader :type
-    def initialize(type)
-      @type = type
+    attr_reader :domain_event
+    def initialize(domain_event)
+      @domain_event = domain_event
     end
 
     def notify(event)
@@ -11,13 +11,23 @@ RSpec.shared_examples "subscriber" do
   end
 
   class LoggingSubscriber
-    attr_accessor :type
-    def initialize(type)
-      @type = type
+    attr_accessor :domain_event
+    def initialize(domain_event)
+      @domain_event = domain_event
     end
 
     def notify(event)
       Logger.log(event)
+    end
+  end
+
+  class ScoreOnAddGoal
+    def domain_event
+      SoccerSeason::Matches::Match::Commands::AddGoal
+    end
+
+    def notify(event)
+      event.head.score!
     end
   end
 
