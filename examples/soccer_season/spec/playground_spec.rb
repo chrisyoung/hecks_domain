@@ -54,8 +54,12 @@ describe "Playground" do
 
   describe 'Playground' do
     before do
-      [player_foster, player_chris, player_chris, player_clayton, player_clayton].each do |player|
-        match.add_goal!(time: Time.now, player: player)
+      5.times do 
+        match.add_goal!(time: Time.now, player: player_foster)
+      end
+
+      4.times do 
+        match.add_goal!(time: Time.now, player: player_clayton)
       end
     end
 
@@ -77,6 +81,12 @@ describe "Playground" do
     it 'Winner!' do
       match.score!
       expect(match.result.winner).to eq redteam
+      match.add_goal!(time: Time.now, player: player_clayton)
+      match.add_goal!(time: Time.now, player: player_clayton)
+      match.add_goal!(time: Time.now, player: player_clayton)
+      
+      match.score!
+      expect(match.result.winner).to eq blueteam
     end
 
     it 'Tied Result' do

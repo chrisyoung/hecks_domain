@@ -12,32 +12,27 @@ module SoccerSeason
           end
 
           def call
-            fetch_team_goals
-            order_teams_by_goals
-            @match.result = set_result
+            @match.result = result
             @match.save
             self
           end
 
           private
-
-          def fetch_team_goals
-            @team_goals = @goals.map { |goal| goal.player.team }
+          
+          def get_count(team)
+            @goals.count { |goal| goal.player.team == team }
           end
 
-          def order_teams_by_goals
-            @ordered_teams =
-              @teams.sort { |team| @team_goals.count(team) }.reverse!
-          end
+          def result
+            counts = @teams.map { |team| get_count(team) }
 
-          def set_result
-            return TiedResult.new if tied?
-
-            Result.new(winner: @ordered_teams.first, loser: @ordered_teams.last)
-          end
-
-          def tied?
-            @team_goals.map { |team| @team_goals.count(team) }.uniq.count == 1
+            if counts.first > counts.last
+              TiedResult.new
+            elsif counts.first > counts.last
+              Result.new(winner: @teams.first, loser: @teams.last)
+            else
+              Result.new(winner: @teams.last, loser: @teams.first)
+            end
           end
         end
       end
