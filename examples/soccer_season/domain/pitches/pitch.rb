@@ -1,4 +1,5 @@
 require_relative 'pitch/factories'
+require_relative 'pitch/invariants'
 require_relative 'pitch/repository'
 require_relative 'pitch/commands'
 
@@ -6,6 +7,7 @@ module SoccerSeason
   module Pitches
     class Pitch
       include HecksDomain::Factories::FactoryLoader
+      include Invariants
       include Helpers::Repository
       include HecksDomain::Commands::CommandLoader
 

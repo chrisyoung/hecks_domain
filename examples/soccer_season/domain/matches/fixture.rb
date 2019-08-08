@@ -1,9 +1,11 @@
 require_relative 'fixture/factories'
+require_relative 'fixture/invariants'
 
 module SoccerSeason
   module Matches
     class Fixture
       include HecksDomain::Factories::FactoryLoader
+      include Invariants
       
       
 

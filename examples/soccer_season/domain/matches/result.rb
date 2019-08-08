@@ -1,9 +1,11 @@
 require_relative 'result/factories'
+require_relative 'result/invariants'
 
 module SoccerSeason
   module Matches
     class Result
       include HecksDomain::Factories::FactoryLoader
+      include Invariants
       
       
 

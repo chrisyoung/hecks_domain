@@ -1,4 +1,5 @@
 require_relative '<%= folder_name %>/factories'
+require_relative '<%= folder_name %>/invariants'
 <% if is_a?(Head) %>
 require_relative '<%= folder_name %>/repository'
 require_relative '<%= folder_name %>/commands'
@@ -8,6 +9,7 @@ module <%= @aggregate.domain.name %>
   module <%= @aggregate.name %>
     class <%= @name %>
       include HecksDomain::Factories::FactoryLoader
+      include Invariants
       <%= 'include Helpers::Repository' if is_a?(Entity) %>
       <%= 'include HecksDomain::Commands::CommandLoader' if is_a?(Head) %>
 

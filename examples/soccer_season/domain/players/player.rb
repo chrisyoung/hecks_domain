@@ -1,4 +1,5 @@
 require_relative 'player/factories'
+require_relative 'player/invariants'
 require_relative 'player/repository'
 require_relative 'player/commands'
 
@@ -6,6 +7,7 @@ module SoccerSeason
   module Players
     class Player
       include HecksDomain::Factories::FactoryLoader
+      include Invariants
       include Helpers::Repository
       include HecksDomain::Commands::CommandLoader
 

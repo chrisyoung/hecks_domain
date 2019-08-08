@@ -36,12 +36,11 @@ class HecksDomain
     end
 
     def dump_domain_objects(aggregate)
-      
-
       aggregate.domain_objects.each do |domain_object|
         write_file("domain/#{aggregate.folder_name}/", domain_object)
         write_file("domain/#{aggregate.folder_name}/#{domain_object.folder_name}/", domain_object.commands)
         write_file("domain/#{aggregate.folder_name}/#{domain_object.folder_name}/", domain_object.factories)
+        write_file("domain/#{aggregate.folder_name}/#{domain_object.folder_name}/", domain_object.invariants)
         next unless domain_object.is_a?(Entity)
 
         write_file("domain/#{aggregate.folder_name}/#{domain_object.folder_name}/", domain_object.repository)

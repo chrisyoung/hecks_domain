@@ -1,5 +1,6 @@
 require_relative 'domain_object/factories'
 require_relative 'domain_object/commands'
+require_relative 'domain_object/invariants'
 
 class HecksDomain
   class DomainObject
@@ -12,6 +13,7 @@ class HecksDomain
       @repository = Repository.new
       @factories = Factories.new
       @commands = Commands.new
+      @invariants = Invariants.new
       @fields = []
       @repository = Repository.new
       instance_eval &block
@@ -23,6 +25,10 @@ class HecksDomain
 
     def initializer_attributes
       @fields.reject(&:read_only?).map(&:attribute_name).join(', ')
+    end
+
+    def invariants
+      @invariants
     end
 
     def boolean_accessors

@@ -22,6 +22,7 @@ class HecksDomain
           domain_object.ruby_file = build_file('domain_object', domain_object.get_binding)
           domain_object.factories.ruby_file = build_file('domain_object/factories', domain_object.get_binding)
           domain_object.repository.ruby_file  = build_file('repository', domain_object.get_binding)
+          domain_object.invariants.ruby_file  = build_file('invariants', domain_object.get_binding)
         end
       end
 
