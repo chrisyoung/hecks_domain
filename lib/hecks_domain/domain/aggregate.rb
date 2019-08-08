@@ -9,7 +9,7 @@ class HecksDomain
       @value_objects = []
       @head_file = HeadFile.new
       @domain = domain
-      instance_eval &block
+      instance_eval(&block)
       @domain_objects = @entities + @value_objects
     end
 
@@ -37,8 +37,8 @@ class HecksDomain
       @value_objects << ValueObject.new(name, self, &block)
     end
 
-    def get_binding
-      binding
+    def binding
+      super
     end
   end
 end

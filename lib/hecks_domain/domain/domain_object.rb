@@ -92,8 +92,8 @@ class HecksDomain
       value
     end
 
-    def get_binding
-      binding
+    def binding
+      super
     end
 
     private

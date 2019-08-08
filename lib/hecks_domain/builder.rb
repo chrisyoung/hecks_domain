@@ -11,18 +11,18 @@ class HecksDomain
     end
 
     def build(domain)
-      domain.ruby_file = build_file('domain', domain.get_binding)
-      domain.spec_helper.ruby_file = build_file('spec_helper', domain.get_binding)
-      domain.repository_helper.ruby_file = build_file('helpers/repository', domain.get_binding)
-      domain.string_support.ruby_file = build_file('support/string', domain.get_binding)
+      domain.ruby_file = build_file('domain', domain.binding)
+      domain.spec_helper.ruby_file = build_file('spec_helper', domain.binding)
+      domain.repository_helper.ruby_file = build_file('helpers/repository', domain.binding)
+      domain.string_support.ruby_file = build_file('support/string', domain.binding)
       domain.aggregates.each do |aggregate|
-        aggregate.head_file.ruby_file = build_file('head', aggregate.get_binding)
+        aggregate.head_file.ruby_file = build_file('head', aggregate.binding)
         aggregate.domain_objects.each do |domain_object|
-          domain_object.commands.ruby_file = build_file('domain_object/commands', domain_object.get_binding)
-          domain_object.ruby_file = build_file('domain_object', domain_object.get_binding)
-          domain_object.factories.ruby_file = build_file('domain_object/factories', domain_object.get_binding)
-          domain_object.repository.ruby_file  = build_file('repository', domain_object.get_binding)
-          domain_object.invariants.ruby_file  = build_file('invariants', domain_object.get_binding)
+          domain_object.commands.ruby_file = build_file('domain_object/commands', domain_object.binding)
+          domain_object.ruby_file = build_file('domain_object', domain_object.binding)
+          domain_object.factories.ruby_file = build_file('domain_object/factories', domain_object.binding)
+          domain_object.repository.ruby_file  = build_file('repository', domain_object.binding)
+          domain_object.invariants.ruby_file  = build_file('invariants', domain_object.binding)
         end
       end
 

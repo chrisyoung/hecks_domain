@@ -32,8 +32,8 @@ class HecksDomain
       @aggregates << Aggregate.new(name, self, &block)
     end
 
-    def get_binding
-      binding
+    def binding
+      super
     end
 
     def file_name
