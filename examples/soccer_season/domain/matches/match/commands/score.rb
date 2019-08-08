@@ -26,13 +26,10 @@ module SoccerSeason
           def result
             counts = @teams.map { |team| get_count(team) }
 
-            if counts.first == counts.last
-              TiedResult.new
-            elsif counts.first > counts.last
-              Result.new(winner: @teams.first, loser: @teams.last)
-            else
-              Result.new(winner: @teams.last, loser: @teams.first)
-            end
+            return TiedResult.new if counts.first == counts.last
+            return Result.new(winner: @teams.first, loser: @teams.last) if counts.first > counts.last
+
+            Result.new(winner: @teams.last, loser: @teams.first)
           end
         end
       end
