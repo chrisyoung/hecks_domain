@@ -81,12 +81,13 @@ describe "Playground" do
     it 'Winner!' do
       match.score!
       expect(match.result.winner).to eq redteam
-      # match.add_goal!(time: Time.now, player: player_clayton)
-      # match.add_goal!(time: Time.now, player: player_clayton)
-      # match.add_goal!(time: Time.now, player: player_clayton)
+      3.times do
+        match.add_goal!(time: Time.now, player: player_clayton)
+      end
       
-      # match.score!
-      # expect(match.result.winner).to eq blueteam
+
+      match.score!
+      expect(match.result.winner).to eq blueteam
     end
 
     it 'Tied Result' do
