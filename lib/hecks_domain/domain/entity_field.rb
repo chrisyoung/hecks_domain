@@ -8,6 +8,7 @@ class HecksDomain
 
     def as(name)
       @as = name
+      self
     end
 
     def module_name

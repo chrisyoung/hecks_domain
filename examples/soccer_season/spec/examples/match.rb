@@ -4,7 +4,6 @@ RSpec.shared_examples "match" do
       fixture: fixture,
       teams: [redteam, blueteam],
       pitch: pitch,
-      goals: [],
       result: nil
     ).tap(&:save)
   end

@@ -18,6 +18,7 @@ class HecksDomain
 
     def attribute_name
       return name.to_s + ':' unless optional?
+
       name.to_s + ': nil'
     end
 
@@ -31,6 +32,7 @@ class HecksDomain
 
     def as(name)
       @as = name
+      self
     end
   end
 end

@@ -9,7 +9,6 @@ describe "Playground" do
       fixture: fixture,
       teams: [redteam, blueteam],
       pitch: pitch,
-      goals: [],
       result: nil
     ).tap(&:save)
   end

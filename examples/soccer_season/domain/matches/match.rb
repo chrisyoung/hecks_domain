@@ -13,9 +13,9 @@ module SoccerSeason
 
       attr_accessor :fixture, :goals, :teams, :pitch, :result, :id
 
-      def initialize fixture:, goals:, teams:, pitch:, result:
+      def initialize fixture:, teams:, pitch:, result:
         @fixture = fixture
-        @goals = goals
+        @goals = []
         @teams = teams
         @pitch = pitch
         @result = result

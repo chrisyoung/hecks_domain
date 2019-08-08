@@ -2,7 +2,7 @@ domain :SoccerSeason do
   aggregate :Matches do
     head :Match do
       value(:fixture).as :Fixture
-      list(:goals).as :Goal
+      read_only list(:goals).as(:Goal)
       list(:teams).as Teams: :Team
       entity(:pitch).as :Pitch
       entity(:result).as :Result
