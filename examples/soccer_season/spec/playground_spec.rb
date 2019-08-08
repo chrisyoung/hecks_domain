@@ -56,7 +56,7 @@ describe "Playground" do
       end
     end
 
-    it 'has a head' do
+    it 'Has a head' do
       expect(
         SoccerSeason::Pitches::Head.superclass
       ).to eq SoccerSeason::Pitches::Pitch
@@ -88,15 +88,15 @@ describe "Playground" do
       expect(match.result.winner).to eq blueteam
     end
 
-    it 'Tied Result' do
+    it 'Tied!' do
       match.add_goal!(time: Time.now, player: clayton)
       match.score!
       expect(match.result).to be_a(SoccerSeason::Matches::TiedResult)
     end
 
     it 'Invariants' do
-      match.teams << redteam
-      expect { match.save }.to raise_error('Must have two teams')
+      match.teams = [redteam, blueteam, SoccerSeason::Teams::Team.new(name: 'greenteam').tap(&:save)]
+      expect { match.save }.to raise_error('Must have exactly two teams')
     end
   end
 end
