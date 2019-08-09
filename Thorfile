@@ -6,7 +6,7 @@ class HecksDomain < Thor
   HECKS_FILE_NAME = 'Hecksfile'.freeze
 
   def new
-    unless File.file?(HECKS_FILE_NAME) 
+    unless File.file?(HECKS_FILE_NAME)
       puts "Missing Hecksfile - are you in a domain project?"
       return
     end

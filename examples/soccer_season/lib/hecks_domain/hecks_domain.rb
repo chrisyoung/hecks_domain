@@ -1,4 +1,3 @@
-require 'singleton'
 require_relative 'hecks_domain/repository'
 require_relative 'hecks_domain/support/string'
 require_relative 'hecks_domain/events'

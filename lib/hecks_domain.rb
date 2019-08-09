@@ -2,6 +2,7 @@ require 'singleton'
 require 'pry'
 require 'erubis'
 require 'thor'
+require 'fileutils'
 
 require_relative 'hecks_domain/top_level_methods'
 require_relative 'hecks_domain/support'

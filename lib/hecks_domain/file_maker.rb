@@ -10,9 +10,10 @@ class HecksDomain
     end
 
     def dump
-
       dump_domain
       dump_aggregates
+      dump_domain_objects
+      dump_lib
       dump_spec
     end
 
@@ -24,28 +25,27 @@ class HecksDomain
       write_file('', domain)
     end
 
-    # def dump_helpers
-    #   [domain.repository_helper].each do |file|
-    #     write_file("helpers/", file)
-    #   end
-    # end
+    def dump_domain_objects
+      domain.aggregates.each do |aggregate|
+        aggregate.domain_objects.each do |domain_object|
+          write_file("domain/#{aggregate.folder_name}/", domain_object)
+          write_file("domain/#{aggregate.folder_name}/#{domain_object.folder_name}/", domain_object.commands)
+          write_file("domain/#{aggregate.folder_name}/#{domain_object.folder_name}/", domain_object.factories)
+          write_file("domain/#{aggregate.folder_name}/#{domain_object.folder_name}/", domain_object.invariants)
+          next unless domain_object.is_a?(Entity)
 
-    def dump_domain_objects(aggregate)
-      aggregate.domain_objects.each do |domain_object|
-        write_file("domain/#{aggregate.folder_name}/", domain_object)
-        write_file("domain/#{aggregate.folder_name}/#{domain_object.folder_name}/", domain_object.commands)
-        write_file("domain/#{aggregate.folder_name}/#{domain_object.folder_name}/", domain_object.factories)
-        write_file("domain/#{aggregate.folder_name}/#{domain_object.folder_name}/", domain_object.invariants)
-        next unless domain_object.is_a?(Entity)
-
-        write_file("domain/#{aggregate.folder_name}/#{domain_object.folder_name}/", domain_object.repository)
+          write_file("domain/#{aggregate.folder_name}/#{domain_object.folder_name}/", domain_object.repository)
+        end
       end
+    end
+
+    def dump_lib
+      CreateFile.new.domain_lib
     end
 
     def dump_aggregates
       domain.aggregates.each do |aggregate|
         write_file("domain/#{aggregate.folder_name}/", aggregate.head_file)
-        dump_domain_objects(aggregate)
       end
     end
 

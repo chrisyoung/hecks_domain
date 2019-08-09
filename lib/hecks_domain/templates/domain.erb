@@ -1,6 +1,5 @@
 require_relative 'lib/hecks_domain'
 require_relative 'helpers/repository'
-require 'singleton'
 
 <% @aggregates.each do |aggregate| %>
 require_relative 'domain/<%= aggregate.folder_name %>/head'
