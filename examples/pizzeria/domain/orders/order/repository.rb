@@ -4,6 +4,7 @@ module Pizzeria
       class Repository
         include Singleton
         def self.save(object)
+          object.test_invariants
           instance.save(object)
         end
 

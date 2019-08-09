@@ -1,9 +1,11 @@
 require_relative 'line_item/factories'
+require_relative 'line_item/invariants'
 
 module Pizzeria
   module Orders
     class LineItem
       include HecksDomain::Factories::FactoryLoader
+      include HecksDomain::Invariants::InvariantLoader
       
       
 

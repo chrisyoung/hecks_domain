@@ -1,4 +1,5 @@
 require_relative 'pizza/factories'
+require_relative 'pizza/invariants'
 require_relative 'pizza/repository'
 require_relative 'pizza/commands'
 
@@ -6,6 +7,7 @@ module Pizzeria
   module Pizzas
     class Pizza
       include HecksDomain::Factories::FactoryLoader
+      include HecksDomain::Invariants::InvariantLoader
       include Helpers::Repository
       include HecksDomain::Commands::CommandLoader
 
