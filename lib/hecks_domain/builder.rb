@@ -13,8 +13,6 @@ class HecksDomain
     def build(domain)
       domain.ruby_file = build_file('domain', domain.binding)
       domain.spec_helper.ruby_file = build_file('spec_helper', domain.binding)
-      domain.repository_helper.ruby_file = build_file('helpers/repository', domain.binding)
-      domain.string_support.ruby_file = build_file('support/string', domain.binding)
       domain.aggregates.each do |aggregate|
         aggregate.head_file.ruby_file = build_file('head', aggregate.binding)
         aggregate.domain_objects.each do |domain_object|

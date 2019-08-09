@@ -3,7 +3,6 @@ require 'pry'
 require 'erubis'
 require 'thor'
 
-require_relative 'hecks_domain/domain_support'
 require_relative 'hecks_domain/top_level_methods'
 require_relative 'hecks_domain/support'
 require_relative 'hecks_domain/parser'
@@ -28,4 +27,3 @@ class HecksDomain
     new name, &block
   end
 end
-

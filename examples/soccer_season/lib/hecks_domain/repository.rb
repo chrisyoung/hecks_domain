@@ -1,4 +1,4 @@
-module <%= name %>
+module SoccerSeason
   module Helpers
     module Repository
       def save

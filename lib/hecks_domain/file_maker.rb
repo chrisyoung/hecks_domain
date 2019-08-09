@@ -10,8 +10,7 @@ class HecksDomain
     end
 
     def dump
-      dump_helpers
-      dump_support
+
       dump_domain
       dump_aggregates
       dump_spec
@@ -25,15 +24,11 @@ class HecksDomain
       write_file('', domain)
     end
 
-    def dump_helpers
-      [domain.repository_helper].each do |file|
-        write_file("helpers/", file)
-      end
-    end
-
-    def dump_support
-      write_file("support/", domain.string_support)
-    end
+    # def dump_helpers
+    #   [domain.repository_helper].each do |file|
+    #     write_file("helpers/", file)
+    #   end
+    # end
 
     def dump_domain_objects(aggregate)
       aggregate.domain_objects.each do |domain_object|
