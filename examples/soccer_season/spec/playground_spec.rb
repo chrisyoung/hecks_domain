@@ -84,5 +84,8 @@ describe "Playground" do
   it 'Invariants' do
     match.teams = [@redteam, @blueteam, @greenteam]
     expect { match.save }.to raise_error('Must have exactly two teams')
+
+    match.teams = [@redteam, @redteam]
+    expect { match.save }.to raise_error('Teams must be different')
   end
 end
