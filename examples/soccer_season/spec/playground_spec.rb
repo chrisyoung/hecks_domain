@@ -24,23 +24,18 @@ describe "Playground" do
   before do
     @pitch = SoccerSeason::Pitches::Pitch.new(name: 'downtown').tap(&:save)
 
-    # Teams
+    # Red Team
     @redteam = SoccerSeason::Teams::Team.new(name: 'redteam').tap(&:save)  
-    @blueteam = SoccerSeason::Teams::Team.new(name: 'blueteam').tap(&:save)
-    @greenteam = SoccerSeason::Teams::Team.new(name: 'greenteam').tap(&:save)
-
-    # Players
     @chris = SoccerSeason::Players::Player.new(name: 'chris', team: @redteam).tap(&:save)  
     @foster = SoccerSeason::Players::Player.new(name: 'foster', team: @redteam).tap(&:save)
+    
+    # Blue Team
+    @blueteam = SoccerSeason::Teams::Team.new(name: 'blueteam').tap(&:save)
+    @greenteam = SoccerSeason::Teams::Team.new(name: 'greenteam').tap(&:save)
     @clayton = SoccerSeason::Players::Player.new(name: 'clayton', team: @blueteam).tap(&:save)
 
-    5.times do
-      match.add_goal!(time: Time.now, player: @foster)
-    end
-
-    4.times do
-      match.add_goal!(time: Time.now, player: @clayton)
-    end
+    5.times { match.add_goal!(time: Time.now, player: @foster) }
+    4.times { match.add_goal!(time: Time.now, player: @clayton) }
   end
 
   it 'Has a head' do
@@ -55,7 +50,7 @@ describe "Playground" do
     match.score!
     expect(match.result.winner).to eq (@redteam)
 
-    # I'm tired of calling score! every time I add a goal
+    # I'm tired of calling `#score!` every time I add a goal
     HecksDomain::Events.subscribe(ScoreOnAddGoal.new)
     3.times do
       match.add_goal!(time: Time.now, player: @clayton)
