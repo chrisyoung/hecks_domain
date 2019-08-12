@@ -23,6 +23,10 @@ class HecksDomain
       @read_only = value
     end
 
+    def optional=(value)
+      @optional = value
+    end
+
     def read_only?
       @read_only
     end
@@ -33,6 +37,7 @@ class HecksDomain
 
     def attribute_name
       return name.to_s + ':' unless optional?
+      return name.to_s + ': []' if is_a?(ListField)
       name.to_s + ': nil'
     end
   end

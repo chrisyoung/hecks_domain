@@ -2,10 +2,10 @@ domain :SoccerSeason do
   aggregate :Matches do
     head :Match do
       value(:fixture).as :Fixture
-      read_only list(:goals).as(:Goal)
+      optional list(:goals).as(:Goal)
+      optional entity(:result).as :Result
       list(:teams).as Teams: :Team
       entity(:pitch).as :Pitch
-      entity(:result).as :Result
     end
 
     value(:Result) do

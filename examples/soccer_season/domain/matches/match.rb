@@ -10,14 +10,14 @@ module SoccerSeason
       include HecksDomain::Invariants::InvariantLoader
       include HecksDomain::Commands::CommandLoader
 
-      attr_accessor :fixture, :goals, :teams, :pitch, :result, :id
+      attr_accessor :fixture, :goals, :result, :teams, :pitch, :id
 
-      def initialize(fixture:, teams:, pitch:, result:)
+      def initialize(fixture:, goals: [], result: nil, teams:, pitch:)
         @fixture = fixture
-        @goals = []
+        @goals = goals
+        @result = result
         @teams = teams
         @pitch = pitch
-        @result = result
       end
     end
   end

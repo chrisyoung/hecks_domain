@@ -8,8 +8,7 @@ describe "Playground" do
     SoccerSeason::Matches::Match.new(
       fixture: fixture,
       teams: [@redteam, @blueteam],
-      pitch: @pitch,
-      result: nil
+      pitch: @pitch
     ).tap(&:save!)
   end
 
