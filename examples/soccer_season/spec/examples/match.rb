@@ -5,7 +5,7 @@ RSpec.shared_examples "match" do
       teams: [redteam, blueteam],
       pitch: pitch,
       result: nil
-    ).tap(&:save)
+    ).tap(&:save!)
   end
 
   let(:fixture) do
@@ -19,19 +19,19 @@ RSpec.shared_examples "match" do
   let(:redteam) do
     SoccerSeason::Teams::Team.new(
       name: 'redteam'
-    ).tap(&:save)
+    ).tap(&:save!)
   end
 
   let(:blueteam) do
     SoccerSeason::Teams::Team.new(
       name: 'blueteam'
-    ).tap(&:save)
+    ).tap(&:save!)
   end
 
   let(:pitch) do
     SoccerSeason::Pitches::Pitch.new(
       name: 'downtown'
-    ).tap(&:save)
+    ).tap(&:save!)
   end
 
   let(:player_chris) do

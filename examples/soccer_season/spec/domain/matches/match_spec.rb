@@ -3,12 +3,11 @@ require 'spec_helper'
 describe SoccerSeason::Matches::Match do
   include_examples 'match'
   include_examples 'subscriber'
-  
   subject { match }
 
   describe '#score' do
     context "Subscriber" do
-      let(:subscriber) { Subscriber.new('*') }
+      let(:subscriber) { Subscriber.new(SoccerSeason::Matches::Match::Commands::Score) }
       before do
         HecksDomain::Events::DomainEventPublisher.subscribe(subscriber)
       end

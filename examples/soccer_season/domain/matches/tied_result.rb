@@ -7,7 +7,6 @@ module SoccerSeason
       include HecksDomain::Factories::FactoryLoader
       include HecksDomain::Invariants::InvariantLoader
       
-      
 
       attr_accessor 
 

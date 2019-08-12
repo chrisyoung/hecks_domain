@@ -8,7 +8,6 @@ module SoccerSeason
     class Team
       include HecksDomain::Factories::FactoryLoader
       include HecksDomain::Invariants::InvariantLoader
-      include Helpers::Repository
       include HecksDomain::Commands::CommandLoader
 
       attr_accessor :name, :id

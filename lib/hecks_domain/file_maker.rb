@@ -33,9 +33,18 @@ class HecksDomain
           write_file("domain/#{aggregate.folder_name}/#{domain_object.folder_name}/", domain_object.invariants)
           next unless domain_object.is_a?(Entity)
           write_file("domain/#{aggregate.folder_name}/#{domain_object.folder_name}/", domain_object.commands)
+          write_file("domain/#{aggregate.folder_name}/#{domain_object.folder_name}/commands/", Struct.new(:file_name, :ruby_file).new('save.rb', build_file('domain_object/commands/save', domain_object.binding)))
           write_file("domain/#{aggregate.folder_name}/#{domain_object.folder_name}/", domain_object.repository)
         end
       end
+    end
+
+    def build_file(name, context)
+      Erubis::Eruby.new(read_template(name)).result(context)
+    end
+
+    def read_template(name)
+      File.open(File.dirname(__FILE__) + "/templates/#{name}.erb").read
     end
 
     def dump_lib

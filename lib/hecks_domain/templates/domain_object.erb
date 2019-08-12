@@ -10,7 +10,6 @@ module <%= @aggregate.domain.name %>
     class <%= @name %>
       include HecksDomain::Factories::FactoryLoader
       include HecksDomain::Invariants::InvariantLoader
-      <%= 'include Helpers::Repository' if is_a?(Entity) %>
       <%= 'include HecksDomain::Commands::CommandLoader' if is_a?(Head) %>
 
       attr_accessor <%= accessors %>

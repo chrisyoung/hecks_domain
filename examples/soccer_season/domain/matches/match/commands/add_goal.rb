@@ -4,8 +4,7 @@ module SoccerSeason
       module Commands
         class AddGoal
           attr_reader :args, :head
-          def initialize(match, args={})
-            require 'pry'; binding.pry
+          def initialize(match, args = {})
             @args = args
             @head = match
             @time = args[:time]
@@ -14,7 +13,7 @@ module SoccerSeason
 
           def call
             @head.goals << Goal.new(time: @time, player: @player)
-            @head.save
+            @head.save!
           end
         end
       end

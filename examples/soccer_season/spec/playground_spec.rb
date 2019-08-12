@@ -10,7 +10,7 @@ describe "Playground" do
       teams: [@redteam, @blueteam],
       pitch: @pitch,
       result: nil
-    ).tap(&:save)
+    ).tap(&:save!)
   end
 
   let(:fixture) do
@@ -22,17 +22,17 @@ describe "Playground" do
   end
 
   before do
-    @pitch = SoccerSeason::Pitches::Pitch.new(name: 'downtown').tap(&:save)
+    @pitch = SoccerSeason::Pitches::Pitch.new(name: 'downtown').tap(&:save!)
 
     # Red Team
-    @redteam = SoccerSeason::Teams::Team.new(name: 'redteam').tap(&:save)  
-    @chris = SoccerSeason::Players::Player.new(name: 'chris', team: @redteam).tap(&:save)  
-    @foster = SoccerSeason::Players::Player.new(name: 'foster', team: @redteam).tap(&:save)
+    @redteam = SoccerSeason::Teams::Team.new(name: 'redteam').tap(&:save!)
+    @chris = SoccerSeason::Players::Player.new(name: 'chris', team: @redteam).tap(&:save!)
+    @foster = SoccerSeason::Players::Player.new(name: 'foster', team: @redteam).tap(&:save!)
     
     # Blue Team
-    @blueteam = SoccerSeason::Teams::Team.new(name: 'blueteam').tap(&:save)
-    @greenteam = SoccerSeason::Teams::Team.new(name: 'greenteam').tap(&:save)
-    @clayton = SoccerSeason::Players::Player.new(name: 'clayton', team: @blueteam).tap(&:save)
+    @blueteam = SoccerSeason::Teams::Team.new(name: 'blueteam').tap(&:save!)
+    @greenteam = SoccerSeason::Teams::Team.new(name: 'greenteam').tap(&:save!)
+    @clayton = SoccerSeason::Players::Player.new(name: 'clayton', team: @blueteam).tap(&:save!)
 
     5.times { match.add_goal!(time: Time.now, player: @foster) }
     4.times { match.add_goal!(time: Time.now, player: @clayton) }
@@ -78,9 +78,9 @@ describe "Playground" do
 
   it 'Invariants' do
     match.teams = [@redteam, @blueteam, @greenteam]
-    expect { match.save }.to raise_error('Must have exactly two teams')
+    expect { match.save! }.to raise_error('Must have exactly two teams')
 
     match.teams = [@redteam, @redteam]
-    expect { match.save }.to raise_error('Teams must be different')
+    expect { match.save! }.to raise_error('Teams must be different')
   end
 end

@@ -13,7 +13,7 @@ module SoccerSeason
 
           def call
             @match.result = result
-            @match.save
+            @match.save!
             self
           end
 
