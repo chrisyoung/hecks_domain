@@ -10,7 +10,7 @@ module SoccerSeason
 
       attr_accessor :time, :player
 
-      def initialize time:, player:
+      def initialize(time:, player:)
         @time = time
         @player = player
       end

@@ -12,7 +12,7 @@ module SoccerSeason
 
       attr_accessor :name, :team, :id
 
-      def initialize name:, team:
+      def initialize(name:, team:)
         @name = name
         @team = team
       end

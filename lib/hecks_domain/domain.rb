@@ -21,7 +21,6 @@ class HecksDomain
       @name = name
       @aggregates = []
       @spec_helper = SpecHelper.new
-      @repository_helper = RepositoryHelper.new
       @factory_loader = FactoryLoader.new
       @string_support = StringSupport.new
 

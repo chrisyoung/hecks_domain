@@ -10,7 +10,7 @@ module SoccerSeason
 
       attr_accessor 
 
-      def initialize 
+      def initialize()
       end
     end
   end

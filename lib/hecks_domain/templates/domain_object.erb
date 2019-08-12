@@ -14,7 +14,7 @@ module <%= @aggregate.domain.name %>
 
       attr_accessor <%= accessors %>
 
-      def initialize <%= initializer_attributes %>
+      def initialize(<%= initializer_attributes %>)
       <% @fields.each do |field| %>
         <%= "@#{field.name} = #{field.initial_state}" %>
       <% end %>

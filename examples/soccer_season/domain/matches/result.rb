@@ -10,7 +10,7 @@ module SoccerSeason
 
       attr_accessor :loser, :winner, :tied
 
-      def initialize loser:, winner:
+      def initialize(loser:, winner:)
         @loser = loser
         @winner = winner
         @tied = nil
