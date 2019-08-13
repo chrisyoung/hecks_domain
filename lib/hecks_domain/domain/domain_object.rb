@@ -35,12 +35,24 @@ class HecksDomain
       @fields.select { |field| field.is_a?(BooleanField) }
     end
 
-    def accessors
+    def list_accessors
+      @fields.select { |field| field.is_a?(ListField) }
+    end
+
+    def public_accessors
       @fields.map do |field|
-        ":#{field.name}"
-      end.tap do |fields| 
-        fields << ':id' if is_a?(Entity) 
-      end.join(', ')
+        field.public_accessor
+      end.tap do |fields|
+        fields << ':id' if is_a?(Entity)
+      end.compact.join(', ')
+    end
+    
+    def private_accessors
+      @fields.map do |field|
+        field.private_accessor
+      end.tap do |fields|
+        fields << ':id' if is_a?(Entity)
+      end.compact.join(', ')
     end
 
     def commands

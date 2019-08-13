@@ -3,7 +3,7 @@ module SoccerSeason
     class Match
       module Commands
         class AddGoal
-          attr_reader :args, :head
+          attr_reader :args, :head, :time, :player
           def initialize(match, args = {})
             @args = args
             @head = match
@@ -12,7 +12,12 @@ module SoccerSeason
           end
 
           def call
-            @head.goals << Goal.new(time: @time, player: @player)
+            tap do |command|
+              @head.instance_eval do
+                @goals << Goal.new(time: command.time, player: command.player)
+              end
+            end
+
             @head.save!
           end
         end

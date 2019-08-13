@@ -6,5 +6,9 @@ class HecksDomain
     def self.subscribe(subscriber)
       DomainEventPublisher.subscribe(subscriber)
     end
+
+    def self.cancel_subscription(subscriber)
+      DomainEventPublisher.cancel_subscription(subscriber)
+    end
   end
 end

@@ -15,6 +15,14 @@ class HecksDomain
       @as
     end
 
+    def public_accessor
+      ":#{name}"
+    end
+
+    def private_accessor
+      ":#{name}"
+    end
+
     def initial_state
       name
     end
@@ -38,6 +46,7 @@ class HecksDomain
     def attribute_name
       return name.to_s + ':' unless optional?
       return name.to_s + ': []' if is_a?(ListField)
+
       name.to_s + ': nil'
     end
   end

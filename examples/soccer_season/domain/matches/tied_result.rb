@@ -8,10 +8,14 @@ module SoccerSeason
       include HecksDomain::Invariants::InvariantLoader
       
 
-      attr_accessor 
+      attr_reader 
 
       def initialize()
       end
+
+      private
+
+      attr_writer 
     end
   end
 end

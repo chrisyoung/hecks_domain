@@ -10,12 +10,16 @@ module SoccerSeason
       include HecksDomain::Invariants::InvariantLoader
       include HecksDomain::Commands::CommandLoader
 
-      attr_accessor :name, :team, :id
+      attr_reader :name, :team, :id
 
       def initialize(name:, team:)
         @name = name
         @team = team
       end
+
+      private
+
+      attr_writer :name, :team, :id
     end
   end
 end

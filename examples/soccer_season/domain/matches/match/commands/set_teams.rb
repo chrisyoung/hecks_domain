@@ -2,22 +2,20 @@ module SoccerSeason
   module Matches
     class Match
       module Commands
-        class Score
-          attr_reader :args, :head
+        class SetTeams
+          attr_reader :args, :head, :teams
 
-          def initialize(match)
+          def initialize(match, teams)
             @head = @match = match
-            @teams = match.teams
-            @goals = match.goals
+            @teams = teams
           end
 
           def call
             self.tap do |command|
               @match.instance_eval do
-                @result = command.send(:set_result)
+                @teams = command.teams
               end
             end
-
             @match.save!
             self
           end
@@ -28,7 +26,7 @@ module SoccerSeason
             @goals.count { |goal| goal.player.team == team }
           end
 
-          def set_result
+          def result
             counts = @teams.map { |team| get_count(team) }
 
             return TiedResult.new if counts.first == counts.last

@@ -10,7 +10,7 @@ module SoccerSeason
       include HecksDomain::Invariants::InvariantLoader
       include HecksDomain::Commands::CommandLoader
 
-      attr_accessor :fixture, :goals, :result, :teams, :pitch, :id
+      attr_reader :fixture, :result, :pitch, :id
 
       def initialize(fixture:, goals: [], result: nil, teams:, pitch:)
         @fixture = fixture
@@ -19,6 +19,18 @@ module SoccerSeason
         @teams = teams
         @pitch = pitch
       end
+
+      def goals
+        @goals.clone.freeze
+      end
+
+      def teams
+        @teams.clone.freeze
+      end
+
+      private
+
+      attr_writer :fixture, :goals, :result, :teams, :pitch, :id
     end
   end
 end

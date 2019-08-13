@@ -22,6 +22,14 @@ class HecksDomain
       name.to_s + ': nil'
     end
 
+    def public_accessor
+      ":#{name}"
+    end
+
+    def private_accessor
+      ":#{name}"
+    end
+    
     def module_name
       @as
     end

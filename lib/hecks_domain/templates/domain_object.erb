@@ -12,7 +12,7 @@ module <%= @aggregate.domain.name %>
       include HecksDomain::Invariants::InvariantLoader
       <%= 'include HecksDomain::Commands::CommandLoader' if is_a?(Head) %>
 
-      attr_accessor <%= accessors %>
+      attr_reader <%= public_accessors %>
 
       def initialize(<%= initializer_attributes %>)
       <% @fields.each do |field| %>
@@ -25,6 +25,16 @@ module <%= @aggregate.domain.name %>
         @<%= field.name %>
       end
       <% end %>
+      <% list_accessors.each do |field| -%>
+
+      def <%= field.name %>
+        @<%= field.name %>.clone.freeze
+      end
+      <% end %>
+
+      private
+
+      attr_writer <%= private_accessors %>
     end
   end
 end

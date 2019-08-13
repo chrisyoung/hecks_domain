@@ -8,7 +8,7 @@ module SoccerSeason
       include HecksDomain::Invariants::InvariantLoader
       
 
-      attr_accessor :loser, :winner, :tied
+      attr_reader :loser, :winner, :tied
 
       def initialize(loser:, winner:)
         @loser = loser
@@ -19,6 +19,10 @@ module SoccerSeason
       def tied?
         @tied
       end
+
+      private
+
+      attr_writer :loser, :winner, :tied
     end
   end
 end
