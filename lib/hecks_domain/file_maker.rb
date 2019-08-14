@@ -27,7 +27,7 @@ class HecksDomain
     end
 
     def dump_domain
-      write_file('lib', domain)
+      write_file('lib/', domain)
     end
 
     def dump_domain_objects

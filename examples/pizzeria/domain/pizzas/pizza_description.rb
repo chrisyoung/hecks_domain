@@ -7,13 +7,16 @@ module Pizzeria
       include HecksDomain::Factories::FactoryLoader
       include HecksDomain::Invariants::InvariantLoader
       
-      
 
-      attr_accessor :value
+      attr_reader :value
 
-      def initialize value:
+      def initialize(value:)
         @value = value
       end
+
+      private
+
+      attr_writer :value
     end
   end
 end

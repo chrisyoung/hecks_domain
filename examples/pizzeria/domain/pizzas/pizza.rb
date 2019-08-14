@@ -8,17 +8,24 @@ module Pizzeria
     class Pizza
       include HecksDomain::Factories::FactoryLoader
       include HecksDomain::Invariants::InvariantLoader
-      include Helpers::Repository
       include HecksDomain::Commands::CommandLoader
 
-      attr_accessor :name, :description, :price, :toppings, :id
+      attr_reader :name, :description, :price, :id
 
-      def initialize name:, description:, price:, toppings:
+      def initialize(name:, description:, price:, toppings:)
         @name = name
         @description = description
         @price = price
         @toppings = toppings
       end
+
+      def toppings
+        @toppings.clone.freeze
+      end
+
+      private
+
+      attr_writer :name, :description, :price, :toppings, :id
     end
   end
 end

@@ -11,7 +11,7 @@ module Pizzeria
           end
 
           def call
-            @order.save
+            @order.save!
           end
         end
       end

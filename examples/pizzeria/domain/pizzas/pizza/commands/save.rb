@@ -1,6 +1,6 @@
-module <%= @aggregate.domain.name %>
-  module <%= @aggregate.name%>
-    class <%= @name %>
+module Pizzeria
+  module Pizzas
+    class Pizza
       module Commands
         class Save
           attr_reader :args, :head
@@ -18,3 +18,4 @@ module <%= @aggregate.domain.name %>
     end
   end
 end
+

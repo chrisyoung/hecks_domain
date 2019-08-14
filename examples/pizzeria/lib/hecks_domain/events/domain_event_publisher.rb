@@ -15,6 +15,10 @@ class HecksDomain
         instance.subscribers << subscriber
       end
 
+      def self.cancel_subscription(subscriber)
+        instance.subscribers.delete(subscriber)
+      end
+
       def emit(domain_event, &block)
         yield domain_event if block
         @subscribers.each do |subscriber|
