@@ -1,7 +1,7 @@
-require_relative 'lib/hecks_domain'
+require_relative 'hecks_domain'
 
 <% @aggregates.each do |aggregate| %>
-require_relative 'domain/<%= aggregate.folder_name %>/head'
+require_relative '../domain/<%= aggregate.folder_name %>/head'
 <% end %>
 
 module <%= @name %>

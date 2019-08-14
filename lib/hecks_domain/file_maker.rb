@@ -11,10 +11,15 @@ class HecksDomain
 
     def dump
       dump_domain
+      dump_gemfile
+      dump_spec
+      dump_lib
       dump_aggregates
       dump_domain_objects
-      dump_lib
-      dump_spec
+    end
+
+    def dump_gemfile
+      write_file('', parse_file(domain.folder_name + '.gemspec', 'gemspec', domain.binding))
     end
 
     def dump_spec
@@ -22,7 +27,7 @@ class HecksDomain
     end
 
     def dump_domain
-      write_file('', domain)
+      write_file('lib', domain)
     end
 
     def dump_domain_objects
@@ -33,7 +38,7 @@ class HecksDomain
           write_file("domain/#{aggregate.folder_name}/#{domain_object.folder_name}/", domain_object.invariants)
           next unless domain_object.is_a?(Entity)
           write_file("domain/#{aggregate.folder_name}/#{domain_object.folder_name}/", domain_object.commands)
-          write_file("domain/#{aggregate.folder_name}/#{domain_object.folder_name}/commands/", Struct.new(:file_name, :ruby_file).new('save.rb', build_file('domain_object/commands/save', domain_object.binding)))
+          write_file("domain/#{aggregate.folder_name}/#{domain_object.folder_name}/commands/", parse_file('save.rb', 'domain_object/commands/save', domain_object.binding))
           write_file("domain/#{aggregate.folder_name}/#{domain_object.folder_name}/", domain_object.repository)
         end
       end
@@ -49,6 +54,11 @@ class HecksDomain
 
     def dump_lib
       CreateFile.new.domain_lib
+    end
+
+    def parse_file(file_name, template_name, binding)
+      Struct.new(:file_name, :ruby_file)
+        .new(file_name, build_file(template_name, binding))
     end
 
     def dump_aggregates

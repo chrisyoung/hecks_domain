@@ -28,6 +28,30 @@ class HecksDomain
       instance_eval(&block)
     end
 
+    def summary(value)
+      @summary = value
+    end
+
+    def description(value)
+      @description = value
+    end
+
+    def version(value)
+      @version = value
+    end
+
+    def authors(value)
+      @authors = value
+    end
+
+    def email(value)
+      @email = value
+    end
+
+    def homepage(value)
+      @homepage = value
+    end
+
     def aggregate(name, &block)
       @aggregates << Aggregate.new(name, self, &block)
     end
@@ -37,11 +61,11 @@ class HecksDomain
     end
 
     def file_name
-      folder_name + '.rb'
+      @file_name = folder_name + '.rb'
     end
 
     def folder_name
-      @name.to_s.underscore
+      @folder_name = @name.to_s.underscore
     end
   end
 end

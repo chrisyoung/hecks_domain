@@ -1,4 +1,11 @@
 domain :SoccerSeason do
+  summary "Soccer Season Scheduler"
+  description "Soccer Season is a more complex domain generaged by HecksDomain"
+  version '0.1.0'
+  authors ["SoccerSeason Developer"]
+  email "dev@soccer_season.com"
+  homepage "http://www.example.com"
+
   aggregate :Matches do
     head :Match do
       value(:fixture).as :Fixture

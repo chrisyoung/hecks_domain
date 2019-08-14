@@ -1,0 +1,11 @@
+Gem::Specification.new do |s|
+  s.name        = '<%= @folder_name %>'
+  s.version     = '<%= @version %>'
+  s.licenses    = ['MIT']
+  s.summary     = '<%= @summary %>'
+  s.description = '<%= @description %>'
+  s.authors     = <%= @authors %>
+  s.email       = '<%= @email %>'
+  s.files       = Dir['lib/**/*.rb', 'domain/**/*.rb']
+  s.homepage    = '<%= @homepage %>'
+end
