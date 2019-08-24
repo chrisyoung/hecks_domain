@@ -1,0 +1,61 @@
+domain(:LeanCoffee) do
+  summary     'Lean Coffee'
+  description 'Collaborative, dynamic, just in time meetings'
+  version     '0.1.0'
+  authors     ['Lean Coffee Developer']
+  email       'dev@lean_coffee.com'
+  homepage    'http://www.example.com'
+
+  aggregate :Meetings do
+    head :Meeting do
+      integer :allowed_votes
+      integer :timebox_extension
+      string :phase
+      list(:participants).as(:Participant)
+      optional value(:discussion_list).as(:DiscussionList)
+      value(:voting_timebox).as(:Timebox)
+      value(:collection_timebox).as(:Timebox)
+      value(:ordering_timebox).as(:Timebox)
+    end
+
+    value(:Timebox) do
+      value(:duration)
+    end
+
+    value(:Participant) do
+      string :name
+      integer :remaining_votes
+      optional list(:votes).as(:Vote)
+    end
+
+    value(:Vote) do
+      entity(:discussion).as(Disussions: :Discussion)
+    end
+
+    value(:DiscussionList) do
+      list(:positions).as :Position
+    end
+
+    value(:Position) do
+      entity(:discussion).as Discussions: :Discussion
+    end
+  end
+
+  aggregate :Discussions do
+    head(:Dissussion) do
+      string :topic
+      value(:timebox).as(:Timebox)
+    end
+
+    value(:Timebox) do
+      integer :duration
+      value(:extension).as(:Extension)
+    end
+
+    value(:Exension) do
+      integer :duration
+      integer :yes_votes
+      integer :no_votes
+    end
+  end
+end

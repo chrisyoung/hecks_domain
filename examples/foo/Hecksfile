@@ -1,0 +1,18 @@
+domain :FooBar do
+  summary     'Foo Bar'
+  description 'A Foo has many Bars.  A domain with no commands or factories so its no problem to destroy and re-generate'
+  version     '0.1.0'
+  authors     ['Chris Young']
+  email       'foobar@example.com'
+  homepage    'http://www.example.com'
+
+  aggregate :Foos do
+    head :Foo do
+      value(:bar).as :Bar
+    end
+
+    value(:Bar) do
+      string :name
+    end
+  end
+end
