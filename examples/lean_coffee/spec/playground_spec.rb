@@ -1,20 +1,16 @@
 require 'spec_helper'
 
 describe 'Playground' do
-  it do
-    LeanCoffee::Meetings::Meeting.new(
+  let(:meeting) do
+    LeanCoffee::Meetings::Meeting.default(
       allowed_votes: 6,
       timebox_extension: 1,
       phase: :voting,
-      voting_timebox: LeanCoffee::Meetings::Timebox.new(
-        duration: 3
-      ),
-      collection_timebox: LeanCoffee::Meetings::Timebox.new(
-        duration: 3
-      ),
-      ordering_timebox: LeanCoffee::Meetings::Timebox.new(
-        duration: 3
-      ),
+      time_boxes: {
+        voting: 3,
+        collection: 3,
+        ordering: 3
+      },
       participants: [
         LeanCoffee::Meetings::Participant.new(
           name: 'Angie',
@@ -22,9 +18,13 @@ describe 'Playground' do
         ),
         LeanCoffee::Meetings::Participant.new(
           name: 'Chris',
-          remaining_votes: 5,
+          remaining_votes: 5
         )
       ]
     )
+  end
+  
+  it do
+    meeting
   end
 end
