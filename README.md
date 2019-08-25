@@ -39,3 +39,6 @@ A Domain Specific Language for generating Domain Driven Designs.
 1. Play with including modules
 1. Add Readme to all the projects
 1. Generate a factory
+1. Generate a command
+1. How to do invariants to prevent a command from being called
+1. Add default invariant module and default factory

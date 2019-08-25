@@ -1,7 +1,9 @@
 require_relative 'meeting/factories'
 require_relative 'meeting/invariants'
 require_relative 'meeting/repository'
+require_relative 'meeting/queries'
 require_relative 'meeting/commands'
+
 
 module LeanCoffee
   module Meetings
@@ -9,11 +11,11 @@ module LeanCoffee
       include HecksDomain::Factories::FactoryLoader
       include HecksDomain::Invariants::InvariantLoader
       include HecksDomain::Commands::CommandLoader
+      include HecksDomain::Queries::QueryLoader
 
-      attr_reader :allowed_votes, :timebox_extension, :phase, :discussion_list, :voting_timebox, :collection_timebox, :ordering_timebox, :id
+      attr_reader :timebox_extension, :phase, :discussion_list, :voting_timebox, :collection_timebox, :ordering_timebox, :discussing, :id
 
-      def initialize(allowed_votes:, timebox_extension:, phase:, participants:, discussion_list:, voting_timebox:, collection_timebox:, ordering_timebox:)
-        @allowed_votes = allowed_votes
+      def initialize(timebox_extension:, phase:, participants:, discussion_list:, voting_timebox:, collection_timebox:, ordering_timebox:, discussing: nil)
         @timebox_extension = timebox_extension
         @phase = phase
         @participants = participants
@@ -21,6 +23,7 @@ module LeanCoffee
         @voting_timebox = voting_timebox
         @collection_timebox = collection_timebox
         @ordering_timebox = ordering_timebox
+        @discussing = discussing
       end
 
       def participants
@@ -29,7 +32,7 @@ module LeanCoffee
 
       private
 
-      attr_writer :allowed_votes, :timebox_extension, :phase, :participants, :discussion_list, :voting_timebox, :collection_timebox, :ordering_timebox, :id
+      attr_writer :timebox_extension, :phase, :participants, :discussion_list, :voting_timebox, :collection_timebox, :ordering_timebox, :discussing, :id
     end
   end
 end

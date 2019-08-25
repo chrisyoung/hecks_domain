@@ -5,27 +5,29 @@ module LeanCoffee
         class Vote
           attr_reader :args, :head
 
-          def initialize(meeting, participant:, topic:)
+          def initialize(meeting, participant:, discussion:)
+            @head = meeting
             @meeting = meeting
             @discussion_list = @meeting.discussion_list
             @participant = participant
-            @topic = topic
+            @discussion = discussion
           end
 
           def call
             discussion_list = @discussion_list
-            topic = @topic
-            
+            discussion = @discussion
+            head = @head
+
             @participant.instance_eval do
+              raise 'Must be in voting phase to add a vote' if head.phase != :voting
+
               @remaining_votes -= 1
 
-              discussion_to_vote_for = discussion_list.positions.find do |discussion_position|
-                discussion_position.discussion.topic == topic
-              end.discussion
-
-              discussion_to_vote_for
+              discussion.instance_eval do
+                @votes += 1
+              end
             end
-            
+
             self
           end
         end

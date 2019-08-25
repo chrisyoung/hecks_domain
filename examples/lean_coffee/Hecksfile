@@ -8,7 +8,6 @@ domain(:LeanCoffee) do
 
   aggregate :Meetings do
     head :Meeting do
-      integer :allowed_votes
       integer :timebox_extension
       string :phase
       list(:participants).as(:Participant)
@@ -16,6 +15,7 @@ domain(:LeanCoffee) do
       value(:voting_timebox).as(:Timebox)
       value(:collection_timebox).as(:Timebox)
       value(:ordering_timebox).as(:Timebox)
+      optional value(:discussing).as(Discussions: :Discussion)
     end
 
     value(:Timebox) do

@@ -5,23 +5,22 @@ module LeanCoffee
         class AddDiscussion
           attr_reader :args, :head
 
-          def initialize(meeting, args)
+          def initialize(meeting, discussion)
+            @head = meeting
             @meeting = meeting
             @discussion_list = @meeting.discussion_list
-            @topic = args[:topic]
+            @discussion = discussion
           end
 
           def call
+            discussion = @discussion
             position = LeanCoffee::Meetings::Position.new(
-              discussion: LeanCoffee::Discussions::Discussion.default(
-                topic: @topic,
-                timebox: LeanCoffee::Discussions::Timebox.new(
-                  duration: 5, extension: 1
-                )
-              )
+              discussion: discussion
             )
+            head = @head
 
             @discussion_list.instance_eval do
+              raise 'Must be in collection phase to add a discussion' unless head.phase == :collecting
               @positions << position
             end
 
