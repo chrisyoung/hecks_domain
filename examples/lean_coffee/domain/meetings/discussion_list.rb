@@ -10,7 +10,7 @@ module LeanCoffee
 
       attr_reader 
 
-      def initialize(positions:)
+      def initialize(positions: [])
         @positions = positions
       end
 

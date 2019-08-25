@@ -2,7 +2,6 @@ module LeanCoffee
   module Meetings
     class Meeting
       module Factories
-        # 
         class Default
           def self.factory(args={})
             timeboxes = args.delete(:time_boxes)

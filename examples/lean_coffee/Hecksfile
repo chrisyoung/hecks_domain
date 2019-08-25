@@ -12,7 +12,7 @@ domain(:LeanCoffee) do
       integer :timebox_extension
       string :phase
       list(:participants).as(:Participant)
-      optional value(:discussion_list).as(:DiscussionList)
+      value(:discussion_list).as(:DiscussionList)
       value(:voting_timebox).as(:Timebox)
       value(:collection_timebox).as(:Timebox)
       value(:ordering_timebox).as(:Timebox)
@@ -33,7 +33,7 @@ domain(:LeanCoffee) do
     end
 
     value(:DiscussionList) do
-      list(:positions).as :Position
+      optional list(:positions).as :Position
     end
 
     value(:Position) do
@@ -42,8 +42,9 @@ domain(:LeanCoffee) do
   end
 
   aggregate :Discussions do
-    head(:Dissussion) do
+    head(:Discussion) do
       string :topic
+      integer :votes
       value(:timebox).as(:Timebox)
     end
 

@@ -12,7 +12,7 @@ module LeanCoffee
 
       attr_reader :allowed_votes, :timebox_extension, :phase, :discussion_list, :voting_timebox, :collection_timebox, :ordering_timebox, :id
 
-      def initialize(allowed_votes:, timebox_extension:, phase:, participants:, discussion_list: nil, voting_timebox:, collection_timebox:, ordering_timebox:)
+      def initialize(allowed_votes:, timebox_extension:, phase:, participants:, discussion_list:, voting_timebox:, collection_timebox:, ordering_timebox:)
         @allowed_votes = allowed_votes
         @timebox_extension = timebox_extension
         @phase = phase

@@ -38,3 +38,4 @@ A Domain Specific Language for generating Domain Driven Designs.
 1. Generate a crud server (or make a generic one)
 1. Play with including modules
 1. Add Readme to all the projects
+1. Generate a factory
