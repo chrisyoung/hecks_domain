@@ -38,7 +38,7 @@ describe 'Playground' do
     )
   }
 
-  it do
+  it 'Plays Nicely' do
     meeting.add_discussion!(lean_coffee_discussion)
     meeting.add_discussion!(retrospective_discussion)
 
