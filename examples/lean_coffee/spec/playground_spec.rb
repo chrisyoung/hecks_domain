@@ -17,20 +17,20 @@ describe 'Playground' do
   end
 
   let(:angie) do
-    let(:chris) do
-      meeting.find_participant(name: 'Angie')
-    end
+    let(:chris) { meeting.find_participant(name: 'Angie') }
   end
 
-  let(:lean_coffee_discussion) {
-    LeanCoffee::Discussions::Discussion.new(topic: 'lean coffee', votes: 0, timebox: 5)
-  }
+  let(:lean_coffee_discussion) do
+    LeanCoffee::Discussions::Discussion.new(
+      topic: 'lean coffee', votes: 0, timebox: 5
+    )
+  end
 
-  let(:retrospective_discussion) {
+  let(:retrospective_discussion) do
     LeanCoffee::Discussions::Discussion.new(
       topic: 'retrospective', votes: 0, timebox: 5
     )
-  }
+  end
 
   it 'Example' do
     LeanCoffee::Meetings::Meeting.example(voting: 0, collection: 0, ordering: 0)
@@ -50,7 +50,7 @@ describe 'Playground' do
     expect { meeting.add_discussion!(lean_coffee_discussion) }
       .to raise_error 'Must be in collection phase to add a discussion'
 
-    expect( meeting.phase).to eq :waiting
+    expect(meeting.phase).to eq :waiting
 
     meeting.start_voting!
 
@@ -63,6 +63,8 @@ describe 'Playground' do
 
     meeting.start_ordering!
     meeting.order_by_votes!
+
+    expect(meeting.discussion_list.positions.first.discussion).to eq retrospective_discussion
 
     meeting.move_discussion_to_top!(lean_coffee_discussion)
     expect(meeting.discussion_list.positions.first.discussion).to eq(lean_coffee_discussion)

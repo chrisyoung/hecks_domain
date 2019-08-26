@@ -11,9 +11,7 @@ module LeanCoffee
             event.head.wait_for_next_phase!
           end
 
-          HecksDomain::Events::DomainEventPublisher.subscribe(
-            Subscribers::TimeboxEnded
-          )
+          HecksDomain::Events::DomainEventPublisher.subscribe(self)
         end
       end
     end
