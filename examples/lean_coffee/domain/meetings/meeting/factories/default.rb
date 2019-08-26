@@ -9,7 +9,6 @@ module LeanCoffee
 
             Meeting.new(
               args.merge(
-                phase: :collecting,
                 participants: args[:participants].map do |participant|
                   LeanCoffee::Meetings::Participant.new(
                     name: participant[:name],

@@ -20,6 +20,8 @@ domain(:LeanCoffee) do
 
     value(:Timebox) do
       value(:duration)
+      optional value(:start_time)
+      optional value(:end_time)
     end
 
     value(:Participant) do

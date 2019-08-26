@@ -9,15 +9,17 @@ module LeanCoffee
       
       
 
-      attr_reader :duration
+      attr_reader :duration, :start_time, :end_time
 
-      def initialize(duration:)
+      def initialize(duration:, start_time: nil, end_time: nil)
         @duration = duration
+        @start_time = start_time
+        @end_time = end_time
       end
 
       private
 
-      attr_writer :duration
+      attr_writer :duration, :start_time, :end_time
     end
   end
 end

@@ -14,7 +14,6 @@ module LeanCoffee
           end
 
           def call
-            discussion_list = @discussion_list
             discussion = @discussion
             head = @head
 
