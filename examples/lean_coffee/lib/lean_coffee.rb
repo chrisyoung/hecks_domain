@@ -5,4 +5,3 @@ require_relative '../domain/discussions/head'
 
 module LeanCoffee
 end
-

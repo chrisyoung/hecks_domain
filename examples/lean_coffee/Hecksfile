@@ -11,6 +11,7 @@ domain(:LeanCoffee) do
       integer :timebox_extension
       string :phase
       list(:participants).as(:Participant)
+      optional list(:discussed).as(Discussions: :Discussion)
       value(:discussion_list).as(:DiscussionList)
       value(:voting_timebox).as(:Timebox)
       value(:collection_timebox).as(:Timebox)

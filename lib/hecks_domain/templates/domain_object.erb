@@ -4,6 +4,8 @@ require_relative '<%= folder_name %>/invariants'
 require_relative '<%= folder_name %>/repository'
 require_relative '<%= folder_name %>/commands'
 require_relative '<%= folder_name %>/queries'
+require_relative '<%= folder_name %>/events'
+require_relative '<%= folder_name %>/subscribers'
 <% end %>
 
 module <%= @aggregate.domain.name %>

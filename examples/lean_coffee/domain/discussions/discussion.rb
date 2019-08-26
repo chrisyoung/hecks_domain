@@ -3,6 +3,8 @@ require_relative 'discussion/invariants'
 require_relative 'discussion/repository'
 require_relative 'discussion/commands'
 require_relative 'discussion/queries'
+require_relative 'discussion/events'
+require_relative 'discussion/subscribers'
 
 module LeanCoffee
   module Discussions
