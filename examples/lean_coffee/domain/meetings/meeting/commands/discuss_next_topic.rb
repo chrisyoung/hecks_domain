@@ -14,7 +14,7 @@ module LeanCoffee
             @meeting.instance_eval do
               @discussing = @discussion_list.instance_eval do
                 @positions.compact!
-                @positions.pop.discussion
+                @positions.delete(@positions.first).discussion
               end
             end
 

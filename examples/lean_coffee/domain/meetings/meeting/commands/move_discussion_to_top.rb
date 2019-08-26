@@ -18,7 +18,7 @@ module LeanCoffee
                 position.discussion == discussion
               end
 
-              @positions.unshift @positions.delete(for_top)
+              @positions.insert(0, @positions.delete(for_top))
             end
 
             self

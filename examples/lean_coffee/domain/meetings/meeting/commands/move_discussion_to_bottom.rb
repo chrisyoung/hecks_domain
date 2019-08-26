@@ -12,12 +12,13 @@ module LeanCoffee
           end
 
           def call
-            discussion = discussion
-
+            discussion = @discussion
             @meeting.discussion_list.instance_eval do
-              @positions << @positions.delete(@positions.find do |position|
+              for_top = @positions.find do |position|
                 position.discussion == discussion
-              end)
+              end
+
+              @positions.insert(-1, @positions.delete(for_top))
             end
 
             self
