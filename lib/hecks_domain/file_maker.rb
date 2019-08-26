@@ -38,6 +38,7 @@ class HecksDomain
           write_file("domain/#{aggregate.folder_name}/#{domain_object.folder_name}/", domain_object.invariants)
           next unless domain_object.is_a?(Entity)
           write_file("domain/#{aggregate.folder_name}/#{domain_object.folder_name}/", domain_object.commands)
+          write_file("domain/#{aggregate.folder_name}/#{domain_object.folder_name}/", parse_file('queries.rb', 'domain_object/queries', domain_object.binding))
           write_file("domain/#{aggregate.folder_name}/#{domain_object.folder_name}/commands/", parse_file('save.rb', 'domain_object/commands/save', domain_object.binding))
           write_file("domain/#{aggregate.folder_name}/#{domain_object.folder_name}/", domain_object.repository)
         end

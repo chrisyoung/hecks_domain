@@ -1,9 +1,8 @@
 require_relative 'meeting/factories'
 require_relative 'meeting/invariants'
 require_relative 'meeting/repository'
-require_relative 'meeting/queries'
 require_relative 'meeting/commands'
-
+require_relative 'meeting/queries'
 
 module LeanCoffee
   module Meetings

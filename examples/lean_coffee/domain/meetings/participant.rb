@@ -7,6 +7,7 @@ module LeanCoffee
       include HecksDomain::Factories::FactoryLoader
       include HecksDomain::Invariants::InvariantLoader
       
+      
 
       attr_reader :name, :remaining_votes
 

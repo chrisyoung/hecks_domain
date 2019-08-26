@@ -17,10 +17,10 @@ module LeanCoffee
             position = LeanCoffee::Meetings::Position.new(
               discussion: discussion
             )
-            head = @head
+            phase = @head.phase
 
             @discussion_list.instance_eval do
-              raise 'Must be in collection phase to add a discussion' unless head.phase == :collecting
+              raise 'Must be in collection phase to add a discussion' unless phase == :collecting
               @positions << position
             end
 

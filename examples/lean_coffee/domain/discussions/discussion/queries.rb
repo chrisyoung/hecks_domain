@@ -1,7 +1,7 @@
 Dir[File.dirname(__FILE__) + '/queries/*.rb'].each { |file| require_relative file }
 module LeanCoffee
-  module Meetings
-    class Meeting
+  module Discussions
+    class Discussion
       module Queries
       end
     end

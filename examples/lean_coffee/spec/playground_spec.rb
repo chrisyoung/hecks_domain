@@ -24,17 +24,13 @@ describe 'Playground' do
 
   let(:lean_coffee_discussion) {
     LeanCoffee::Discussions::Discussion.new(
-      topic: 'lean coffee',
-      votes: 0,
-      timebox: 5
+      topic: 'lean coffee', votes: 0, timebox: 5
     )
   }
 
   let(:retrospective_discussion) {
     LeanCoffee::Discussions::Discussion.new(
-      topic: 'retrospective',
-      votes: 0,
-      timebox: 5
+      topic: 'retrospective', votes: 0, timebox: 5
     )
   }
 

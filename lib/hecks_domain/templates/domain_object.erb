@@ -3,6 +3,7 @@ require_relative '<%= folder_name %>/invariants'
 <% if is_a?(Head) %>
 require_relative '<%= folder_name %>/repository'
 require_relative '<%= folder_name %>/commands'
+require_relative '<%= folder_name %>/queries'
 <% end %>
 
 module <%= @aggregate.domain.name %>
@@ -11,6 +12,7 @@ module <%= @aggregate.domain.name %>
       include HecksDomain::Factories::FactoryLoader
       include HecksDomain::Invariants::InvariantLoader
       <%= 'include HecksDomain::Commands::CommandLoader' if is_a?(Head) %>
+      <%= 'include HecksDomain::Queries::QueryLoader' if is_a?(Head) %>
 
       attr_reader <%= public_accessors %>
 
