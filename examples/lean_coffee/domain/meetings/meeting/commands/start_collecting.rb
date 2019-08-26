@@ -2,7 +2,7 @@ module LeanCoffee
   module Meetings
     class Meeting
       module Commands
-        class StartMeeting
+        class StartCollecting
           attr_reader :args, :head
 
           def initialize(meeting)
@@ -14,19 +14,19 @@ module LeanCoffee
             head = @head
             @meeting.instance_eval do
               @phase = :collecting
-
               @collection_timebox.instance_eval do
                 @start_time = Time.now
                 @end_time = @start_time + (@duration * 60)
-                @thread = Thread.new do
+
+                @timebox_thread = Thread.new do
                   sleep @duration * 60
+
                   HecksDomain::Events::DomainEventPublisher.emit(
                     Events::TimeboxEnded.new(head: head, args: {})
                   )
                 end
               end
             end
-
             self
           end
         end

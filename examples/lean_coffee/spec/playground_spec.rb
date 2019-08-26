@@ -23,9 +23,7 @@ describe 'Playground' do
   end
 
   let(:lean_coffee_discussion) {
-    LeanCoffee::Discussions::Discussion.new(
-      topic: 'lean coffee', votes: 0, timebox: 5
-    )
+    LeanCoffee::Discussions::Discussion.new(topic: 'lean coffee', votes: 0, timebox: 5)
   }
 
   let(:retrospective_discussion) {
@@ -34,38 +32,25 @@ describe 'Playground' do
     )
   }
 
-  class TimeboxEndedSubscriber
-    def initialize(foo_proc)
-      @foo_proc = foo_proc
-    end
-
-    def domain_event
-      LeanCoffee::Meetings::Meeting::Events::TimeboxEnded
-    end
-    def notify(event)
-      @foo_proc.call
-      puts '############ Call my URL please . . .'
-    end
+  it 'Example' do
+    LeanCoffee::Meetings::Meeting.example(voting: 0, collection: 0, ordering: 0)
   end
-  
 
-  it 'Plays Nicely' do
-    @poo = nil
-    HecksDomain::Events::DomainEventPublisher.subscribe(
-      TimeboxEndedSubscriber.new(
-        Proc.new do
-          @poo = 'bie'
-        end
-      )
-    )
-    meeting.start_meeting!
+  it 'Play a game' do
+    expect { meeting.add_discussion!(lean_coffee_discussion) }
+      .to raise_error 'Must be in collection phase to add a discussion'
 
-    sleep 0.01
-
-    expect(@poo).to eq 'bie'
+    meeting.start_collecting!
 
     meeting.add_discussion!(lean_coffee_discussion)
     meeting.add_discussion!(retrospective_discussion)
+
+    sleep(0.001)
+
+    expect { meeting.add_discussion!(lean_coffee_discussion) }
+      .to raise_error 'Must be in collection phase to add a discussion'
+
+    expect( meeting.phase).to eq :waiting
 
     meeting.start_voting!
 

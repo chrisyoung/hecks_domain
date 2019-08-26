@@ -4,6 +4,7 @@ require_relative 'meeting/repository'
 require_relative 'meeting/commands'
 require_relative 'meeting/events'
 require_relative 'meeting/queries'
+require_relative 'meeting/subscribers'
 
 module LeanCoffee
   module Meetings

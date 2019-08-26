@@ -9,7 +9,7 @@ module LeanCoffee
       
       
 
-      attr_reader :duration, :start_time, :end_time
+      attr_reader :duration, :start_time, :end_time, :timebox_thread
 
       def initialize(duration:, start_time: nil, end_time: nil)
         @duration = duration
