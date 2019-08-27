@@ -9,7 +9,7 @@ domain(:LeanCoffee) do
   aggregate :Meetings do
     head :Meeting do
       integer :timebox_extension
-      string :phase
+      optional string :phase
       list(:participants).as(:Participant)
       optional list(:discussed).as(Discussions: :Discussion)
       value(:discussion_list).as(:DiscussionList)

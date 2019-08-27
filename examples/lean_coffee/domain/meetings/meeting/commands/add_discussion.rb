@@ -20,7 +20,6 @@ module LeanCoffee
             phase = @head.phase
 
             @discussion_list.instance_eval do
-              raise 'Must be in collection phase to add a discussion' unless phase == :collecting
               @positions << position
             end
 
@@ -31,4 +30,3 @@ module LeanCoffee
     end
   end
 end
-
