@@ -1,8 +1,7 @@
-require_relative 'meeting/factories'
 require_relative 'meeting/commands'
 require_relative 'meeting/invariants'
+require_relative 'meeting/factories'
 require_relative 'meeting/repository'
-
 require_relative 'meeting/queries'
 require_relative 'meeting/events'
 require_relative 'meeting/subscribers'

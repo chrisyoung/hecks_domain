@@ -1,13 +1,7 @@
-require_relative 'participant/factories'
-require_relative 'participant/invariants'
 
 module LeanCoffee
   module Meetings
     class Participant
-      include HecksDomain::Factories::FactoryLoader
-      include HecksDomain::Invariants::InvariantLoader
-      
-      
 
       attr_reader :name, :remaining_votes
 

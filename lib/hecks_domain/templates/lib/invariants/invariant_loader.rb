@@ -7,7 +7,7 @@ class HecksDomain
         end
       end
 
-      def test_invariants
+      def test_invariants(command = nil)
         self.class::Invariants.constants.each do |invariant|
           invariant_class = self.class::Invariants.const_get(invariant)
           invariant_class.instance_methods(false).each do |method|

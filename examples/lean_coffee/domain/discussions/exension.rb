@@ -1,13 +1,7 @@
-require_relative 'exension/factories'
-require_relative 'exension/invariants'
 
 module LeanCoffee
   module Discussions
     class Exension
-      include HecksDomain::Factories::FactoryLoader
-      include HecksDomain::Invariants::InvariantLoader
-      
-      
 
       attr_reader :duration, :yes_votes, :no_votes
 

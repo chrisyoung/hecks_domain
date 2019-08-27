@@ -1,13 +1,7 @@
-require_relative 'discussion_list/factories'
-require_relative 'discussion_list/invariants'
 
 module LeanCoffee
   module Meetings
     class DiscussionList
-      include HecksDomain::Factories::FactoryLoader
-      include HecksDomain::Invariants::InvariantLoader
-      
-      
 
       attr_reader 
 
