@@ -1,11 +1,7 @@
 <% if is_a?(Head) %>
-require_relative '<%= folder_name %>/commands'
-require_relative '<%= folder_name %>/invariants'
-require_relative '<%= folder_name %>/factories'
-require_relative '<%= folder_name %>/repository'
-require_relative '<%= folder_name %>/queries'
-require_relative '<%= folder_name %>/events'
-require_relative '<%= folder_name %>/subscribers'
+['services', 'commands', 'invariants', 'factories', 'repository', 'queries', 'events', 'subscribers'].each do |name|
+  Dir[File.dirname(__FILE__) + "/meeting/#{name}/*.rb"].each { |file| require_relative file }
+end
 <% end %>
 
 module <%= @aggregate.domain.name %>

@@ -1,3 +1,4 @@
+Dir[File.dirname(__FILE__) + '/meeting/services/*.rb'].each { |file| require_relative file }
 require_relative 'meeting/commands'
 require_relative 'meeting/invariants'
 require_relative 'meeting/factories'
