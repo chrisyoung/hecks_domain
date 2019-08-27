@@ -37,7 +37,7 @@ describe 'Playground' do
 
   it 'Play a game' do
     expect { meeting.add_discussion!(lean_coffee_discussion) }
-      .to raise_error 'Must be in collection phase to add a discussion'
+      .to raise_error 'Waiting to choose a phase'
 
     meeting.start_collecting!
 
@@ -47,7 +47,7 @@ describe 'Playground' do
     sleep(0.001)
 
     expect { meeting.add_discussion!(lean_coffee_discussion) }
-      .to raise_error 'Must be in collection phase to add a discussion'
+      .to raise_error 'Waiting to choose a phase'
 
     expect(meeting.phase).to eq :waiting
 
