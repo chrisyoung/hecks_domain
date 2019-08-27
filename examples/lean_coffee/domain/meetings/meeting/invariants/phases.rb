@@ -51,7 +51,7 @@ module LeanCoffee
 
           def wrong_phase_error(commands)
             raise "In #{phase} phase. Valid Commands are: " +
-                  commands.join(', ')
+                  commands.map {|command| '#' + command.to_s.split('::').last.underscore}.join(', ')
           end
         end
       end

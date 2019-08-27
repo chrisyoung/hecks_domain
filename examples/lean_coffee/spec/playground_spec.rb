@@ -72,6 +72,9 @@ describe 'Playground' do
 
     meeting.start_discussing!
 
+    expect {meeting.vote!(discussion: lean_coffee_discussion, participant: chris)}
+      .to raise_error 'In discussing phase. Valid Commands are: #discuss_next_topic'
+
     meeting.discuss_next_topic!
     expect(meeting.discussing).to eq(retrospective_discussion)
     meeting.discuss_next_topic!
