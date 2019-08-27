@@ -2,7 +2,7 @@ module LeanCoffee
   module Meetings
     class Meeting
       module Invariants
-        module Default
+        module Phases
           COLLECTING_COMMANDS = [
             LeanCoffee::Meetings::Meeting::Commands::AddDiscussion
           ].freeze
