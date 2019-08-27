@@ -11,8 +11,10 @@ module LeanCoffee
           end
 
           def call
+            head = @head
             @meeting.instance_eval do
               @phase = :discussing
+              Meeting::Timer.start(@collection_timebox.duration, head)
             end
 
             self

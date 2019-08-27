@@ -14,11 +14,7 @@ module LeanCoffee
             head = @head
             @meeting.instance_eval do
               @phase = :collecting
-              @collection_timebox.instance_eval do
-                @start_time = Time.now
-                @end_time = @start_time + (@duration * 60)
-                Meeting::Timer.start(@duration, head)
-              end
+              Meeting::Timer.start(@collection_timebox.duration, head)
             end
             self
           end
