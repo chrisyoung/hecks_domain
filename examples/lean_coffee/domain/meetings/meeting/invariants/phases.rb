@@ -4,10 +4,11 @@ module LeanCoffee
       module Invariants
         module Phases
           COLLECTING = [Commands::AddDiscussion].freeze
-
-          VOTING = [].freeze
-          ORDERING = [].freeze
-          DISCUSSING = [].freeze
+          VOTING = [Commands::Vote].freeze
+          ORDERING = [Commands::MoveDiscussionToTop,
+                      Commands::MoveDiscussionToBottom,
+                      Commands::OrderByVotes].freeze
+          DISCUSSING = [Commands::DiscussNextTopic].freeze
 
           ALL = COLLECTING + VOTING + ORDERING + DISCUSSING
 
@@ -40,7 +41,7 @@ module LeanCoffee
           end
 
           def invariant_test_no_phase(command)
-            return unless phase == nil || phase == :waiting
+            return unless phase.nil? || phase == :waiting
             return unless ALL.include?(command.class)
 
             raise 'Waiting to choose a phase'
