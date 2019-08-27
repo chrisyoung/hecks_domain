@@ -2,9 +2,7 @@
   Dir[File.dirname(__FILE__) + "/discussion/#{name}/*.rb"].each { |file| require_relative file }
 end
 
-require_relative 'discussion/invariants'
 require_relative 'discussion/repository'
-require_relative 'discussion/queries'
 
 module LeanCoffee
   module Discussions

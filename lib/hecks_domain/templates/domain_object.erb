@@ -3,9 +3,7 @@
   Dir[File.dirname(__FILE__) + "/<%= folder_name %>/#{name}/*.rb"].each { |file| require_relative file }
 end
 
-require_relative '<%= folder_name %>/invariants'
 require_relative '<%= folder_name %>/repository'
-require_relative '<%= folder_name %>/queries'
 <% end %>
 
 module <%= @aggregate.domain.name %>

@@ -1,6 +1,7 @@
 ['services', 'commands', 'invariants', 'factories', 'repository', 'queries', 'events', 'subscribers'].each do |name|
   Dir[File.dirname(__FILE__) + "/meeting/#{name}/*.rb"].each { |file| require_relative file }
 end
+
 require_relative 'meeting/repository'
 
 module LeanCoffee
