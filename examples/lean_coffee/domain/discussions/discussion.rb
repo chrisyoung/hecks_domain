@@ -1,10 +1,10 @@
-require_relative 'discussion/commands'
+['services', 'commands', 'invariants', 'factories', 'repository', 'queries', 'events', 'subscribers'].each do |name|
+  Dir[File.dirname(__FILE__) + "/discussion/#{name}/*.rb"].each { |file| require_relative file }
+end
+
 require_relative 'discussion/invariants'
-require_relative 'discussion/factories'
 require_relative 'discussion/repository'
 require_relative 'discussion/queries'
-require_relative 'discussion/events'
-require_relative 'discussion/subscribers'
 
 module LeanCoffee
   module Discussions

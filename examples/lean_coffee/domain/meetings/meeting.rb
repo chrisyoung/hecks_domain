@@ -1,11 +1,7 @@
-Dir[File.dirname(__FILE__) + '/meeting/services/*.rb'].each { |file| require_relative file }
-require_relative 'meeting/commands'
-require_relative 'meeting/invariants'
-require_relative 'meeting/factories'
+['services', 'commands', 'invariants', 'factories', 'repository', 'queries', 'events', 'subscribers'].each do |name|
+  Dir[File.dirname(__FILE__) + "/meeting/#{name}/*.rb"].each { |file| require_relative file }
+end
 require_relative 'meeting/repository'
-require_relative 'meeting/queries'
-require_relative 'meeting/events'
-require_relative 'meeting/subscribers'
 
 module LeanCoffee
   module Meetings
