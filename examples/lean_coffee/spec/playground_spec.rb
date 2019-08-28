@@ -21,18 +21,18 @@ describe 'Playground' do
 
   let(:lean_coffee_topic) do
     LeanCoffee::Topics::Topic.new(
-      value: 'lean coffee', votes: 0, timebox: LeanCoffee::Topics::Timebox.new(duration: 0, extension: 0)
+      value: 'lean coffee', votes: 0, timebox: LeanCoffee::Topics::Timebox.zeroed
     )
   end
 
   let(:retrospective_topic) do
     LeanCoffee::Topics::Topic.new(
-      value: 'retrospective', votes: 0, timebox: LeanCoffee::Topics::Timebox.new(duration: 0, extension: 0)
+      value: 'retrospective', votes: 0, timebox: LeanCoffee::Topics::Timebox.zeroed
     )
   end
 
   it 'Example' do
-    LeanCoffee::Meetings::Meeting.example(voting: 0, collection: 0, ordering: 0)
+    LeanCoffee::Meetings::Meeting.example
   end
 
   it 'Play a game' do
@@ -79,7 +79,6 @@ describe 'Playground' do
     expect(meeting.discussing).to eq(retrospective_topic)
     expect(meeting.phase).to eq :discussing
 
-    
     meeting.discuss_next_topic!
     expect(meeting.discussing).to eq(lean_coffee_topic)
   end

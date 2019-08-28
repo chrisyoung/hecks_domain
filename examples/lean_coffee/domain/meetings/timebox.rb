@@ -1,7 +1,7 @@
-
 module LeanCoffee
   module Meetings
     class Timebox
+      include HecksDomain::Factories::FactoryLoader
 
       attr_reader :duration, :start_time, :end_time
 
