@@ -2,21 +2,21 @@ module LeanCoffee
   module Meetings
     class Meeting
       module Commands
-        class AddDiscussion
+        class AddTopic
           attr_reader :args, :head
 
-          def initialize(meeting, discussion)
+          def initialize(meeting, topic)
             @head = meeting
             @meeting = meeting
-            @discussions = @meeting.discussions
-            @discussion = discussion
+            @topics = @meeting.topics
+            @topic = topic
           end
 
           def call
-            discussion = @discussion
+            topic = @topic
 
             @head.instance_eval do
-              @discussions << discussion
+              @topics << topic
             end
 
             self

@@ -14,12 +14,12 @@ module LeanCoffee
 
       attr_reader :timebox_extension, :phase, :voting_timebox, :collection_timebox, :ordering_timebox, :discussing, :id
 
-      def initialize(timebox_extension:, phase: nil, participants:, discussed: [], discussions:, voting_timebox:, collection_timebox:, ordering_timebox:, discussing: nil)
+      def initialize(timebox_extension:, phase: nil, participants:, discussed: [], topics:, voting_timebox:, collection_timebox:, ordering_timebox:, discussing: nil)
         @timebox_extension = timebox_extension
         @phase = phase
         @participants = participants
         @discussed = discussed
-        @discussions = discussions
+        @topics = topics
         @voting_timebox = voting_timebox
         @collection_timebox = collection_timebox
         @ordering_timebox = ordering_timebox
@@ -34,13 +34,13 @@ module LeanCoffee
         @discussed.clone.freeze
       end
 
-      def discussions
-        @discussions.clone.freeze
+      def topics
+        @topics.clone.freeze
       end
 
       private
 
-      attr_writer :timebox_extension, :phase, :participants, :discussed, :discussions, :voting_timebox, :collection_timebox, :ordering_timebox, :discussing, :id
+      attr_writer :timebox_extension, :phase, :participants, :discussed, :topics, :voting_timebox, :collection_timebox, :ordering_timebox, :discussing, :id
     end
   end
 end

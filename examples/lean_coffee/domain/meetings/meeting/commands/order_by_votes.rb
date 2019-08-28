@@ -12,8 +12,8 @@ module LeanCoffee
 
           def call
             @meeting.instance_eval do
-              @discussions.sort! do |discussion1, discussion2|
-                discussion1.votes <=> discussion2.votes
+              @topics.sort! do |topic1, topic2|
+                topic1.votes <=> topic2.votes
               end.reverse!
             end
 

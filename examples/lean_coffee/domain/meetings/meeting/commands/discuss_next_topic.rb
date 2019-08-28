@@ -13,8 +13,8 @@ module LeanCoffee
           def call
             @meeting.instance_eval do
               @discussed << @discussing if @discussing
-              @discussions.compact!
-              @discussing = @discussions.delete(@discussions.first)
+              @topics.compact!
+              @discussing = @topics.delete(@topics.first)
             end
 
             self

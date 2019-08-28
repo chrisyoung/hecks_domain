@@ -3,10 +3,10 @@ module LeanCoffee
     class Meeting
       module Invariants
         module Phases
-          COLLECTING = [Commands::AddDiscussion].freeze
+          COLLECTING = [Commands::AddTopic].freeze
           VOTING = [Commands::Vote].freeze
-          ORDERING = [Commands::MoveDiscussionToTop,
-                      Commands::MoveDiscussionToBottom,
+          ORDERING = [Commands::MoveTopicToTop,
+                      Commands::MoveTopicToBottom,
                       Commands::OrderByVotes].freeze
           DISCUSSING = [Commands::DiscussNextTopic].freeze
 

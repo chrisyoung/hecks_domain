@@ -8,7 +8,7 @@ module LeanCoffee
                 allowed_votes: 5,
                 timebox_extension: 1,
                 phase: :voting,
-                discussions: [],
+                topics: [],
                 time_boxes: timeboxes,
                 participants: [{ name: 'Angie' }, { name: 'Chris' }],
               )
