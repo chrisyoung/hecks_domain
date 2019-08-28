@@ -14,13 +14,11 @@ module LeanCoffee
 
           def call
             discussion = @discussion
-            position = LeanCoffee::Meetings::Position.new(
-              discussion: discussion
-            )
-            phase = @head.phase
 
-            @discussion_list.instance_eval do
-              @positions << position
+            @discussion_list.instance_exec self do
+              @positions << LeanCoffee::Meetings::Position.new(
+                discussion: discussion
+              )
             end
 
             self

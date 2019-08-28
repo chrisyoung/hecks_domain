@@ -21,13 +21,13 @@ describe 'Playground' do
 
   let(:lean_coffee_discussion) do
     LeanCoffee::Discussions::Discussion.new(
-      topic: 'lean coffee', votes: 0, timebox: 5
+      topic: 'lean coffee', votes: 0, timebox: LeanCoffee::Discussions::Timebox.new(duration: 0, extension: 0)
     )
   end
 
   let(:retrospective_discussion) do
     LeanCoffee::Discussions::Discussion.new(
-      topic: 'retrospective', votes: 0, timebox: 5
+      topic: 'retrospective', votes: 0, timebox: LeanCoffee::Discussions::Timebox.new(duration: 0, extension: 0)
     )
   end
 
@@ -70,14 +70,21 @@ describe 'Playground' do
     meeting.move_discussion_to_bottom!(lean_coffee_discussion)
     expect(meeting.discussion_list.positions.first.discussion).to eq(retrospective_discussion)
 
+    sleep(0.001)
     meeting.start_discussing!
+    expect(meeting.phase).to eq :discussing
 
-    expect {meeting.vote!(discussion: lean_coffee_discussion, participant: chris)}
+    expect { meeting.vote!(discussion: lean_coffee_discussion, participant: chris) }
       .to raise_error 'In discussing phase. Valid Commands are: #discuss_next_topic'
 
-    meeting.discuss_next_topic!
     expect(meeting.discussing).to eq(retrospective_discussion)
-    meeting.discuss_next_topic!
+    # expect(meeting.discussing.phase).to eq :discussing
+    sleep(0.1)
+    expect(meeting.phase).to eq :discussing
+    expect { meeting.discussing.discuss_next_topic! }.to raise_error('Still discussing!')
+
+    sleep(0.001)
+    meeting.discussing.discuss_next_topic!
     expect(meeting.discussing).to eq(lean_coffee_discussion)
   end
 end

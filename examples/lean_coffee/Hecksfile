@@ -48,6 +48,7 @@ domain(:LeanCoffee) do
     head(:Discussion) do
       string :topic
       integer :votes
+      optional string :phase
       value(:timebox).as(:Timebox)
     end
 

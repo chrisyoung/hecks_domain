@@ -11,10 +11,7 @@ module LeanCoffee
           end
 
           def call
-            @meeting.instance_eval do
-              @phase = :waiting
-            end
-
+            @meeting.instance_eval { @phase = :waiting }
             self
           end
         end

@@ -12,17 +12,18 @@ module LeanCoffee
       include HecksDomain::Commands::CommandLoader
       include HecksDomain::Queries::QueryLoader
 
-      attr_reader :topic, :votes, :timebox, :id
+      attr_reader :topic, :votes, :phase, :timebox, :id
 
-      def initialize(topic:, votes:, timebox:)
+      def initialize(topic:, votes:, phase: nil, timebox:)
         @topic = topic
         @votes = votes
+        @phase = phase
         @timebox = timebox
       end
 
       private
 
-      attr_writer :topic, :votes, :timebox, :id
+      attr_writer :topic, :votes, :phase, :timebox, :id
     end
   end
 end

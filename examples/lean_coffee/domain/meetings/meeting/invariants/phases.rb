@@ -29,7 +29,7 @@ module LeanCoffee
           def invariant_test_voting_phase(command)
             return unless phase == :voting
             return unless (ALL - VOTING).include?(command.class)
-
+            
             raise wrong_phase_error(VOTING)
           end
 
