@@ -8,7 +8,6 @@ module LeanCoffee
           def initialize(meeting, participant:, discussion:)
             @head = meeting
             @meeting = meeting
-            @discussion_list = @meeting.discussion_list
             @participant = participant
             @discussion = discussion
           end

@@ -12,7 +12,7 @@ domain(:LeanCoffee) do
       optional string :phase
       list(:participants).as(:Participant)
       optional list(:discussed).as(Discussions: :Discussion)
-      value(:discussion_list).as(:DiscussionList)
+      list(:discussions).as(Discussions: :Discussion)
       value(:voting_timebox).as(:Timebox)
       value(:collection_timebox).as(:Timebox)
       value(:ordering_timebox).as(:Timebox)
@@ -33,14 +33,6 @@ domain(:LeanCoffee) do
 
     value(:Vote) do
       entity(:discussion).as(Disussions: :Discussion)
-    end
-
-    value(:DiscussionList) do
-      optional list(:positions).as :Position
-    end
-
-    value(:Position) do
-      entity(:discussion).as Discussions: :Discussion
     end
   end
 

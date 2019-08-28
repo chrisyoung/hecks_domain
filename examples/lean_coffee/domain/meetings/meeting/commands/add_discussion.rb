@@ -8,17 +8,15 @@ module LeanCoffee
           def initialize(meeting, discussion)
             @head = meeting
             @meeting = meeting
-            @discussion_list = @meeting.discussion_list
+            @discussions = @meeting.discussions
             @discussion = discussion
           end
 
           def call
             discussion = @discussion
 
-            @discussion_list.instance_exec self do
-              @positions << LeanCoffee::Meetings::Position.new(
-                discussion: discussion
-              )
+            @head.instance_eval do
+              @discussions << discussion
             end
 
             self
