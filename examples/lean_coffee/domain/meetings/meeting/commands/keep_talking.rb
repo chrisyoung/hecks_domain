@@ -10,7 +10,10 @@ module LeanCoffee
           end
 
           def call
-            puts "keep talking!"
+            ExtensionTimer.start(@head)
+            @head.instance_eval do
+              @phase = :discussing_topic
+            end
             self
           end
         end

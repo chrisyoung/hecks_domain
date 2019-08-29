@@ -35,7 +35,7 @@ describe 'Playground' do
   end
 
   it 'Play a game' do
-    # Collecting
+    # Collecting #######################
 
     meeting.start_collecting!
     meeting.add_topic!(topics[:lean_coffee])
@@ -46,7 +46,7 @@ describe 'Playground' do
       .to raise_error 'Waiting to choose a phase'
     expect(meeting.phase).to eq :waiting
 
-    # Voting for Topics
+    # Voting for Topics #######################
 
     meeting.start_voting!
 
@@ -59,7 +59,7 @@ describe 'Playground' do
     expect(topics[:lean_coffee].votes).to eq 1
     expect(topics[:retrospective].votes).to eq 2
 
-    # Ordering
+    # Ordering #######################
 
     meeting.start_ordering!
 
@@ -77,7 +77,7 @@ describe 'Playground' do
 
     expect(meeting.discussion.topics.first).to eq(topics[:retrospective])
 
-    # Discussing
+    # Discussing #######################
 
     meeting.start_discussing!
 
@@ -86,9 +86,13 @@ describe 'Playground' do
     meeting.discuss_next_topic!
 
     expect(meeting.discussion.discussing).to eq(topics[:retrospective])
-    expect(meeting.phase).to eq :discussing
+    expect(meeting.phase).to eq :discussing_topic
     expect { meeting.vote!(topic: topics[:lean_coffee], participant: chris) }
-      .to raise_error 'In discussing phase. Valid Commands are: #discuss_next_topic'
+      .to raise_error 'In discussing_topic phase. Valid Commands are: '
+
+    sleep(0.001)
+
+    expect(meeting.phase).to eq :waiting_for_extension_vote
 
     meeting.discuss_next_topic!
 
@@ -96,22 +100,23 @@ describe 'Playground' do
 
     sleep(0.001)
 
-    # Keep Talking
+    # Keep Talking #######################
 
     expect(meeting.phase).to eq(:waiting_for_extension_vote)
 
     meeting.vote_to_keep_talking!(participant: angie)
     meeting.vote_to_stop_talking!(participant: chris)
 
-    expect { meeting.vote_to_keep_talking!(participant: angie) }.to raise_error
+    # expect { meeting.vote_to_keep_talking!(participant: angie) }.to raise_error('Angie voted for the same topic twice!')
 
     meeting.keep_talking!
 
-    expect { meeting.discuss_next_topic! }.to raise_error
+    expect { meeting.discuss_next_topic! }.to raise_error "In discussing_topic phase. Valid Commands are: "
 
     sleep(0.001)
 
-    # Stop Talking
+    # Stop Talking #######################
+    expect(meeting.phase).to eq :waiting_for_extension_vote
 
     meeting.vote_to_stop_talking!(participant: chris)
     meeting.vote_to_stop_talking!(participant: angie)

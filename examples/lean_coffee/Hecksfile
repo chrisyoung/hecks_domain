@@ -33,6 +33,7 @@ domain(:LeanCoffee) do
     value(:Participant) do
       string :name
       integer :remaining_votes
+      optional list(:topic_votes).as(Topics: :Topic)
     end
   end
 

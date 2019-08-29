@@ -19,6 +19,10 @@ module LeanCoffee
               @discussing = @topics.delete(@topics.first)
             end
 
+            @head.instance_eval do
+              @phase = :discussing_topic
+            end
+
             self
           end
         end

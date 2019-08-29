@@ -7,11 +7,23 @@ module LeanCoffee
 
           def initialize(head, participant)
             @head = head
-            @participant = participant
+            @participant = participant[:participant]
+            
+          end
+
+          def rollback
+            head = @head
+            @participant.instance_eval do
+              @topic_votes.delete(head.discussion.discussing)
+            end
+            self
           end
 
           def call
-            puts "vote to keep talking"
+            head = @head
+            @participant.instance_eval do
+              @topic_votes << head.discussion.discussing
+            end
             self
           end
         end
