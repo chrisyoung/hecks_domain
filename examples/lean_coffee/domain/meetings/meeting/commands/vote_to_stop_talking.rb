@@ -11,7 +11,6 @@ module LeanCoffee
           end
 
           def call
-            puts "vote to stop talking"
             self
           end
         end
