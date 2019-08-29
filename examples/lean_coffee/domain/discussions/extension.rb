@@ -1,14 +1,7 @@
-['factories'].each do |name|
-  Dir[File.dirname(__FILE__) + "/exension/#{name}/*.rb"].each { |file| require_relative file }
-end
-
 
 module LeanCoffee
-  module Topics
-    class Exension
-      include HecksDomain::Factories::FactoryLoader
-      
-
+  module Discussions
+    class Extension
       attr_reader :duration, :yes_votes, :no_votes
 
       def initialize(duration:, yes_votes:, no_votes:)

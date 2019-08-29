@@ -55,7 +55,7 @@ domain(:LeanCoffee) do
       value(:extension).as(:Extension)
     end
 
-    value(:Exension) do
+    value(:Extension) do
       integer :duration
       integer :yes_votes
       integer :no_votes

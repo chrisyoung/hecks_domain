@@ -1,6 +1,6 @@
 require_relative 'topic'
 require_relative 'timebox'
-require_relative 'exension'
+require_relative 'extension'
 
 module LeanCoffee
   module Topics

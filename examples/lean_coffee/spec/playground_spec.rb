@@ -21,11 +21,11 @@ describe 'Playground' do
 
   let(:topics) {
     {
-      lean_coffee: LeanCoffee::Topics::Topic.new(
-        value: 'lean coffee', votes: 0, timebox: LeanCoffee::Topics::Timebox.zeroed
+      lean_coffee: LeanCoffee::Topics::Topic.default(
+        value: 'lean coffee', timebox: LeanCoffee::Topics::Timebox.zeroed
       ),
-      retrospective: LeanCoffee::Topics::Topic.new(
-        value: 'retrospective', votes: 0, timebox: LeanCoffee::Topics::Timebox.zeroed
+      retrospective: LeanCoffee::Topics::Topic.default(
+        value: 'retrospective', timebox: LeanCoffee::Topics::Timebox.zeroed
       )
     }
   }
