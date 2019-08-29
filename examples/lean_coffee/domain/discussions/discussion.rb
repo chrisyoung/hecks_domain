@@ -4,26 +4,40 @@ end
 
 require_relative 'discussion/repository'
 
+['factories'].each do |name|
+  Dir[File.dirname(__FILE__) + "/discussion/#{name}/*.rb"].each { |file| require_relative file }
+end
+
+
 module LeanCoffee
   module Discussions
     class Discussion
       include HecksDomain::Factories::FactoryLoader
+      
       include HecksDomain::Invariants::InvariantLoader
       include HecksDomain::Commands::CommandLoader
       include HecksDomain::Queries::QueryLoader
 
-      attr_reader :topic, :votes, :phase, :timebox, :id
+      attr_reader :phase, :discussing, :id
 
-      def initialize(topic:, votes:, phase: nil, timebox:)
-        @topic = topic
-        @votes = votes
+      def initialize(phase: nil, discussing: nil, discussed: [], topics: [])
         @phase = phase
-        @timebox = timebox
+        @discussing = discussing
+        @discussed = discussed
+        @topics = topics
+      end
+
+      def discussed
+        @discussed.clone.freeze
+      end
+
+      def topics
+        @topics.clone.freeze
       end
 
       private
 
-      attr_writer :topic, :votes, :phase, :timebox, :id
+      attr_writer :phase, :discussing, :discussed, :topics, :id
     end
   end
 end

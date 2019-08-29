@@ -12,7 +12,7 @@ module LeanCoffee
 
           def call
             @meeting.instance_eval { @phase = :collecting }
-            Meeting::Timer.start(@meeting.collection_timebox.duration, @meeting)
+            Meeting::Timer.start(@meeting.timebox.collection_duration, @meeting)
             self
           end
         end

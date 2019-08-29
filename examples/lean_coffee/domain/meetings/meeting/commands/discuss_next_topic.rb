@@ -11,11 +11,7 @@ module LeanCoffee
           end
 
           def call
-            @meeting.instance_eval do
-              @discussed << @discussing if @discussing
-              @topics.compact!
-              @discussing = @topics.delete(@topics.first)
-            end
+            @meeting.discussion.discuss_next_topic!
 
             self
           end

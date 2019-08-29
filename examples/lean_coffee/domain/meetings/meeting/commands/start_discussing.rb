@@ -11,8 +11,10 @@ module LeanCoffee
           end
 
           def call
-            @meeting.instance_eval { @phase = :discussing }
-            @meeting.discuss_next_topic!
+            @meeting.discussion.start_discussing!
+            @meeting.instance_eval do
+              @phase = :discussing
+            end
             self
           end
         end

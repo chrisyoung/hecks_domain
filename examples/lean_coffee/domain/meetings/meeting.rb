@@ -4,43 +4,37 @@ end
 
 require_relative 'meeting/repository'
 
+['factories'].each do |name|
+  Dir[File.dirname(__FILE__) + "/meeting/#{name}/*.rb"].each { |file| require_relative file }
+end
+
+
 module LeanCoffee
   module Meetings
     class Meeting
       include HecksDomain::Factories::FactoryLoader
+      
       include HecksDomain::Invariants::InvariantLoader
       include HecksDomain::Commands::CommandLoader
       include HecksDomain::Queries::QueryLoader
 
-      attr_reader :timebox_extension, :phase, :voting_timebox, :collection_timebox, :ordering_timebox, :discussing, :id
+      attr_reader :timebox_extension, :phase, :discussion, :timebox, :id
 
-      def initialize(timebox_extension:, phase: nil, participants:, discussed: [], topics:, voting_timebox:, collection_timebox:, ordering_timebox:, discussing: nil)
+      def initialize(timebox_extension:, phase: nil, participants:, discussion:, timebox:)
         @timebox_extension = timebox_extension
         @phase = phase
         @participants = participants
-        @discussed = discussed
-        @topics = topics
-        @voting_timebox = voting_timebox
-        @collection_timebox = collection_timebox
-        @ordering_timebox = ordering_timebox
-        @discussing = discussing
+        @discussion = discussion
+        @timebox = timebox
       end
 
       def participants
         @participants.clone.freeze
       end
 
-      def discussed
-        @discussed.clone.freeze
-      end
-
-      def topics
-        @topics.clone.freeze
-      end
-
       private
 
-      attr_writer :timebox_extension, :phase, :participants, :discussed, :topics, :voting_timebox, :collection_timebox, :ordering_timebox, :discussing, :id
+      attr_writer :timebox_extension, :phase, :participants, :discussion, :timebox, :id
     end
   end
 end

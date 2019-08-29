@@ -12,14 +12,7 @@ module LeanCoffee
           end
 
           def call
-            topic_to_find = @topic
-            @meeting.instance_eval do
-              for_top = @topics.find do |topic|
-                topic_to_find == topic
-              end
-
-              @topics.insert(0, @topics.delete(for_top))
-            end
+            @head.discussion.move_topic_to_top!(@topic)
 
             self
           end

@@ -15,15 +15,8 @@ module LeanCoffee
                     remaining_votes: allowed_votes
                   )
                 end,
-                voting_timebox: LeanCoffee::Meetings::Timebox.new(
-                  duration: timeboxes[:voting]
-                ),
-                collection_timebox: LeanCoffee::Meetings::Timebox.new(
-                  duration: timeboxes[:collection]
-                ),
-                ordering_timebox: LeanCoffee::Meetings::Timebox.new(
-                  duration: timeboxes[:ordering]
-                )
+                discussion: Discussions::Discussion.default,
+                timebox: Timebox.zeroed
               )
             )
           end

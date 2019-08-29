@@ -2,9 +2,11 @@ require_relative 'lib/hecks_domain'
 
 # A CLI interface for generating domains
 class HecksDomain < Thor
-  desc 'new', 'Create a new domain'
+  package_name "Hecks"
   HECKS_FILE_NAME = 'Hecksfile'.freeze
+  DOMAIN = instance_eval(File.open(HECKS_FILE_NAME).read)
 
+  desc 'new', 'Create a new domain'
   def new
     unless File.file?(HECKS_FILE_NAME)
       puts "Missing Hecksfile - are you in a domain project?"
@@ -12,8 +14,16 @@ class HecksDomain < Thor
     end
 
     instance_eval(File.open(HECKS_FILE_NAME).read).tap do |domain|
-      domain.build
-      domain.dump
+      DOMAIN.build
+      DOMAIN.dump
     end
+  end
+
+  desc 'generate_factory', 'Add a factory to a domain object'
+  method_options domain_object: :string
+  method_options factory_name: :string
+
+  def generate_factory
+    DOMAIN.generate_factory(options[:domain_object], options[:factory_name])
   end
 end

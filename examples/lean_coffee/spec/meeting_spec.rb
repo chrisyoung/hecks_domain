@@ -5,7 +5,6 @@ describe LeanCoffee::Meetings::Meeting do
     described_class.default(
       allowed_votes: 5,
       timebox_extension: 1,
-      topics: [],
       time_boxes: { voting: 0, collection: 0, ordering: 0 },
       participants: [{ name: 'Angie' }, { name: 'Chris' }]
     )
@@ -48,7 +47,7 @@ describe LeanCoffee::Meetings::Meeting do
     it 'adds to the topic list' do
       meeting.start_collecting!
       meeting.add_topic!(lean_coffee_topic)
-      expect(meeting.topics.count).to eq 1
+      expect(meeting.discussion.topics.count).to eq 1
     end
   end
 
@@ -95,7 +94,7 @@ describe LeanCoffee::Meetings::Meeting do
 
     it 'moves the topic with the most votes to be discussed first' do
       meeting.order_by_votes!
-      expect(meeting.topics.first).to eq lean_coffee_topic
+      expect(meeting.discussion.topics.first).to eq lean_coffee_topic
     end
   end
 
@@ -124,9 +123,9 @@ describe LeanCoffee::Meetings::Meeting do
     end
 
     it 'moves the topic to the top of the list' do
-      last = meeting.topics.last
+      last = meeting.discussion.topics.last
       meeting.move_topic_to_top!(last)
-      expect(meeting.topics.first).to eq last
+      expect(meeting.discussion.topics.first).to eq last
     end
   end
   
@@ -140,9 +139,9 @@ describe LeanCoffee::Meetings::Meeting do
     end
 
     it 'moves the topic to the top of the list' do
-      first = meeting.topics.first
+      first = meeting.discussion.topics.first
       meeting.move_topic_to_bottom!(first)
-      expect(meeting.topics.last).to eq first
+      expect(meeting.discussion.topics.last).to eq first
     end
   end
 
@@ -160,7 +159,7 @@ describe LeanCoffee::Meetings::Meeting do
 
     it 'sets the topic we are currently discussing' do
       meeting.start_discussing!
-      expect(meeting.discussing).to eq(lean_coffee_topic)
+      expect(meeting.discussion.discussing).to eq(lean_coffee_topic)
     end
   end
 end

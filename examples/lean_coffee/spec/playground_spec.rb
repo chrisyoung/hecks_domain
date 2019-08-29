@@ -5,7 +5,7 @@ describe 'Playground' do
     LeanCoffee::Meetings::Meeting.default(
       allowed_votes: 5,
       timebox_extension: 1,
-      topics: [],
+      discussion: LeanCoffee::Discussions::Discussion.default,
       time_boxes: { voting: 0, collection: 0, ordering: 0 },
       participants: [{ name: 'Angie' }, { name: 'Chris' }]
     )
@@ -63,12 +63,12 @@ describe 'Playground' do
     meeting.start_ordering!
     meeting.order_by_votes!
 
-    expect(meeting.topics.first).to eq retrospective_topic
+    expect(meeting.discussion.topics.first).to eq retrospective_topic
 
     meeting.move_topic_to_top!(lean_coffee_topic)
-    expect(meeting.topics.first).to eq(lean_coffee_topic)
+    expect(meeting.discussion.topics.first).to eq(lean_coffee_topic)
     meeting.move_topic_to_bottom!(lean_coffee_topic)
-    expect(meeting.topics.first).to eq(retrospective_topic)
+    expect(meeting.discussion.topics.first).to eq(retrospective_topic)
 
     meeting.start_discussing!
     expect(meeting.phase).to eq :discussing
@@ -76,10 +76,10 @@ describe 'Playground' do
     expect { meeting.vote!(topic: lean_coffee_topic, participant: chris) }
       .to raise_error 'In discussing phase. Valid Commands are: #discuss_next_topic'
 
-    expect(meeting.discussing).to eq(retrospective_topic)
+    expect(meeting.discussion.discussing).to eq(retrospective_topic)
     expect(meeting.phase).to eq :discussing
 
     meeting.discuss_next_topic!
-    expect(meeting.discussing).to eq(lean_coffee_topic)
+    expect(meeting.discussion.discussing).to eq(lean_coffee_topic)
   end
 end

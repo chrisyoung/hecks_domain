@@ -71,6 +71,9 @@ class HecksDomain
       add_field(name, IntegerField)
     end
 
+    def operations(list)
+    end
+
     def currency(name)
       add_field(name, CurrencyField)
     end

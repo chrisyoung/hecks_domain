@@ -1,19 +1,26 @@
+
+['factories'].each do |name|
+  Dir[File.dirname(__FILE__) + "/timebox/#{name}/*.rb"].each { |file| require_relative file }
+end
+
+
 module LeanCoffee
   module Meetings
     class Timebox
       include HecksDomain::Factories::FactoryLoader
+      
 
-      attr_reader :duration, :start_time, :end_time
+      attr_reader :voting_duration, :collection_duration, :ordering_duration
 
-      def initialize(duration:, start_time: nil, end_time: nil)
-        @duration = duration
-        @start_time = start_time
-        @end_time = end_time
+      def initialize(voting_duration:, collection_duration:, ordering_duration:)
+        @voting_duration = voting_duration
+        @collection_duration = collection_duration
+        @ordering_duration = ordering_duration
       end
 
       private
 
-      attr_writer :duration, :start_time, :end_time
+      attr_writer :voting_duration, :collection_duration, :ordering_duration
     end
   end
 end

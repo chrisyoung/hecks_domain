@@ -2,17 +2,18 @@ module LeanCoffee
   module Meetings
     class Meeting
       module Commands
-        class StartOrdering
+        class AddTopic
           attr_reader :args, :head
 
-          def initialize(meeting)
-            @meeting = meeting
+          def initialize(meeting, topic)
             @head = meeting
+            @meeting = meeting
+            @topic = topic
           end
 
           def call
-            @meeting.instance_eval { @phase = :ordering }
-            Meeting::Timer.start(@meeting.timebox.ordering_duration, @meeting)
+            topic = @topic
+            @head.discussion.add_topic!(topic)
             self
           end
         end

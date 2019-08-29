@@ -9,30 +9,36 @@ domain(:LeanCoffee) do
   aggregate :Meetings do
     head :Meeting do
       integer :timebox_extension
-      optional string :phase
+      optional string(:phase)
       list(:participants).as(:Participant)
-      optional list(:discussed).as(Discussions: :Discussion)
-      list(:topics).as(Topics: :Topic)
-      value(:voting_timebox).as(:Timebox)
-      value(:collection_timebox).as(:Timebox)
-      value(:ordering_timebox).as(:Timebox)
-      optional value(:discussing).as(Discussions: :Discussion)
+      entity(:discussion).as(Discussions: :Discussion)
+      value(:timebox).as(:Timebox)
+
+      operations %i[
+        start_ordering start_collecting start_discussing move_topic add_topic
+        vote_for_topic wait_for_the_next_phase order_by_vote
+      ]
     end
 
     value(:Timebox) do
-      value(:duration)
-      optional value(:start_time)
-      optional value(:end_time)
+      value(:voting_duration)
+      value(:collection_duration)
+      value(:ordering_duration)
     end
 
     value(:Participant) do
       string :name
       integer :remaining_votes
-      optional list(:votes).as(:Vote)
     end
+  end
 
-    value(:Vote) do
-      entity(:discussion).as(Disussions: :Discussion)
+  aggregate :Discussions do
+    head(:Discussion) do
+      optional string :phase
+      optional value(:discussing).as(:Discussion)
+      optional list(:discussed).as(:Discussion)
+      optional list(:topics).as(Topics: :Topic)
+      operations %w[next_topic extend start_timebox order_by_votes]
     end
   end
 
@@ -42,6 +48,7 @@ domain(:LeanCoffee) do
       integer :votes
       optional string :phase
       value(:timebox).as(:Timebox)
+      operations %w[vote_to_extend vote_to_continue]
     end
 
     value(:Timebox) do

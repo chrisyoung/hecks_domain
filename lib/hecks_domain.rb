@@ -4,6 +4,7 @@ require 'erubis'
 require 'thor'
 require 'fileutils'
 
+require_relative 'hecks_domain/generator'
 require_relative 'hecks_domain/top_level_methods'
 require_relative 'hecks_domain/support'
 require_relative 'hecks_domain/parser'
@@ -22,6 +23,10 @@ class HecksDomain
 
   def dump
     @file_maker.new(@parser.domain).dump
+  end
+
+  def generate_factory(_domain_object, _factory_name)
+    raise @parser.domain.inspect
   end
 
   def self.domain name, &block

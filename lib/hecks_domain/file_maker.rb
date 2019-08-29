@@ -34,7 +34,7 @@ class HecksDomain
       domain.aggregates.each do |aggregate|
         aggregate.domain_objects.each do |domain_object|
           write_file("domain/#{aggregate.folder_name}/", domain_object)
-          
+
           next unless domain_object.is_a?(Entity)
           write_file("domain/#{aggregate.folder_name}/#{domain_object.folder_name}/", domain_object.repository)
         end

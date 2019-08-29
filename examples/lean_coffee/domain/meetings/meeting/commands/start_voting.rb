@@ -12,7 +12,7 @@ module LeanCoffee
 
           def call
             @meeting.instance_eval { @phase = :voting }
-            Meeting::Timer.start(@meeting.voting_timebox.duration, @meeting)
+            Meeting::Timer.start(@meeting.timebox.voting_duration, @meeting)
             self
           end
         end
