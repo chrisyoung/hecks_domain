@@ -34,24 +34,23 @@ describe 'Playground' do
     LeanCoffee::Meetings::Meeting.example
   end
 
-  it 'Play a game' do      
+  it 'Play a game' do
     # Collecting
 
     meeting.start_collecting!
-
     meeting.add_topic!(topics[:lean_coffee])
     meeting.add_topic!(topics[:retrospective])
-
     sleep(0.001)
 
     expect { meeting.add_topic!(topics[:lean_coffee]) }
       .to raise_error 'Waiting to choose a phase'
-
     expect(meeting.phase).to eq :waiting
 
     # Voting for Topics
 
     meeting.start_voting!
+
+    expect(meeting.phase).to eq :voting
 
     meeting.vote!(topic: topics[:lean_coffee], participant: chris)
     meeting.vote!(topic: topics[:retrospective], participant: chris)
@@ -63,30 +62,36 @@ describe 'Playground' do
     # Ordering
 
     meeting.start_ordering!
+
+    expect(meeting.phase).to eq :ordering
+    
     meeting.order_by_votes!
 
     expect(meeting.discussion.topics.first).to eq topics[:retrospective]
 
     meeting.move_topic_to_top!(topics[:lean_coffee])
-    expect(meeting.discussion.topics.first).to eq(topics[:lean_coffee])
-    meeting.move_topic_to_bottom!(topics[:lean_coffee])
-    expect(meeting.discussion.topics.first).to eq(topics[:retrospective])
 
+    expect(meeting.discussion.topics.first).to eq(topics[:lean_coffee])
+
+    meeting.move_topic_to_bottom!(topics[:lean_coffee])
+
+    expect(meeting.discussion.topics.first).to eq(topics[:retrospective])
 
     # Discussing
 
     meeting.start_discussing!
-    meeting.discuss_next_topic!
 
     expect(meeting.phase).to eq :discussing
 
-    expect { meeting.vote!(topic: topics[:lean_coffee], participant: chris) }
-      .to raise_error 'In discussing phase. Valid Commands are: #discuss_next_topic'
+    meeting.discuss_next_topic!
 
     expect(meeting.discussion.discussing).to eq(topics[:retrospective])
     expect(meeting.phase).to eq :discussing
+    expect { meeting.vote!(topic: topics[:lean_coffee], participant: chris) }
+      .to raise_error 'In discussing phase. Valid Commands are: #discuss_next_topic'
 
     meeting.discuss_next_topic!
+
     expect(meeting.discussion.discussing).to eq(topics[:lean_coffee])
 
     sleep(0.001)
@@ -94,17 +99,20 @@ describe 'Playground' do
     # Keep Talking
 
     expect(meeting.phase).to eq(:waiting_for_extension_vote)
+
     meeting.vote_to_keep_talking!(participant: angie)
     meeting.vote_to_stop_talking!(participant: chris)
 
     expect { meeting.vote_to_keep_talking!(participant: angie) }.to raise_error
 
     meeting.keep_talking!
+
     expect { meeting.discuss_next_topic! }.to raise_error
 
     sleep(0.001)
 
     # Stop Talking
+
     meeting.vote_to_stop_talking!(participant: chris)
     meeting.vote_to_stop_talking!(participant: angie)
     meeting.discuss_next_topic!
