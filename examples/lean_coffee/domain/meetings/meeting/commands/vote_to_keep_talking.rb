@@ -8,7 +8,6 @@ module LeanCoffee
           def initialize(head, participant)
             @head = head
             @participant = participant[:participant]
-            
           end
 
           def rollback
