@@ -15,10 +15,10 @@ domain(:LeanCoffee) do
       value(:timebox).as(:Timebox)
 
       operations %i[
-        start_ordering start_collecting start_discussing move_topic add_topic
-        vote_for_topic wait_for_the_next_phase order_by_vote vote_to_extend
-        vote_to_continue next_topic extend start_timebox order_by_votes
-        vote_for_topic extend
+        start_collecting add_topic start_ordering order_by_votes move_topic
+        start_discussing start_voting vote_for_topic wait_for_the_next_phase
+        wait_for_topic_extension_vote vote_to_keep_talking
+        vote_to_stop_talking! keep_talking! next_topic!
       ]
     end
 
@@ -26,6 +26,7 @@ domain(:LeanCoffee) do
       value(:voting_duration)
       value(:collection_duration)
       value(:ordering_duration)
+      value(:topic_discussion_duration)
     end
 
     value(:Participant) do

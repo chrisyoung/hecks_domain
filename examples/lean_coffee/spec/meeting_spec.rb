@@ -159,6 +159,8 @@ describe LeanCoffee::Meetings::Meeting do
 
     it 'sets the topic we are currently discussing' do
       meeting.start_discussing!
+      meeting.discuss_next_topic!
+
       expect(meeting.discussion.discussing).to eq(lean_coffee_topic)
     end
   end

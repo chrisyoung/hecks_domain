@@ -2,7 +2,7 @@ module LeanCoffee
   module Meetings
     class Meeting
       module Commands
-        class DiscussNextTopic
+        class WaitForExtensionVote
           attr_reader :args, :head
 
           def initialize(meeting)
@@ -11,14 +11,7 @@ module LeanCoffee
           end
 
           def call
-            TopicDiscussionTimer.start(@meeting)
-
-            @head.discussion.instance_eval do
-              @discussed << @discussing if @discussing
-              @topics.compact!
-              @discussing = @topics.delete(@topics.first)
-            end
-
+            @meeting.instance_eval { @phase = :waiting_for_extension_vote }
             self
           end
         end

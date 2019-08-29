@@ -15,8 +15,6 @@ module LeanCoffee
               @phase = :discussing
             end
 
-            @head.discuss_next_topic!
-
             self
           end
         end

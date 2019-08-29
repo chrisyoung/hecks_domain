@@ -7,7 +7,8 @@ module LeanCoffee
             Timebox.new(
               voting_duration: 0,
               collection_duration: 0,
-              ordering_duration: 0
+              ordering_duration: 0,
+              topic_discussion_duration: 0
             )
           end
         end
