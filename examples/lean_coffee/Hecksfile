@@ -16,7 +16,9 @@ domain(:LeanCoffee) do
 
       operations %i[
         start_ordering start_collecting start_discussing move_topic add_topic
-        vote_for_topic wait_for_the_next_phase order_by_vote
+        vote_for_topic wait_for_the_next_phase order_by_vote vote_to_extend
+        vote_to_continue next_topic extend start_timebox order_by_votes
+        vote_for_topic extend
       ]
     end
 
@@ -38,7 +40,6 @@ domain(:LeanCoffee) do
       optional value(:discussing).as(:Discussion)
       optional list(:discussed).as(:Discussion)
       optional list(:topics).as(Topics: :Topic)
-      operations %w[next_topic extend start_timebox order_by_votes]
     end
   end
 
@@ -48,7 +49,6 @@ domain(:LeanCoffee) do
       integer :votes
       optional string :phase
       value(:timebox).as(:Timebox)
-      operations %w[vote_to_extend vote_to_continue]
     end
 
     value(:Timebox) do

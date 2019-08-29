@@ -11,12 +11,13 @@ module LeanCoffee
           end
 
           def call
-            @meeting.discussion.order_by_votes!
-            # @meeting.instance_eval do
-            #   @topics.sort! do |topic1, topic2|
-            #     topic1.votes <=> topic2.votes
-            #   end.reverse!
-            # end
+            
+            @head.discussion.instance_eval do
+              @topics.sort! do |topic1, topic2|
+                topic1.votes <=> topic2.votes
+              end.reverse!
+            end
+
             self
           end
         end

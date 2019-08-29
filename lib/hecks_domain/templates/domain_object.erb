@@ -5,7 +5,6 @@ end
 
 require_relative '<%= folder_name %>/repository'
 <% end %>
-
 ['factories'].each do |name|
   Dir[File.dirname(__FILE__) + "/<%= folder_name %>/#{name}/*.rb"].each { |file| require_relative file }
 end

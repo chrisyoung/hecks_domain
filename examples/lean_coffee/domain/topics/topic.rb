@@ -3,7 +3,6 @@
 end
 
 require_relative 'topic/repository'
-
 ['factories'].each do |name|
   Dir[File.dirname(__FILE__) + "/topic/#{name}/*.rb"].each { |file| require_relative file }
 end

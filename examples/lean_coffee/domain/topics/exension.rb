@@ -1,4 +1,3 @@
-
 ['factories'].each do |name|
   Dir[File.dirname(__FILE__) + "/exension/#{name}/*.rb"].each { |file| require_relative file }
 end

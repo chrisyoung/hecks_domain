@@ -13,7 +13,10 @@ module LeanCoffee
 
           def call
             topic = @topic
-            @head.discussion.add_topic!(topic)
+            topic = @topic
+            head.discussion.instance_eval do
+              @topics << topic
+            end
             self
           end
         end
