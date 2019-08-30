@@ -10,6 +10,7 @@ A Domain Specific Language for generating Domain Driven Designs.
 
 ## TODO
 
+### High Priority
 1. Create a facilitator app
 1. What does a data port look like?
 1. Application Port
@@ -19,6 +20,7 @@ A Domain Specific Language for generating Domain Driven Designs.
 1. Create automated build for examples
 1. Add Readme to all the projects
 
+### Backlog
 1. Add default invariant module and default factory
 1. Generate a factory
 1. Generate a command
