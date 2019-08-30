@@ -11,7 +11,7 @@ module LeanCoffee
             return unless event.head
             return unless event.head.class == LeanCoffee::Meetings::Meeting
 
-            Services::StateMachine.new(event.head).verify!(event.command.command_to_run)
+            Services::SimpleStateMachine.new(event.head).verify!(event.command.command_to_run)
           end
 
           HecksDomain::Events::DomainEventPublisher.subscribe(self)

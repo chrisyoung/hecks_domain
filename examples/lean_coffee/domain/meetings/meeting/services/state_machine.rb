@@ -2,7 +2,7 @@ module LeanCoffee
   module Meetings
     class Meeting
       class Services
-        class StateMachine
+        class SimpleStateMachine
           STATE_COMMANDS = {
             collecting: [Commands::AddTopic],
             voting: [Commands::Vote].freeze,
