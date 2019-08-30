@@ -1,4 +1,4 @@
-# 3DSL
+# HECKS DOMAIN aka 3DSL
 A Domain Specific Language for generating Domain Driven Designs.
 
 ## WHY
