@@ -1,10 +1,12 @@
 module LeanCoffee
-  module Topics
-    class Timebox
+  module Meetings
+    class Topic
       module Factories
-        class Zeroed
+        class Default
           def self.factory(args={})
-            Timebox.default(duration: 0, extension: 0)
+            Topic.new(
+              args.merge(votes: 0)
+            )
           end
         end
       end

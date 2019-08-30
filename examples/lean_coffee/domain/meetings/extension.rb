@@ -3,7 +3,7 @@
 end
 
 module LeanCoffee
-  module Topics
+  module Meetings
     class Extension
       include HecksDomain::Factories::FactoryLoader
 

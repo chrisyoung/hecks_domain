@@ -1,10 +1,10 @@
 ['factories'].each do |name|
-  Dir[File.dirname(__FILE__) + "/timebox/#{name}/*.rb"].each { |file| require_relative file }
+  Dir[File.dirname(__FILE__) + "/topic_timebox/#{name}/*.rb"].each { |file| require_relative file }
 end
 
 module LeanCoffee
-  module Topics
-    class Timebox
+  module Meetings
+    class TopicTimebox
       include HecksDomain::Factories::FactoryLoader
 
       attr_reader :duration, :extension

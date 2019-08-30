@@ -19,14 +19,14 @@ describe LeanCoffee::Meetings::Meeting do
   end
 
   let(:lean_coffee_topic) do
-    LeanCoffee::Topics::Topic.new(
-      value: 'lean coffee', votes: 0, timebox: LeanCoffee::Topics::Timebox.zeroed
+    LeanCoffee::Meetings::Topic.new(
+      value: 'lean coffee', votes: 0, timebox: LeanCoffee::Meetings::TopicTimebox.zeroed
     )
   end
 
   let(:retrospective_topic) do
-    LeanCoffee::Topics::Topic.new(
-      value: 'retrospective', votes: 0, timebox: LeanCoffee::Topics::Timebox.zeroed
+    LeanCoffee::Meetings::Topic.new(
+      value: 'retrospective', votes: 0, timebox: LeanCoffee::Meetings::TopicTimebox.zeroed
     )
   end
 

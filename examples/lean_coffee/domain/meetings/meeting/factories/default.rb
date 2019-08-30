@@ -10,12 +10,12 @@ module LeanCoffee
             Meeting.new(
               args.merge(
                 participants: args[:participants].map do |participant|
-                  LeanCoffee::Meetings::Participant.new(
+                  Participant.new(
                     name: participant[:name],
                     remaining_votes: allowed_votes
                   )
                 end,
-                discussion: Discussions::Discussion.default,
+                discussion: Discussion.default,
                 timebox: Timebox.zeroed,
                 phase: :waiting
               )

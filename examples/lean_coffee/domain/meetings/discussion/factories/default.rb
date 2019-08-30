@@ -1,12 +1,11 @@
 module LeanCoffee
-  module Topics
-    class Topic
+  module Meetings
+    class Discussion
       module Factories
         class Default
           def self.factory(args={})
-            Topic.new(
-              args.merge(votes: 0)
-            )
+            timeboxes = args.delete(:time_boxes)
+            Discussion.new(args)
           end
         end
       end

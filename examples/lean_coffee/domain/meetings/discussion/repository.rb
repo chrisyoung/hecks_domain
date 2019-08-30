@@ -1,6 +1,6 @@
 module LeanCoffee
-  module Topics
-    class Topic
+  module Meetings
+    class Discussion
       class Repository
         include Singleton
         def self.save(object)

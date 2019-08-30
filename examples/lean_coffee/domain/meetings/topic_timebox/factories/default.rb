@@ -1,10 +1,10 @@
 module LeanCoffee
-  module Topics
-    class Timebox
+  module Meetings
+    class TopicTimebox
       module Factories
         class Default
           def self.factory(args={})
-            Timebox.new(
+            TopicTimebox.new(
               {
                 extension: Extension.new(
                   yes_votes: 0,

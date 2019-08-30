@@ -5,7 +5,7 @@ describe 'Playground' do
     LeanCoffee::Meetings::Meeting.default(
       allowed_votes: 5,
       timebox_extension: 1,
-      discussion: LeanCoffee::Discussions::Discussion.default,
+      discussion: LeanCoffee::Meetings::Discussion.default,
       time_boxes: { voting: 0, collection: 0, ordering: 0 },
       participants: [{ name: 'Angie' }, { name: 'Chris' }]
     )
@@ -21,11 +21,11 @@ describe 'Playground' do
 
   let(:topics) {
     {
-      lean_coffee: LeanCoffee::Topics::Topic.default(
-        value: 'lean coffee', timebox: LeanCoffee::Topics::Timebox.zeroed
+      lean_coffee: LeanCoffee::Meetings::Topic.default(
+        value: 'lean coffee', timebox: LeanCoffee::Meetings::Timebox.zeroed
       ),
-      retrospective: LeanCoffee::Topics::Topic.default(
-        value: 'retrospective', timebox: LeanCoffee::Topics::Timebox.zeroed
+      retrospective: LeanCoffee::Meetings::Topic.default(
+        value: 'retrospective', timebox: LeanCoffee::Meetings::Timebox.zeroed
       )
     }
   }

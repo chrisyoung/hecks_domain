@@ -11,7 +11,7 @@ domain(:LeanCoffee) do
       integer :timebox_extension
       optional string(:phase)
       list(:participants).as(:Participant)
-      entity(:discussion).as(Discussions: :Discussion)
+      entity(:discussion).as(:Discussion)
       value(:timebox).as(:Timebox)
 
       operations %i[
@@ -33,28 +33,23 @@ domain(:LeanCoffee) do
     value(:Participant) do
       string :name
       integer :remaining_votes
-      optional list(:topic_votes).as(Topics: :Topic)
+      optional list(:topic_votes).as(:Topic)
     end
-  end
 
-  aggregate :Discussions do
-    head(:Discussion) do
+    entity(:Discussion) do
       optional string :phase
       optional value(:discussing).as(:Discussion)
       optional list(:discussed).as(:Discussion)
-      optional list(:topics).as(Topics: :Topic)
+      optional list(:topics).as(:Topic)
     end
-  end
 
-  aggregate :Topics do
-    head(:Topic) do
+    value(:Topic) do
       string :value
       integer :votes
-      optional string :phase
-      value(:timebox).as(:Timebox)
+      value(:timebox).as(:TopicTimebox)
     end
 
-    value(:Timebox) do
+    value(:TopicTimebox) do
       integer :duration
       value(:extension).as(:Extension)
     end
