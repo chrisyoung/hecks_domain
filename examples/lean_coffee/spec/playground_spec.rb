@@ -5,7 +5,7 @@ describe 'Playground' do
     LeanCoffee::Meetings::Meeting.default(
       allowed_votes: 5,
       timebox_extension: 1,
-      discussion: LeanCoffee::Discussions::Discussion.default,
+      discussion: LeanCoffee::Meetings::Discussion.default,
       time_boxes: { voting: 0, collection: 0, ordering: 0 },
       participants: [{ name: 'Angie' }, { name: 'Chris' }]
     )
@@ -21,11 +21,11 @@ describe 'Playground' do
 
   let(:topics) {
     {
-      lean_coffee: LeanCoffee::Topics::Topic.default(
-        value: 'lean coffee', timebox: LeanCoffee::Topics::Timebox.zeroed
+      lean_coffee: LeanCoffee::Meetings::Topic.default(
+        value: 'lean coffee', timebox: LeanCoffee::Meetings::Timebox.zeroed
       ),
-      retrospective: LeanCoffee::Topics::Topic.default(
-        value: 'retrospective', timebox: LeanCoffee::Topics::Timebox.zeroed
+      retrospective: LeanCoffee::Meetings::Topic.default(
+        value: 'retrospective', timebox: LeanCoffee::Meetings::Timebox.zeroed
       )
     }
   }
@@ -43,7 +43,7 @@ describe 'Playground' do
     sleep(0.001)
 
     expect { meeting.add_topic!(topics[:lean_coffee]) }
-      .to raise_error 'Waiting to choose a phase'
+      .to raise_error 'In waiting phase.'
     expect(meeting.phase).to eq :waiting
 
     # Voting for Topics #######################
@@ -64,7 +64,7 @@ describe 'Playground' do
     meeting.start_ordering!
 
     expect(meeting.phase).to eq :ordering
-    
+
     meeting.order_by_votes!
 
     expect(meeting.discussion.topics.first).to eq topics[:retrospective]
@@ -88,7 +88,7 @@ describe 'Playground' do
     expect(meeting.discussion.discussing).to eq(topics[:retrospective])
     expect(meeting.phase).to eq :discussing_topic
     expect { meeting.vote!(topic: topics[:lean_coffee], participant: chris) }
-      .to raise_error 'In discussing_topic phase. Valid Commands are: '
+      .to raise_error 'In discussing_topic phase.'
 
     sleep(0.001)
 
@@ -111,7 +111,7 @@ describe 'Playground' do
 
     meeting.keep_talking!
 
-    expect { meeting.discuss_next_topic! }.to raise_error "In discussing_topic phase. Valid Commands are: "
+    expect { meeting.discuss_next_topic! }.to raise_error "In discussing_topic phase."
 
     sleep(0.001)
 

@@ -2,12 +2,10 @@
   Dir[File.dirname(__FILE__) + "/timebox/#{name}/*.rb"].each { |file| require_relative file }
 end
 
-
 module LeanCoffee
   module Meetings
     class Timebox
       include HecksDomain::Factories::FactoryLoader
-      
 
       attr_reader :voting_duration, :collection_duration, :ordering_duration, :topic_discussion_duration, :topic_extension_duration
 

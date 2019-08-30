@@ -2,12 +2,10 @@
   Dir[File.dirname(__FILE__) + "/participant/#{name}/*.rb"].each { |file| require_relative file }
 end
 
-
 module LeanCoffee
   module Meetings
     class Participant
       include HecksDomain::Factories::FactoryLoader
-      
 
       attr_reader :name, :remaining_votes
 

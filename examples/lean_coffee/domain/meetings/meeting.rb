@@ -1,4 +1,4 @@
-['services', 'commands', 'invariants', 'factories', 'repository', 'queries', 'events', 'subscribers'].each do |name|
+['commands', 'services', 'invariants', 'factories', 'repository', 'queries', 'events', 'subscribers'].each do |name|
   Dir[File.dirname(__FILE__) + "/meeting/#{name}/*.rb"].each { |file| require_relative file }
 end
 
@@ -7,12 +7,10 @@ require_relative 'meeting/repository'
   Dir[File.dirname(__FILE__) + "/meeting/#{name}/*.rb"].each { |file| require_relative file }
 end
 
-
 module LeanCoffee
   module Meetings
     class Meeting
       include HecksDomain::Factories::FactoryLoader
-      
       include HecksDomain::Invariants::InvariantLoader
       include HecksDomain::Commands::CommandLoader
       include HecksDomain::Queries::QueryLoader
