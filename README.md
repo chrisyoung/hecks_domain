@@ -11,6 +11,7 @@ A Domain Specific Language for generating Domain Driven Designs.
 ## TODO
 
 ### High Priority
+1. Clean up event handlers to make more sense
 1. Create a facilitator app
 1. What does a data port look like?
 1. Application Port
