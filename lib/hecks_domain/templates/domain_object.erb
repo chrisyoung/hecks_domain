@@ -9,12 +9,10 @@ require_relative '<%= folder_name %>/repository'
   Dir[File.dirname(__FILE__) + "/<%= folder_name %>/#{name}/*.rb"].each { |file| require_relative file }
 end
 
-
 module <%= @aggregate.domain.name %>
   module <%= @aggregate.name %>
     class <%= @name %>
       include HecksDomain::Factories::FactoryLoader
-      
       <% if is_a?(Head) %>
       include HecksDomain::Invariants::InvariantLoader
       include HecksDomain::Commands::CommandLoader

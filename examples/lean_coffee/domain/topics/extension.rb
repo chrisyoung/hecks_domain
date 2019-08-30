@@ -2,12 +2,10 @@
   Dir[File.dirname(__FILE__) + "/extension/#{name}/*.rb"].each { |file| require_relative file }
 end
 
-
 module LeanCoffee
   module Topics
     class Extension
       include HecksDomain::Factories::FactoryLoader
-      
 
       attr_reader :yes_votes, :no_votes
 
