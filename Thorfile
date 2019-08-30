@@ -3,13 +3,13 @@ require_relative 'lib/hecks_domain'
 # A CLI interface for generating domains
 class HecksDomain < Thor
   package_name "Hecks"
-  HECKS_FILE_NAME = 'Hecksfile'.freeze
+  HECKS_FILE_NAME = 'Domainfile'.freeze
   DOMAIN = instance_eval(File.open(HECKS_FILE_NAME).read)
 
   desc 'new', 'Create a new domain'
   def new
     unless File.file?(HECKS_FILE_NAME)
-      puts "Missing Hecksfile - are you in a domain project?"
+      puts "Missing Domainfile - are you in a domain project?"
       return
     end
 
