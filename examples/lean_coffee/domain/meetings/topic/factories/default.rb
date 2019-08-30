@@ -3,7 +3,7 @@ module LeanCoffee
     class Topic
       module Factories
         class Default
-          def self.factory(args={})
+          def self.factory(args = {})
             Topic.new(
               args.merge(votes: 0)
             )

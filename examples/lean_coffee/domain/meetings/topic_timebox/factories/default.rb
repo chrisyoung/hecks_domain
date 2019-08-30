@@ -3,7 +3,7 @@ module LeanCoffee
     class TopicTimebox
       module Factories
         class Default
-          def self.factory(args={})
+          def self.factory(args = {})
             TopicTimebox.new(
               {
                 extension: Extension.new(

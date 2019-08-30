@@ -3,7 +3,7 @@ module LeanCoffee
     class TopicTimebox
       module Factories
         class Zeroed
-          def self.factory(args={})
+          def self.factory(args = {})
             TopicTimebox.default(duration: 0, extension: 0)
           end
         end

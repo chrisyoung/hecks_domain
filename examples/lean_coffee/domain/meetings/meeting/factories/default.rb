@@ -3,7 +3,7 @@ module LeanCoffee
     class Meeting
       module Factories
         class Default
-          def self.factory(args={})
+          def self.factory(args = {})
             args.delete(:time_boxes)
             allowed_votes = args.delete(:allowed_votes)
 
