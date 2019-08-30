@@ -1,7 +1,7 @@
 module LeanCoffee
   module Meetings
     class Meeting
-      class Timer
+      class MeetingTimer
         def self.start(duration, meeting)
           Thread.new do
             sleep duration * 60
