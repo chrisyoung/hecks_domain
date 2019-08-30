@@ -1,5 +1,5 @@
 require_relative 'hecks_domain'
-
+Dir[File.dirname(__FILE__) + "/../events/*.rb"].each { |file| require_relative file }
 <% @aggregates.each do |aggregate| %>
 require_relative '../domain/<%= aggregate.folder_name %>/head'
 <% end %>

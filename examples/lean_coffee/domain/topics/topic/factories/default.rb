@@ -4,7 +4,6 @@ module LeanCoffee
       module Factories
         class Default
           def self.factory(args={})
-            timeboxes = args.delete(:time_boxes)
             Topic.new(
               args.merge(votes: 0)
             )

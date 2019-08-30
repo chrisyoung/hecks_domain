@@ -41,7 +41,7 @@ describe LeanCoffee::Meetings::Meeting do
   describe '#add_topic!' do
     it 'needs to be in the right phase' do
       expect { meeting.add_topic!(lean_coffee_topic) }
-      .to raise_error 'Waiting to choose a phase'
+        .to raise_error 'In waiting phase.'
     end
 
     it 'adds to the topic list' do

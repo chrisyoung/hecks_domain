@@ -11,11 +11,16 @@ class HecksDomain
 
     def dump
       dump_domain
+      dump_events
       dump_gemfile
       dump_spec
       dump_lib
       dump_aggregates
       dump_domain_objects
+    end
+
+    def dump_events
+      write_file('events/', parse_file('command_will_run.rb', 'events/command_will_run', domain.binding))
     end
 
     def dump_gemfile

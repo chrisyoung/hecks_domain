@@ -4,7 +4,7 @@ module LeanCoffee
       module Factories
         class Default
           def self.factory(args={})
-            timeboxes = args.delete(:time_boxes)
+            args.delete(:time_boxes)
             allowed_votes = args.delete(:allowed_votes)
 
             Meeting.new(
@@ -16,7 +16,8 @@ module LeanCoffee
                   )
                 end,
                 discussion: Discussions::Discussion.default,
-                timebox: Timebox.zeroed
+                timebox: Timebox.zeroed,
+                phase: :waiting
               )
             )
           end
