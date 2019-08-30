@@ -13,10 +13,8 @@ class HecksDomain < Thor
       return
     end
 
-    instance_eval(File.open(HECKS_FILE_NAME).read).tap do |domain|
-      DOMAIN.build
-      DOMAIN.dump
-    end
+    DOMAIN.build
+    DOMAIN.dump
   end
 
   desc 'generate_factory', 'Add a factory to a domain object'
