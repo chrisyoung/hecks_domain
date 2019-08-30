@@ -7,10 +7,9 @@ module LeanCoffee
     class Discussion
       include HecksDomain::Factories::FactoryLoader
 
-      attr_reader :phase, :discussing, :id
+      attr_reader :discussing, :id
 
-      def initialize(phase: nil, discussing: nil, discussed: [], topics: [])
-        @phase = phase
+      def initialize(discussing: nil, discussed: [], topics: [])
         @discussing = discussing
         @discussed = discussed
         @topics = topics
@@ -26,7 +25,7 @@ module LeanCoffee
 
       private
 
-      attr_writer :phase, :discussing, :discussed, :topics, :id
+      attr_writer :discussing, :discussed, :topics, :id
     end
   end
 end

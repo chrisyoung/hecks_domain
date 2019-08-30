@@ -37,7 +37,6 @@ domain(:LeanCoffee) do
     end
 
     entity(:Discussion) do
-      optional string :phase
       optional value(:discussing).as(:Discussion)
       optional list(:discussed).as(:Discussion)
       optional list(:topics).as(:Topic)
