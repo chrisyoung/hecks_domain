@@ -9,36 +9,32 @@ A Domain Specific Language for generating Domain Driven Designs.
 * Independent of any external agency. In fact your business rules simply don’t know anything at all about the outside world.
 
 ## TODO
-1. Commands should return self
-1. Add Query interface
+
 1. Create a facilitator app
 1. What does a data port look like?
+1. Application Port
+1. Hecks Domain Version in Domainfile
+1. Domainfile instead of Hecksfile
+1. Rails Demo
+1. Create automated build for examples
+1. Add Readme to all the projects
+
+1. Add default invariant module and default factory
+1. Generate a factory
+1. Generate a command
+1. Clean up filemaker
+1. Break DomainObject template into Entity and Value
+1. Rewind commands
+1. Replay commands
+1. Unit Tests for hecks domain
+1. Unit Tests for hecksagaon
 1. Make a Logger 'Driven'
 1. DynamoDB Driver
 1. Dynamic SQL Driver
 1. Lambda Driver
-1. Application Port
-1. Hecks Domain Version in Domainfile
-1. Domainfile instead of Hecksfile
-1. Unit Tests for hecks domain
-1. Unit Tests for hecksagaon
-1. Rails Demo
-1. Lean Coffee domain example
-1. Move invariants check to command runner
 1. Make a gem out of hecks domain
 1. Soccer App project
-1. Rewind commands
-1. Replay commands
 1. Value Store in Hecksagon
-1. Break DomainObject template into Entity and Value
-1. Generate a Java Domain
 1. Rename SoccerSeason to Soccer
-1. Fix Filehandling
-1. Create automated build for examples
+1. Generate a Java Domain
 1. Generate a crud server (or make a generic one)
-1. Play with including modules
-1. Add Readme to all the projects
-1. Generate a factory
-1. Generate a command
-1. How to do invariants to prevent a command from being called
-1. Add default invariant module and default factory
