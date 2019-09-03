@@ -3,7 +3,7 @@ class HecksDomain
     module CommandRunner
       def self.run(command, &block)
         Events::DomainEventPublisher.emit(
-          LeanCoffee::Events::CommandWillRun.new(command), &block
+          SoccerSeason::Events::CommandWillRun.new(command), &block
         )
 
         command.call
