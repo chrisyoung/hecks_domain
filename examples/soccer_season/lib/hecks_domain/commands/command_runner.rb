@@ -2,7 +2,12 @@ class HecksDomain
   module Commands
     module CommandRunner
       def self.run(command, &block)
+        Events::DomainEventPublisher.emit(
+          LeanCoffee::Events::CommandWillRun.new(command), &block
+        )
+
         command.call
+        command.head.test_invariants(command)
         Events::DomainEventPublisher.emit(command, &block)
         command
       end

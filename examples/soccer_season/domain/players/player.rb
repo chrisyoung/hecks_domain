@@ -1,7 +1,11 @@
-require_relative 'player/factories'
-require_relative 'player/invariants'
+['commands', 'services', 'invariants', 'factories', 'repository', 'queries', 'events', 'subscribers'].each do |name|
+  Dir[File.dirname(__FILE__) + "/player/#{name}/*.rb"].each { |file| require_relative file }
+end
+
 require_relative 'player/repository'
-require_relative 'player/commands'
+['factories'].each do |name|
+  Dir[File.dirname(__FILE__) + "/player/#{name}/*.rb"].each { |file| require_relative file }
+end
 
 module SoccerSeason
   module Players
@@ -9,6 +13,7 @@ module SoccerSeason
       include HecksDomain::Factories::FactoryLoader
       include HecksDomain::Invariants::InvariantLoader
       include HecksDomain::Commands::CommandLoader
+      include HecksDomain::Queries::QueryLoader
 
       attr_reader :name, :team, :id
 

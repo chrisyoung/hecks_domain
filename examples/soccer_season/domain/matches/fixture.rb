@@ -1,12 +1,11 @@
-require_relative 'fixture/factories'
-require_relative 'fixture/invariants'
+['factories'].each do |name|
+  Dir[File.dirname(__FILE__) + "/fixture/#{name}/*.rb"].each { |file| require_relative file }
+end
 
 module SoccerSeason
   module Matches
     class Fixture
       include HecksDomain::Factories::FactoryLoader
-      include HecksDomain::Invariants::InvariantLoader
-      
 
       attr_reader :season, :date, :time
 

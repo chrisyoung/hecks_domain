@@ -2,6 +2,7 @@ class HecksDomain
   module Commands
     module CommandLoader
       def self.included(base)
+        return unless base.constants.include?(:Commands)
         base::Commands.constants.each do |constant|
           base.class_eval "
             def #{constant.to_s.underscore}!(*args, &block)
