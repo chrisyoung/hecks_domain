@@ -5,9 +5,28 @@ describe SoccerSeason::Matches::Match do
   include_examples 'subscriber'
   subject { match }
 
+  describe '.default' do
+    SoccerSeason::Matches::Match.default(
+      {
+        fixture: {
+          season: 'summer',
+          date: Date.today,
+          time: Time.now
+        },
+        teams: [{ name: 'redteam' }, { name: 'blueteam' }],
+        pitch: { name: 'backyard' }
+      }
+    )
+  end
+
   describe '#score' do
     context "Subscriber" do
-      let(:subscriber) { Subscriber.new(SoccerSeason::Matches::Match::Commands::Score) }
+      let(:subscriber) do
+        Subscriber.new(
+          SoccerSeason::Matches::Match::Commands::Score
+        )
+      end
+
       before do
         HecksDomain::Events::DomainEventPublisher.subscribe(subscriber)
       end
@@ -15,13 +34,6 @@ describe SoccerSeason::Matches::Match do
       it do
         expect(subscriber).to receive(:notify)
         subject.score!
-      end
-    end
-
-    it do
-      subject.score! do |event|
-        expect(event).to be_a(HecksDomain::Events::DomainEvent)
-        expect(event.command).to be_a(SoccerSeason::Matches::Match::Commands::Score)
       end
     end
   end
