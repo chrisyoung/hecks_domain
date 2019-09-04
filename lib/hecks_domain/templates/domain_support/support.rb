@@ -1,0 +1,8 @@
+require 'singleton'
+require_relative 'support/support/string'
+require_relative 'support/events'
+require_relative 'support/commands'
+require_relative 'support/queries'
+require_relative 'support/factories'
+require_relative 'support/invariants/invariant_loader'
+require_relative 'support/queries/query_loader'

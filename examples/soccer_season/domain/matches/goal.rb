@@ -6,7 +6,7 @@ module SoccerSeason
   module Domain
     module Matches
       class Goal
-        include HecksDomain::Factories::FactoryLoader
+        include Support::Factories::FactoryLoader
 
         attr_reader :time, :player
 

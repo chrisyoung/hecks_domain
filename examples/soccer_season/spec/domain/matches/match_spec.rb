@@ -28,7 +28,7 @@ describe SoccerSeason::Domain::Matches::Match do
       end
 
       before do
-        HecksDomain::Events::DomainEventPublisher.subscribe(subscriber)
+        Support::Events::DomainEventPublisher.subscribe(subscriber)
       end
 
       it do

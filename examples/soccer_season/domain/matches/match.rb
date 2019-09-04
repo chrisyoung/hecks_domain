@@ -11,10 +11,10 @@ module SoccerSeason
   module Domain
     module Matches
       class Match
-        include HecksDomain::Factories::FactoryLoader
-        include HecksDomain::Invariants::InvariantLoader
-        include HecksDomain::Commands::CommandLoader
-        include HecksDomain::Queries::QueryLoader
+        include Support::Factories::FactoryLoader
+        include Support::Invariants::InvariantLoader
+        include Support::Commands::CommandLoader
+        include Support::Queries::QueryLoader
 
         attr_reader :fixture, :result, :pitch, :id
 

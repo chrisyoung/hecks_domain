@@ -11,10 +11,10 @@ module SoccerSeason
   module Domain
     module Teams
       class Team
-        include HecksDomain::Factories::FactoryLoader
-        include HecksDomain::Invariants::InvariantLoader
-        include HecksDomain::Commands::CommandLoader
-        include HecksDomain::Queries::QueryLoader
+        include Support::Factories::FactoryLoader
+        include Support::Invariants::InvariantLoader
+        include Support::Commands::CommandLoader
+        include Support::Queries::QueryLoader
 
         attr_reader :name, :id
 

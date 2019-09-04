@@ -51,12 +51,12 @@ describe "Playground" do
 
     # I'm tired of calling `#score!` every time I add a goal
     subscriber = ScoreOnAddGoal.new
-    HecksDomain::Events.subscribe(subscriber)
+    Support::Events.subscribe(subscriber)
     3.times do
       match.add_goal!(time: Time.now, player: @clayton)
     end
     expect(match.result.winner).to eq(@blueteam)
-    HecksDomain::Events.cancel_subscription(subscriber)
+    Support::Events.cancel_subscription(subscriber)
   end
 
   it 'Winner!' do

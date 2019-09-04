@@ -1,4 +1,4 @@
-class HecksDomain
+class Support
   module Queries
     module QueryLoader
       def self.included(base)

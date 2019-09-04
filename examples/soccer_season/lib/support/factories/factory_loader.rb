@@ -1,4 +1,4 @@
-class HecksDomain
+class Support
   module Factories
     module FactoryLoader
       def self.included(base)

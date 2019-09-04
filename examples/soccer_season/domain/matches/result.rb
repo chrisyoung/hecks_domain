@@ -6,7 +6,7 @@ module SoccerSeason
   module Domain
     module Matches
       class Result
-        include HecksDomain::Factories::FactoryLoader
+        include Support::Factories::FactoryLoader
 
         attr_reader :loser, :winner, :tied
 

@@ -1,4 +1,4 @@
-require_relative 'hecks_domain'
+require_relative 'support'
 Dir[File.dirname(__FILE__) + "/../events/*.rb"].each { |file| require_relative file }
 require_relative '../domain/matches/head'
 require_relative '../domain/teams/head'

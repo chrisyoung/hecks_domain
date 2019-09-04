@@ -1,4 +1,4 @@
-class HecksDomain
+class Support
   module Commands
     module CommandRunner
       def self.run(command, &block)

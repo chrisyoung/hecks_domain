@@ -1,4 +1,4 @@
-class HecksDomain
+class Support
   module Commands
     module CommandLoader
       def self.included(base)
@@ -6,7 +6,7 @@ class HecksDomain
         base::Commands.constants.each do |constant|
           base.class_eval "
             def #{constant.to_s.underscore}!(*args, &block)
-              HecksDomain::Commands::CommandRunner.run(
+              Support::Commands::CommandRunner.run(
                 Commands::#{constant}.new(self, *args), &block
               )
             end

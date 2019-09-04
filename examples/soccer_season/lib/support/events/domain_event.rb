@@ -1,4 +1,4 @@
-class HecksDomain
+class Support
   module Events
     class DomainEvent
       attr_reader :type, :name, :command, :args, :head
