@@ -12,14 +12,8 @@ A Domain Specific Language for generating Domain Driven Designs.
 
 ### High Priority
 1. Clean up event handlers to make more sense
-1. Create a facilitator app
-1. What does a data port look like?
-1. Application Port
 1. Hecks Domain Version in Domainfile
-1. Domainfile instead of Hecksfile
-1. Rails Demo
 1. Create automated build for examples
-1. Add Readme to all the projects
 
 ### Backlog
 1. Add default invariant module and default factory
@@ -29,15 +23,6 @@ A Domain Specific Language for generating Domain Driven Designs.
 1. Break DomainObject template into Entity and Value
 1. Rewind commands
 1. Replay commands
-1. Unit Tests for hecks domain
-1. Unit Tests for hecksagaon
-1. Make a Logger 'Driven'
-1. DynamoDB Driver
-1. Dynamic SQL Driver
-1. Lambda Driver
-1. Make a gem out of hecks domain
-1. Soccer App project
-1. Value Store in Hecksagon
+1. Unit Tests
 1. Rename SoccerSeason to Soccer
 1. Generate a Java Domain
-1. Generate a crud server (or make a generic one)
