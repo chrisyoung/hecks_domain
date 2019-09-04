@@ -6,7 +6,7 @@ module SoccerSeason
           class Default
             def self.factory(args)
               Player.new(
-                team: Teams::Team.new(args[:team]),
+                team: Teams::Team::Repository.fetch(args[:team].is_a?(Hash) ? args[:team][:id] : args[:team].id),
                 name: args[:name]
               )
             end
