@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe SoccerSeason::Matches::Match do
+describe SoccerSeason::Domain::Matches::Match do
   include_examples 'match'
   include_examples 'subscriber'
   subject { match }
 
   describe '.default' do
-    SoccerSeason::Matches::Match.default(
+    SoccerSeason::Domain::Matches::Match.default(
       {
         fixture: {
           season: 'summer',
@@ -23,7 +23,7 @@ describe SoccerSeason::Matches::Match do
     context "Subscriber" do
       let(:subscriber) do
         Subscriber.new(
-          SoccerSeason::Matches::Match::Commands::Score
+          SoccerSeason::Domain::Matches::Match::Commands::Score
         )
       end
 

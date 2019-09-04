@@ -1,8 +1,10 @@
 Dir[File.dirname(__FILE__) + '/subscribers/*.rb'].each { |file| require_relative file }
 module <%= @aggregate.domain.name %>
-  module <%= @aggregate.name %>
-    class <%= @name %>
-      module Subscribers
+  module Domain
+    module <%= @aggregate.name %>
+      class <%= @name %>
+        module Subscribers
+        end
       end
     end
   end

@@ -1,40 +1,42 @@
 module SoccerSeason
-  module Matches
-    class Match
-      module Commands
-        class Score
-          attr_reader :args, :head
+  module Domain
+    module Matches
+      class Match
+        module Commands
+          class Score
+            attr_reader :args, :head
 
-          def initialize(match)
-            @head = @match = match
-            @teams = match.teams
-            @goals = match.goals
-          end
-
-          def call
-            self.tap do |command|
-              @match.instance_eval do
-                @result = command.send(:set_result)
-              end
+            def initialize(match)
+              @head = @match = match
+              @teams = match.teams
+              @goals = match.goals
             end
 
-            @match.save!
-            self
-          end
+            def call
+              self.tap do |command|
+                @match.instance_eval do
+                  @result = command.send(:set_result)
+                end
+              end
 
-          private
+              @match.save!
+              self
+            end
 
-          def get_count(team)
-            @goals.count { |goal| goal.player.team == team }
-          end
+            private
 
-          def set_result
-            counts = @teams.map { |team| get_count(team) }
+            def get_count(team)
+              @goals.count { |goal| goal.player.team == team }
+            end
 
-            return TiedResult.new if counts.first == counts.last
-            return Result.new(winner: @teams.first, loser: @teams.last) if counts.first > counts.last
+            def set_result
+              counts = @teams.map { |team| get_count(team) }
 
-            Result.new(winner: @teams.last, loser: @teams.first)
+              return TiedResult.new if counts.first == counts.last
+              return Result.new(winner: @teams.first, loser: @teams.last) if counts.first > counts.last
+
+              Result.new(winner: @teams.last, loser: @teams.first)
+            end
           end
         end
       end

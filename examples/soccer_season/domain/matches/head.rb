@@ -6,8 +6,10 @@ require_relative 'fixture'
 require_relative 'pitch'
 
 module SoccerSeason
-  module Matches
-    class Head < Match
+  module Domain
+    module Matches
+      class Head < Match
+      end
     end
   end
 end

@@ -23,7 +23,7 @@ RSpec.shared_examples "subscriber" do
 
   class ScoreOnAddGoal
     def domain_event
-      SoccerSeason::Matches::Match::Commands::AddGoal
+      SoccerSeason::Domain::Matches::Match::Commands::AddGoal
     end
 
     def notify(event)

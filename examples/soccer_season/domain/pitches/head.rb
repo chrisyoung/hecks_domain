@@ -1,8 +1,10 @@
 require_relative 'pitch'
 
 module SoccerSeason
-  module Pitches
-    class Head < Pitch
+  module Domain
+    module Pitches
+      class Head < Pitch
+      end
     end
   end
 end

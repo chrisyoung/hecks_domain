@@ -3,18 +3,20 @@
 end
 
 module SoccerSeason
-  module Matches
-    class TiedResult
-      include HecksDomain::Factories::FactoryLoader
+  module Domain
+    module Matches
+      class TiedResult
+        include HecksDomain::Factories::FactoryLoader
 
-      attr_reader 
+        attr_reader 
 
-      def initialize()
+        def initialize()
+        end
+
+        private
+
+        attr_writer 
       end
-
-      private
-
-      attr_writer 
     end
   end
 end

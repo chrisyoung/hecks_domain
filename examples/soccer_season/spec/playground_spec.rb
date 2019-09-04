@@ -5,7 +5,7 @@ describe "Playground" do
   include_examples 'subscriber'
 
   let(:match) do
-    SoccerSeason::Matches::Match.new(
+    SoccerSeason::Domain::Matches::Match.new(
       fixture: fixture,
       teams: [@redteam, @blueteam],
       pitch: @pitch
@@ -13,7 +13,7 @@ describe "Playground" do
   end
 
   let(:fixture) do
-    SoccerSeason::Matches::Fixture.new(
+    SoccerSeason::Domain::Matches::Fixture.new(
       season: 2012,
       date: Date.today,
       time: Time.now
@@ -21,17 +21,17 @@ describe "Playground" do
   end
 
   before do
-    @pitch = SoccerSeason::Pitches::Pitch.new(name: 'downtown').tap(&:save!)
+    @pitch = SoccerSeason::Domain::Pitches::Pitch.new(name: 'downtown').tap(&:save!)
 
     # Red Team
-    @redteam = SoccerSeason::Teams::Team.new(name: 'redteam').tap(&:save!)
-    @chris = SoccerSeason::Players::Player.new(name: 'chris', team: @redteam).tap(&:save!)
-    @foster = SoccerSeason::Players::Player.new(name: 'foster', team: @redteam).tap(&:save!)
+    @redteam = SoccerSeason::Domain::Teams::Team.new(name: 'redteam').tap(&:save!)
+    @chris = SoccerSeason::Domain::Players::Player.new(name: 'chris', team: @redteam).tap(&:save!)
+    @foster = SoccerSeason::Domain::Players::Player.new(name: 'foster', team: @redteam).tap(&:save!)
 
     # Blue Team
-    @blueteam = SoccerSeason::Teams::Team.new(name: 'blueteam').tap(&:save!)
-    @greenteam = SoccerSeason::Teams::Team.new(name: 'greenteam').tap(&:save!)
-    @clayton = SoccerSeason::Players::Player.new(name: 'clayton', team: @blueteam).tap(&:save!)
+    @blueteam = SoccerSeason::Domain::Teams::Team.new(name: 'blueteam').tap(&:save!)
+    @greenteam = SoccerSeason::Domain::Teams::Team.new(name: 'greenteam').tap(&:save!)
+    @clayton = SoccerSeason::Domain::Players::Player.new(name: 'clayton', team: @blueteam).tap(&:save!)
 
     5.times { match.add_goal!(time: Time.now, player: @foster) }
     4.times { match.add_goal!(time: Time.now, player: @clayton) }
@@ -39,8 +39,8 @@ describe "Playground" do
 
   it 'Has a head' do
     expect(
-      SoccerSeason::Pitches::Head.superclass
-    ).to eq SoccerSeason::Pitches::Pitch
+      SoccerSeason::Domain::Pitches::Head.superclass
+    ).to eq SoccerSeason::Domain::Pitches::Pitch
   end
 
   it 'Events' do
@@ -74,7 +74,7 @@ describe "Playground" do
   it 'Tied!' do
     match.add_goal!(time: Time.now, player: @clayton)
     match.score!
-    expect(match.result).to be_a(SoccerSeason::Matches::TiedResult)
+    expect(match.result).to be_a(SoccerSeason::Domain::Matches::TiedResult)
   end
 
   it 'blows up if you try to use the accessor to update lists' do

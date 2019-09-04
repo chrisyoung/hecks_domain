@@ -3,8 +3,10 @@ require_relative '<%= domain_object.folder_name %>'
 <% end %>
 
 module <%= @domain.name %>
-  module <%= @name %>
-    class Head < <%= @head.name %>
+  module Domain
+    module <%= @name %>
+      class Head < <%= @head.name %>
+      end
     end
   end
 end

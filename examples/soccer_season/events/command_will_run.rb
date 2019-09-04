@@ -1,4 +1,4 @@
-class HecksDomain
+module SoccerSeason
   module Events
     class CommandWillRun
       attr_reader :head, :args, :command_to_run

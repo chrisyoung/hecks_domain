@@ -8,22 +8,24 @@ require_relative 'team/repository'
 end
 
 module SoccerSeason
-  module Teams
-    class Team
-      include HecksDomain::Factories::FactoryLoader
-      include HecksDomain::Invariants::InvariantLoader
-      include HecksDomain::Commands::CommandLoader
-      include HecksDomain::Queries::QueryLoader
+  module Domain
+    module Teams
+      class Team
+        include HecksDomain::Factories::FactoryLoader
+        include HecksDomain::Invariants::InvariantLoader
+        include HecksDomain::Commands::CommandLoader
+        include HecksDomain::Queries::QueryLoader
 
-      attr_reader :name, :id
+        attr_reader :name, :id
 
-      def initialize(name:)
-        @name = name
+        def initialize(name:)
+          @name = name
+        end
+
+        private
+
+        attr_writer :name, :id
       end
-
-      private
-
-      attr_writer :name, :id
     end
   end
 end

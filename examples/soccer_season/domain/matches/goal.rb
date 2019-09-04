@@ -3,20 +3,22 @@
 end
 
 module SoccerSeason
-  module Matches
-    class Goal
-      include HecksDomain::Factories::FactoryLoader
+  module Domain
+    module Matches
+      class Goal
+        include HecksDomain::Factories::FactoryLoader
 
-      attr_reader :time, :player
+        attr_reader :time, :player
 
-      def initialize(time:, player:)
-        @time = time
-        @player = player
+        def initialize(time:, player:)
+          @time = time
+          @player = player
+        end
+
+        private
+
+        attr_writer :time, :player
       end
-
-      private
-
-      attr_writer :time, :player
     end
   end
 end
