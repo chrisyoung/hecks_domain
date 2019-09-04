@@ -4,19 +4,23 @@ describe SoccerSeason::Domain::Matches::Match do
   include_examples 'match'
   include_examples 'subscriber'
   subject { match }
+  let(:red_team) { SoccerSeason::Domain::Teams::Team.default(name: 'red_team').tap(&:save!) }
+  let(:blue_team) { SoccerSeason::Domain::Teams::Team.default(name: 'blue_team').tap(&:save!) }
 
   describe '.default' do
-    SoccerSeason::Domain::Matches::Match.default(
-      {
-        fixture: {
-          season: 'summer',
-          date: Date.today,
-          time: Time.now
-        },
-        teams: [{ name: 'redteam' }, { name: 'blueteam' }],
-        pitch: { name: 'backyard' }
-      }
-    )
+    it do
+      SoccerSeason::Domain::Matches::Match.default(
+        {
+          fixture: {
+            season: 'summer',
+            date: Date.today,
+            time: Time.now
+          },
+          teams: [red_team, blue_team],
+          pitch: { name: 'backyard' }
+        }
+      )
+    end
   end
 
   describe '#score' do
