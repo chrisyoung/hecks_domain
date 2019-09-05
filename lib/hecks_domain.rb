@@ -32,4 +32,8 @@ class HecksDomain
   def self.domain name, &block
     new name, &block
   end
+
+  def self.domain_get
+    @parser.domain
+  end
 end
