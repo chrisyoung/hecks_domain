@@ -16,9 +16,10 @@ module SoccerSeason
         include Support::Commands::CommandLoader
         include Support::Queries::QueryLoader
 
-        attr_reader :fixture, :result, :pitch, :id
+        attr_reader :id, :fixture, :result, :pitch, :id
 
-        def initialize(fixture:, goals: [], result: nil, teams:, pitch:)
+        def initialize(id: nil, fixture:, goals: [], result: nil, teams:, pitch:)
+          @id = id
           @fixture = fixture
           @goals = goals
           @result = result
@@ -36,7 +37,7 @@ module SoccerSeason
 
         private
 
-        attr_writer :fixture, :goals, :result, :teams, :pitch, :id
+        attr_writer :id, :fixture, :goals, :result, :teams, :pitch
       end
     end
   end

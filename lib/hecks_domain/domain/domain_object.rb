@@ -15,6 +15,9 @@ class HecksDomain
       @commands = Commands.new
       @invariants = Invariants.new
       @fields = []
+      if is_a?(Entity)
+        add_field(:id, IntegerField).tap { |field| field.optional = true }
+      end
       @repository = Repository.new
       instance_eval &block
     end
@@ -46,12 +49,10 @@ class HecksDomain
         fields << ':id' if is_a?(Entity)
       end.compact.join(', ')
     end
-    
+
     def private_accessors
       @fields.map do |field|
         field.private_accessor
-      end.tap do |fields|
-        fields << ':id' if is_a?(Entity)
       end.compact.join(', ')
     end
 

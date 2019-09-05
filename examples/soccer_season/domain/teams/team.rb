@@ -16,15 +16,16 @@ module SoccerSeason
         include Support::Commands::CommandLoader
         include Support::Queries::QueryLoader
 
-        attr_reader :name, :id
+        attr_reader :id, :name, :id
 
-        def initialize(name:)
+        def initialize(id: nil, name:)
+          @id = id
           @name = name
         end
 
         private
 
-        attr_writer :name, :id
+        attr_writer :id, :name
       end
     end
   end
