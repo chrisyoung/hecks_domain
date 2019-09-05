@@ -19,7 +19,6 @@ module SoccerSeason
                 end
               end
 
-              @match.save!
               self
             end
 

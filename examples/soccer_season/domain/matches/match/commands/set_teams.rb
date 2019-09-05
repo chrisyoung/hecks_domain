@@ -17,7 +17,6 @@ module SoccerSeason
                   @teams = command.teams
                 end
               end
-              @match.save!
               self
             end
 

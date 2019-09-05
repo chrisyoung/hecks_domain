@@ -18,8 +18,6 @@ module SoccerSeason
                   @goals << Goal.new(time: command.time, player: command.player)
                 end
               end
-
-              @head.save!
             end
           end
         end

@@ -9,16 +9,16 @@ module SoccerSeason
             instance.save(object)
           end
 
-          def self.fetch(id)
-            instance.fetch(id)
+          def self.fetch(domain_object)
+            instance.fetch(domain_object)
           end
 
           def initialize
             @objects = {}
           end
 
-          def fetch(id)
-            @objects[id]
+          def fetch(domain_object)
+            @objects[domain_object.id]
           end
 
           def save(object)
