@@ -45,7 +45,7 @@ A Domain Specific Language for generating Domain Driven Designs.
 #### Commands
 /matches/match/commands/add_goal.rb
 ```
-> SoccerSeason::Matches::Match::Commands::AddGoal
+> SoccerSeason::Domain::Matches::Match::Commands::AddGoal
 > match.add_goal!
 ```
 

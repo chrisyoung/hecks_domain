@@ -5,11 +5,16 @@ module SoccerSeason
         module Factories
           class Default
             def self.factory(args)
-              pitch = args[:pitch]
               Match.new(
                 fixture: Fixture.new(args[:fixture]),
-                teams: args[:teams].map { |team| Teams::Team::Repository.fetch(team.is_a?(Hash) ? team[:id] : team.id) },
-                pitch: Pitches::Pitch::Repository.fetch(pitch.is_a?(Hash) ? pitch[:id] : pitch.id)
+                teams: args[:teams].map do |team|
+                  Teams::Team::Repository.fetch(
+                    Teams::Team.default(team)
+                  )
+                end,
+                pitch: Pitches::Pitch::Repository.fetch(
+                  Pitches::Pitch.default(args[:pitch])
+                )
               )
             end
           end

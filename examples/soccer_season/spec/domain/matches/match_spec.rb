@@ -4,8 +4,16 @@ describe SoccerSeason::Domain::Matches::Match do
   include_examples 'match'
   include_examples 'subscriber'
   subject { match }
-  let(:red_team) { SoccerSeason::Domain::Teams::Team.default(name: 'red_team').tap(&:save!) }
-  let(:blue_team) { SoccerSeason::Domain::Teams::Team.default(name: 'blue_team').tap(&:save!) }
+  let(:red_team) do 
+    SoccerSeason::Domain::Teams::Team::Repository.save(
+      SoccerSeason::Domain::Teams::Team.default(name: 'red_team')
+    )
+  end
+  let(:blue_team) do
+    SoccerSeason::Domain::Teams::Team::Repository.save(
+      SoccerSeason::Domain::Teams::Team.default(name: 'blue_team')
+    )
+  end
 
   describe '.default' do
     it do

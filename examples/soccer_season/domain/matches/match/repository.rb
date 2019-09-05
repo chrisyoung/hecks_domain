@@ -22,9 +22,13 @@ module SoccerSeason
           end
 
           def save(object)
-            object.hash.tap do |hash|
-              @objects[hash] = object
+            @objects[object.hash] = object
+
+            object.instance_eval do
+              @id = object.hash
             end
+
+            object
           end
         end
       end
