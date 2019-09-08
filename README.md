@@ -59,6 +59,7 @@ A Domain Specific Language for generating Domain Driven Designs.
 1. Clean up event handlers to make more sense
 1. Hecks Domain Version in Domainfile
 1. Create automated build for examples
+1. Make a binary for running CLIs
 
 ### Backlog
 1. Add default invariant module and default factory

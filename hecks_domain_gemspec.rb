@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.description = 'A Domain Specific Language for generating Domain Driven Designs'
   s.authors     = ['Hecks Domain Developer']
   s.email       = 'dev@hecks_domain.com'
-  s.files       = Dir['lib/**/*.rb']
+  s.files       = Dir['lib/**/*.rb', 'lib/**/*.erb']
   s.homepage    = 'http://www.example.com'
 
   s.add_runtime_dependency 'erubis'

@@ -6,6 +6,7 @@ module SoccerSeason
           class Default
             def self.factory(args)
               Match.new(
+                id: args[:id],
                 fixture: Fixture.new(args[:fixture]),
                 teams: args[:teams].map do |team|
                   Teams::Team::Repository.fetch(

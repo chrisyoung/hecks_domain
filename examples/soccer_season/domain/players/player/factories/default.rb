@@ -6,6 +6,7 @@ module SoccerSeason
           class Default
             def self.factory(args)
               Player.new(
+                id: args[:id],
                 team: Teams::Team::Repository.fetch(
                   Teams::Team.default(args[:team])
                 ),

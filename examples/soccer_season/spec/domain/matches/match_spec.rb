@@ -17,17 +17,17 @@ describe SoccerSeason::Domain::Matches::Match do
 
   describe '.default' do
     it do
-      SoccerSeason::Domain::Matches::Match.default(
-        {
-          fixture: {
-            season: 'summer',
-            date: Date.today,
-            time: Time.now
-          },
-          teams: [red_team, blue_team],
-          pitch: { name: 'backyard' }
-        }
+      match = SoccerSeason::Domain::Matches::Match.default(
+        id: 2,
+        fixture: {
+          season: 'summer',
+          date: Date.today,
+          time: Time.now
+        },
+        teams: [red_team, blue_team],
+        pitch: { name: 'backyard' }
       )
+      expect(match.id).to eq 2
     end
   end
 

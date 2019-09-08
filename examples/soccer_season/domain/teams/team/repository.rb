@@ -27,7 +27,7 @@ module SoccerSeason
             object.instance_eval do
               @id = object.hash
             end
-
+            
             object
           end
         end

@@ -19,7 +19,7 @@ class HecksDomain
         add_field(:id, IntegerField).tap { |field| field.optional = true }
       end
       @repository = Repository.new
-      instance_eval &block
+      instance_eval(&block)
     end
 
     def optional(value)
