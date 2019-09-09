@@ -1,24 +1,9 @@
-<% if is_a?(Head) %>
-['commands', 'services', 'invariants', 'factories', 'repository', 'queries', 'events', 'subscribers'].each do |name|
-  Dir[File.dirname(__FILE__) + "/<%= folder_name %>/#{name}/*.rb"].each { |file| require_relative file }
-end
-
-require_relative '<%= folder_name %>/repository'
-<% end %>
-['factories'].each do |name|
-  Dir[File.dirname(__FILE__) + "/<%= folder_name %>/#{name}/*.rb"].each { |file| require_relative file }
-end
-
 module <%= @aggregate.domain.name %>
   module Domain
     module <%= @aggregate.name %>
       class <%= @name %>
-        include Support::Factories::FactoryLoader
-        <% if is_a?(Head) %>
-        include Support::Invariants::InvariantLoader
-        include Support::Commands::CommandLoader
-        include Support::Queries::QueryLoader
-        <% end %>
+        <%= 'include Support::Head' if is_a?(Head) %>
+        include Support::DomainObject
 
         attr_reader <%= public_accessors %>
 

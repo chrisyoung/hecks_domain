@@ -1,12 +1,9 @@
-['factories'].each do |name|
-  Dir[File.dirname(__FILE__) + "/fixture/#{name}/*.rb"].each { |file| require_relative file }
-end
-
 module SoccerSeason
   module Domain
     module Matches
       class Fixture
-        include Support::Factories::FactoryLoader
+        
+        include Support::DomainObject
 
         attr_reader :season, :date, :time
 

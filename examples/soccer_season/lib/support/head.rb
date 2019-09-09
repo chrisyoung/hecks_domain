@@ -1,12 +1,8 @@
 class Support
-  module DomainSupport
-    TYPES = %w[
-      commands services invariants factories queries events subscribers
-      repository
-    ].freeze
+  module Head
+    TYPES = %w[commands services invariants queries events subscribers].freeze
 
     LOADERS = [
-      Support::Factories::FactoryLoader, Support::Invariants::InvariantLoader,
       Support::Commands::CommandLoader, Support::Queries::QueryLoader
     ].freeze
 
