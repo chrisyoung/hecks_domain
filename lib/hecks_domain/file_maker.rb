@@ -42,6 +42,13 @@ class HecksDomain
 
           next unless domain_object.is_a?(Entity)
           write_file("domain/#{aggregate.folder_name}/#{domain_object.folder_name}/", domain_object.repository)
+
+          domain_object.operations_get.each do |operation|
+            write_file(
+              "domain/#{aggregate.folder_name}/#{domain_object.folder_name}/commands/", 
+              parse_file("#{operation.name}.rb", 'domain_object/operation', operation.binding)
+            )
+          end
         end
       end
     end

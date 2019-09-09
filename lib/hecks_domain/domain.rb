@@ -8,9 +8,11 @@ require_relative 'domain/domain_object'
 require_relative 'domain/value_field'
 require_relative 'domain/entity_field'
 require_relative 'domain/list_field'
+require_relative 'domain/operation'
 require_relative 'domain/reference_field'
 require_relative 'domain/spec_helper'
 require_relative 'domain/fields'
+
 
 class HecksDomain
   class Domain

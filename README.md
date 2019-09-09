@@ -62,6 +62,7 @@ A Domain Specific Language for generating Domain Driven Designs.
 1. Make a binary for running CLIs
 
 ### Backlog
+1. Autogenerate initial Readme
 1. Add default invariant module and default factory
 1. Generate a factory
 1. Generate a command

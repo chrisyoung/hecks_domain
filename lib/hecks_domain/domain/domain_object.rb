@@ -5,7 +5,7 @@ require_relative 'domain_object/invariants'
 class HecksDomain
   class DomainObject
     attr_accessor :ruby_file, :repository
-    attr_reader :name, :factories
+    attr_reader :name, :factories, :aggregate
 
     def initialize(name, aggregate, &block)
       @name = name
@@ -14,6 +14,7 @@ class HecksDomain
       @factories = Factories.new
       @commands = Commands.new
       @invariants = Invariants.new
+      @operations = []
       @fields = []
       if is_a?(Entity)
         add_field(:id, IntegerField).tap { |field| field.optional = true }
@@ -73,6 +74,15 @@ class HecksDomain
     end
 
     def operations(list)
+      @operations = list
+
+      @operations = list.map do |name|
+        Operation.new(name: name, domain_object: self)
+      end
+    end
+
+    def operations_get
+      @operations
     end
 
     def currency(name)

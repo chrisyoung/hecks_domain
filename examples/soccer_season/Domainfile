@@ -13,6 +13,7 @@ domain :SoccerSeason do
       optional entity(:result).as :Result
       list(:teams).as Teams: :Team
       entity(:pitch).as :Pitch
+      operations %i[add_goal]
     end
 
     value(:Result) do
