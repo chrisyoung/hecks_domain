@@ -4,15 +4,13 @@ module <%= @domain_object.aggregate.domain.name %>
       class <%= @domain_object.name %>
         module Commands
           class <%= @name%>
-            attr_reader :args, :head
+            attr_reader :head
 
             def initialize(head)
               @head = head
             end
 
             def call
-              @id = @head.class::Repository.save(@head)
-              self
             end
           end
         end
