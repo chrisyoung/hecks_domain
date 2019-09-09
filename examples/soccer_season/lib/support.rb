@@ -6,3 +6,5 @@ require_relative 'support/queries'
 require_relative 'support/factories'
 require_relative 'support/invariants/invariant_loader'
 require_relative 'support/queries/query_loader'
+require_relative 'support/domain_support'
+

@@ -1,0 +1,31 @@
+class Support
+  module DomainSupport
+    TYPES = %w[
+      commands services invariants factories queries events subscribers
+      repository
+    ].freeze
+
+    LOADERS = [
+      Support::Factories::FactoryLoader, Support::Invariants::InvariantLoader,
+      Support::Commands::CommandLoader, Support::Queries::QueryLoader
+    ].freeze
+
+    def self.included(base)
+      path = [
+        '../../domain',
+        base.to_s.split('::')[-2].underscore.downcase,
+        base.to_s.split('::')[-1].underscore.downcase
+      ].join('/')
+
+      require_relative path + '/repository'
+
+      TYPES.each do |name|
+        Dir[File.dirname(__FILE__) + "/#{path}/" + name + '/*.rb'].each do |file|
+          require_relative file
+        end
+      end
+
+      LOADERS.each { |loader| base.include(loader) }
+    end
+  end
+end
