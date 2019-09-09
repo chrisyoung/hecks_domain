@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 domain :SoccerSeason do
   summary     'Soccer Season Scheduler'
   description 'Soccer Season is a more complex domain generaged by HecksDomain'
@@ -13,7 +15,7 @@ domain :SoccerSeason do
       optional entity(:result).as :Result
       list(:teams).as Teams: :Team
       entity(:pitch).as :Pitch
-      operations %i[add_goal]
+      operations %i[AddGoal]
     end
 
     value(:Result) do

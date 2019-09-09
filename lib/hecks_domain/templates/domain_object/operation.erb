@@ -3,8 +3,8 @@ module <%= @domain_object.aggregate.domain.name %>
     module <%= @domain_object.aggregate.name%>
       class <%= @domain_object.name %>
         module Commands
-          class <%= @name%>
-            attr_reader :head
+          class <%= @name %>
+            attr_reader :head, :args
 
             def initialize(head)
               @head = head
