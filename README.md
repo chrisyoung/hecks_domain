@@ -63,9 +63,7 @@ A Domain Specific Language for generating Domain Driven Designs.
 
 ### Backlog
 1. Autogenerate initial Readme
-1. Add default invariant module and default factory
 1. Generate a factory
-1. Generate a command
 1. Clean up filemaker
 1. Break DomainObject template into Entity and Value
 1. Rewind commands
