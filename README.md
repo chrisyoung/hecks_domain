@@ -60,9 +60,12 @@ A Domain Specific Language for generating Domain Driven Designs.
 1. Hecks Domain Version in Domainfile
 1. Create automated build for examples
 1. Make a binary for running CLIs
+1. Helpers to work with repository, i.e. object.save
+1. Generate spec files for commands
+1. Option to ignore commmands that already exist
 
 ### Backlog
-1. Autogenerate initial Readme
+1. Generate initial Readme
 1. Generate a factory
 1. Clean up filemaker
 1. Break DomainObject template into Entity and Value

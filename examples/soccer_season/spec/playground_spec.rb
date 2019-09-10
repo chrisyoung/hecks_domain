@@ -85,4 +85,9 @@ describe "Playground" do
     expect { match.set_teams!([@redteam, @blueteam, @greenteam]) }.to raise_error('Must have exactly two teams')
     expect { match.set_teams!([@redteam, @redteam]) }.to raise_error('Teams must be different')
   end
+
+  it 'Fetching' do
+    result = match.save!
+    SoccerSeason::Domain::Matches::Match::Repository.fetch(match.id)
+  end
 end

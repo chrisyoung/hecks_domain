@@ -17,8 +17,9 @@ module SoccerSeason
             @objects = {}
           end
 
-          def fetch(domain_object)
-            @objects[domain_object.id]
+          def fetch(fetchable)
+            return @objects[fetchable.id] if fetchable.respond_to?(:id)
+            @objects[fetchable]
           end
 
           def save(object)
