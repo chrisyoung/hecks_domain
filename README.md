@@ -56,15 +56,16 @@ A Domain Specific Language for generating Domain Driven Designs.
 ## TODO
 
 ### High Priority
+1. Generate Build factories (rename default to build)
+1. Helpers to work with repository, i.e. object.save
+1. Generate spec files for commands
+
+### Backlog
+1. Option to ignore commmands that already exist when generating
 1. Clean up event handlers to make more sense
 1. Hecks Domain Version in Domainfile
 1. Create automated build for examples
-1. Make a binary for running CLIs
-1. Helpers to work with repository, i.e. object.save
-1. Generate spec files for commands
-1. Option to ignore commmands that already exist
-
-### Backlog
+1. Make a binary for running CLI
 1. Generate initial Readme
 1. Generate a factory
 1. Clean up filemaker
