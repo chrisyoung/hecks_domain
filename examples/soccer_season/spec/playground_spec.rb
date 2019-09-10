@@ -90,4 +90,14 @@ describe "Playground" do
     result = match.save!
     SoccerSeason::Domain::Matches::Match::Repository.fetch(match.id)
   end
+
+  it 'works with a block' do
+    command = nil
+
+    match.add_goal!(time: Time.now, player: @clayton) do |result|
+      command = result.command.class.to_s
+    end
+
+    expect(command).to include("AddGoal")
+  end
 end

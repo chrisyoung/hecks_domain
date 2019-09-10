@@ -3,7 +3,8 @@ class Support
     module CommandRunner
       def self.run(command, &block)
         Events::DomainEventPublisher.emit(
-          const_get(command.class.to_s.split('::')[0])::Events::CommandWillRun.new(command), &block
+          const_get(command.class.to_s.split('::')[0])::
+            Events::CommandWillRun.new(command)
         )
 
         command.call
