@@ -5,6 +5,7 @@ module SoccerSeason
         module Factories
           class Default
             def self.factory(args)
+              args[:goals] ||= []
               Match.new(
                 id: args[:id],
                 fixture: Fixture.new(args[:fixture]),
@@ -15,7 +16,8 @@ module SoccerSeason
                 end,
                 pitch: Pitches::Pitch::Repository.fetch(
                   Pitches::Pitch.default(args[:pitch])
-                )
+                ),
+                goals: args[:goals].map { |goal_args| Goal.new(goal_args) }
               )
             end
           end
