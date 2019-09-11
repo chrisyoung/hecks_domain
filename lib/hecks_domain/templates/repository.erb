@@ -1,3 +1,4 @@
+
 module <%= @aggregate.domain.name %>
   module Domain
     module <%= @aggregate.name %>
@@ -5,16 +6,25 @@ module <%= @aggregate.domain.name %>
         class Repository
           include Singleton
           def self.save(object)
-            object.test_invariants
             instance.save(object)
           end
 
-          def self.fetch(domain_object)
-            instance.fetch(domain_object)
+          def self.fetch(<%= @name.to_s.underscore %>)
+            instance.fetch(<%= @name.to_s.underscore %>)
           end
 
           def initialize
             @objects = {}
+          end
+
+          def self.create(<%= @name.to_s.underscore %>)
+            instance.create(<%= @name.to_s.underscore %>)
+          end
+
+          def create(<%= @name.to_s.underscore %>)
+            self.class.const_get(
+              self.class.to_s.gsub('::Repository', '')
+            ).default(<%= @name.to_s.underscore %>).tap(&:save!)
           end
 
           def fetch(fetchable)
@@ -22,14 +32,14 @@ module <%= @aggregate.domain.name %>
             @objects[fetchable]
           end
 
-          def save(object)
-            @objects[object.hash] = object
+          def save(<%= @name.to_s.underscore %>)
+            @objects[<%= @name.to_s.underscore %>.hash] = <%= @name.to_s.underscore %>
 
-            object.instance_eval do
-              @id = object.hash
+            <%= @name.to_s.underscore %>.instance_eval do
+              @id = <%= @name.to_s.underscore %>.hash
             end
             
-            object
+            <%= @name.to_s.underscore %>
           end
         end
       end

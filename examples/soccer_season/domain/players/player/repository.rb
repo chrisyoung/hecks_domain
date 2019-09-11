@@ -1,3 +1,4 @@
+
 module SoccerSeason
   module Domain
     module Players
@@ -5,16 +6,25 @@ module SoccerSeason
         class Repository
           include Singleton
           def self.save(object)
-            object.test_invariants
             instance.save(object)
           end
 
-          def self.fetch(domain_object)
-            instance.fetch(domain_object)
+          def self.fetch(player)
+            instance.fetch(player)
           end
 
           def initialize
             @objects = {}
+          end
+
+          def self.create(player)
+            instance.create(player)
+          end
+
+          def create(player)
+            self.class.const_get(
+              self.class.to_s.gsub('::Repository', '')
+            ).default(player).tap(&:save!)
           end
 
           def fetch(fetchable)
@@ -22,14 +32,14 @@ module SoccerSeason
             @objects[fetchable]
           end
 
-          def save(object)
-            @objects[object.hash] = object
+          def save(player)
+            @objects[player.hash] = player
 
-            object.instance_eval do
-              @id = object.hash
+            player.instance_eval do
+              @id = player.hash
             end
             
-            object
+            player
           end
         end
       end

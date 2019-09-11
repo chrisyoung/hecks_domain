@@ -13,7 +13,7 @@ module SoccerSeason
                   Teams::Team::Repository.fetch(team.is_a?(Hash) ? team[:id] : team.id)
                 end,
                 pitch: Pitches::Pitch::Repository.fetch(
-                  Pitches::Pitch.default(args[:pitch])
+                  args[:pitch].is_a?(Hash) ? args[:pitch][:id] : args[:pitch].id
                 ),
                 goals: args[:goals].map { |goal_args| Goal.new(goal_args) }
               )

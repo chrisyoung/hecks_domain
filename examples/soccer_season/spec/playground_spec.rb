@@ -5,19 +5,19 @@ describe "Playground" do
   include_examples 'subscriber'
 
   let(:match) do
-    SoccerSeason::Domain::Matches::Match.new(
+    SoccerSeason::Domain::Matches::Match.create(
       fixture: fixture,
       teams: [@redteam, @blueteam],
       pitch: @pitch
-    ).tap(&:save!)
+    )
   end
 
   let(:fixture) do
-    SoccerSeason::Domain::Matches::Fixture.new(
+    {
       season: 2012,
       date: Date.today,
       time: Time.now
-    )
+    }
   end
 
   before do

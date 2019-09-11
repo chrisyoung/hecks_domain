@@ -3,7 +3,8 @@ class Support
     TYPES = %w[commands services invariants queries events subscribers].freeze
 
     LOADERS = [
-      Support::Commands::CommandLoader, Support::Queries::QueryLoader
+      Support::Commands::CommandLoader, Support::Queries::QueryLoader,
+      Support::Repositories::RepositoryLoader
     ].freeze
 
     def self.included(base)
