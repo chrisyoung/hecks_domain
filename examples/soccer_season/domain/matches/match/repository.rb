@@ -22,9 +22,12 @@ module SoccerSeason
           end
 
           def create(match)
-            self.class.const_get(
+            klass = self.class.const_get(
               self.class.to_s.gsub('::Repository', '')
-            ).default(match).tap(&:save)
+            )
+            domain_object = klass.default(match)
+            domain_object.test_invariants
+            domain_object.tap(&:save)
           end
 
           def fetch(fetchable)
