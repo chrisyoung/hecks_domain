@@ -24,11 +24,12 @@ module SoccerSeason
           def create(player)
             self.class.const_get(
               self.class.to_s.gsub('::Repository', '')
-            ).default(player).tap(&:save!)
+            ).default(player).tap(&:save)
           end
 
           def fetch(fetchable)
             return @objects[fetchable.id] if fetchable.respond_to?(:id)
+
             @objects[fetchable]
           end
 
@@ -38,7 +39,7 @@ module SoccerSeason
             player.instance_eval do
               @id = player.hash
             end
-            
+
             player
           end
         end

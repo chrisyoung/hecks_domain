@@ -9,4 +9,3 @@ require_relative 'support/invariants/invariant_loader'
 require_relative 'support/queries/query_loader'
 require_relative 'support/head'
 require_relative 'support/domain_object'
-

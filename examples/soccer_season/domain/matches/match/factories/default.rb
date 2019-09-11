@@ -10,7 +10,9 @@ module SoccerSeason
                 id: args[:id],
                 fixture: Fixture.new(args[:fixture]),
                 teams: args[:teams].map do |team|
-                  Teams::Team::Repository.fetch(team.is_a?(Hash) ? team[:id] : team.id)
+                  Teams::Team::Repository.fetch(
+                    team.is_a?(Hash) ? team[:id] : team.id
+                  )
                 end,
                 pitch: Pitches::Pitch::Repository.fetch(
                   args[:pitch].is_a?(Hash) ? args[:pitch][:id] : args[:pitch].id

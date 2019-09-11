@@ -17,9 +17,8 @@ class Support
       require_relative path + '/repository'
 
       TYPES.each do |name|
-        Dir[File.dirname(__FILE__) + "/#{path}/" + name + '/*.rb'].each do |file|
-          require_relative file
-        end
+        Dir[File.dirname(__FILE__) + "/#{path}/" + name + '/*.rb']
+          .each { |file| require_relative file }
       end
 
       LOADERS.each { |loader| base.include(loader) }
