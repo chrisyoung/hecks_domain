@@ -6,4 +6,5 @@ require_relative '../domain/players/root'
 require_relative '../domain/pitches/root'
 
 module SoccerSeason
+  class InvariantViolationError < StandardError; end
 end

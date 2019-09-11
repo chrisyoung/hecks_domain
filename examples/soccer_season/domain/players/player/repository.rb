@@ -37,7 +37,9 @@ module SoccerSeason
           end
 
           def save(player)
-            @objects[player.hash] = player
+            domain_object = player
+            domain_object.test_invariants
+            @objects[player.hash] = domain_object
 
             player.instance_eval do
               @id = player.hash

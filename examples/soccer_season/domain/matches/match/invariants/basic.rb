@@ -13,7 +13,7 @@ module SoccerSeason
             def invariant_different_teams(_command)
               return unless @teams.map(&:name).uniq.count == 1
 
-              raise 'Teams must be different'
+              raise InvariantViolationError, 'Teams must be different'
             end
           end
         end

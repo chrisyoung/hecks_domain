@@ -5,4 +5,5 @@ require_relative '../domain/<%= aggregate.folder_name %>/root'
 <% end %>
 
 module <%= @name %>
+  class InvariantViolationError < StandardError; end
 end
