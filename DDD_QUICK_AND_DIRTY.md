@@ -59,10 +59,10 @@
 
   
 ## Add Operations
-Once the aggregates are visualized, add operations to each head.
+Once the aggregates are visualized, add operations to each root.
 ```ruby
 ## Find me in a the Domainfile
-  head :Match do
+  root :Match do
     # ...
     operations %i[AddGoal]
   end
@@ -73,10 +73,10 @@ Once the aggregates are visualized, add operations to each head.
 ## From inside of the project directory
 $ thor hecks_domain:new
 
-create  domain/matches/head.rb
-create  domain/teams/head.rb
-create  domain/players/head.rb
-create  domain/pitches/head.rb
+create  domain/matches/root.rb
+create  domain/teams/root.rb
+create  domain/players/root.rb
+create  domain/pitches/root.rb
 create  domain/matches/match.rb
 create  domain/matches/match/repository.rb
 create  domain/matches/match/commands/add_goal.rb
@@ -98,17 +98,17 @@ module SoccerSeason
       class Match
         module Commands
           class AddGoal
-            attr_reader :args, :head, :time, :player
+            attr_reader :args, :root, :time, :player
             def initialize(match, args = {})
               @args = args
-              @head = match
+              @root = match
               @time = args[:time]
               @player = args[:player]
             end
 
             def call
               tap do |command|
-                @head.instance_eval do
+                @root.instance_eval do
                   @goals << Goal.new(time: command.time, player: command.player)
                 end
               end

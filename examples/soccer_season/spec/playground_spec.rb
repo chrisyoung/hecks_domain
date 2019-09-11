@@ -22,32 +22,32 @@ describe 'Playground' do
 
   before do
     @pitch = SoccerSeason::Domain::Pitches::Pitch
-             .new(name: 'downtown').tap(&:save!)
+             .new(name: 'downtown').tap(&:save)
 
     # Red Team
     @redteam = SoccerSeason::Domain::Teams::Team
-               .new(name: 'redteam').tap(&:save!)
+               .new(name: 'redteam').tap(&:save)
 
     @chris = SoccerSeason::Domain::Players::Player
-             .new(name: 'chris', team: @redteam).tap(&:save!)
+             .new(name: 'chris', team: @redteam).tap(&:save)
     @foster = SoccerSeason::Domain::Players::Player
-              .new(name: 'foster', team: @redteam).tap(&:save!)
+              .new(name: 'foster', team: @redteam).tap(&:save)
 
     # Blue Team
     @blueteam = SoccerSeason::Domain::Teams::Team
-                .new(name: 'blueteam').tap(&:save!)
+                .new(name: 'blueteam').tap(&:save)
     @greenteam = SoccerSeason::Domain::Teams::Team
-                 .new(name: 'greenteam').tap(&:save!)
+                 .new(name: 'greenteam').tap(&:save)
     @clayton = SoccerSeason::Domain::Players::Player
-               .new(name: 'clayton', team: @blueteam).tap(&:save!)
+               .new(name: 'clayton', team: @blueteam).tap(&:save)
 
     5.times { match.add_goal!(time: Time.now, player: @foster) }
     4.times { match.add_goal!(time: Time.now, player: @clayton) }
   end
 
-  it 'Has a head' do
+  it 'Has a root' do
     expect(
-      SoccerSeason::Domain::Pitches::Head.superclass
+      SoccerSeason::Domain::Pitches::Root.superclass
     ).to eq SoccerSeason::Domain::Pitches::Pitch
   end
 
@@ -98,7 +98,7 @@ describe 'Playground' do
   end
 
   it 'Fetching' do
-    match.save!
+    match.save
     SoccerSeason::Domain::Matches::Match::Repository.fetch(match.id)
   end
 

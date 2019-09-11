@@ -22,9 +22,9 @@ A Domain Specific Language for generating Domain Driven Designs.
 
 `Matches::Match::Repository`
 
-##### Heads
+##### Roots
 
-`Matches::Head`
+`Matches::Root`
 
 #### Entities
 

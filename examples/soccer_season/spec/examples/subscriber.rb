@@ -27,7 +27,7 @@ RSpec.shared_examples "subscriber" do
     end
 
     def notify(event)
-      event.head.score!
+      event.root.score!
     end
   end
 
@@ -36,9 +36,9 @@ RSpec.shared_examples "subscriber" do
       [
         "\tEVENT FIRED!",
         "\tevent name: " + event.name,
-        "\thead_id:" + event.head.id.to_s,
+        "\troot_id:" + event.root.id.to_s,
         "\targs: " + event.args.to_s,
-        "\thead: " + event.command.head.inspect,
+        "\troot: " + event.command.root.inspect,
       ].each { |value| puts value }
     end
   end

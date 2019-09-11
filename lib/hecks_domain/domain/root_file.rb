@@ -1,8 +1,8 @@
 class HecksDomain
-    class HeadFile
+    class RootFile
       attr_accessor :ruby_file
       def file_name
-        'head.rb'
+        'root.rb'
       end
     end
   

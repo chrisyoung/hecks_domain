@@ -2,7 +2,7 @@ module <%= @aggregate.domain.name %>
   module Domain
     module <%= @aggregate.name %>
       class <%= @name %>
-        <%= 'include Support::Head' if is_a?(Head) %>
+        <%= 'include Support::Root' if is_a?(Root) %>
         include Support::DomainObject
 
         attr_reader <%= public_accessors %>

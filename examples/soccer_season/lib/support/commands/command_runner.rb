@@ -8,7 +8,7 @@ class Support
         )
 
         command.call
-        command.head.test_invariants(command)
+        command.root.test_invariants(command)
         Events::DomainEventPublisher.emit(command, &block)
         command
       end

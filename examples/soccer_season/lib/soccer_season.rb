@@ -1,9 +1,9 @@
 require_relative 'support'
 Dir[File.dirname(__FILE__) + "/../events/*.rb"].each { |file| require_relative file }
-require_relative '../domain/matches/head'
-require_relative '../domain/teams/head'
-require_relative '../domain/players/head'
-require_relative '../domain/pitches/head'
+require_relative '../domain/matches/root'
+require_relative '../domain/teams/root'
+require_relative '../domain/players/root'
+require_relative '../domain/pitches/root'
 
 module SoccerSeason
 end

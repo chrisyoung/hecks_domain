@@ -14,7 +14,7 @@ class HecksDomain
       domain.ruby_file = build_file('domain', domain.binding)
       domain.spec_helper.ruby_file = build_file('spec_helper', domain.binding)
       domain.aggregates.each do |aggregate|
-        aggregate.head_file.ruby_file = build_file('head', aggregate.binding)
+        aggregate.root_file.ruby_file = build_file('root', aggregate.binding)
         aggregate.domain_objects.each do |domain_object|
           domain_object.commands.ruby_file = build_file('domain_object/commands', domain_object.binding)
           domain_object.ruby_file = build_file('domain_object', domain_object.binding)

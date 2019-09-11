@@ -72,7 +72,7 @@ class HecksDomain
 
     def dump_aggregates
       domain.aggregates.each do |aggregate|
-        write_file("domain/#{aggregate.folder_name}/", aggregate.head_file)
+        write_file("domain/#{aggregate.folder_name}/", aggregate.root_file)
       end
     end
 

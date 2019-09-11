@@ -2,7 +2,7 @@ module SoccerSeason
   module Domain
     module Teams
       class Team
-        include Support::Head
+        include Support::Root
         include Support::DomainObject
 
         attr_reader :id, :name, :id

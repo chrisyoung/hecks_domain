@@ -1,5 +1,5 @@
 class Support
-  module Head
+  module Root
     TYPES = %w[commands services invariants queries events subscribers].freeze
 
     LOADERS = [

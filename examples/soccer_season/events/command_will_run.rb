@@ -1,9 +1,9 @@
 module SoccerSeason
   module Events
     class CommandWillRun
-      attr_reader :head, :args, :command_to_run
+      attr_reader :root, :args, :command_to_run
       def initialize(command)
-        @head = command.head
+        @root = command.root
         @command_to_run = command
       end
     end

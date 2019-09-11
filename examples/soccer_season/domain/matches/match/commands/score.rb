@@ -4,10 +4,10 @@ module SoccerSeason
       class Match
         module Commands
           class Score
-            attr_reader :args, :head
+            attr_reader :args, :root
 
             def initialize(match)
-              @head = @match = match
+              @root = @match = match
               @teams = match.teams
               @goals = match.goals
             end

@@ -6,7 +6,7 @@ class HecksDomain
     end
   end
   class Entity < DomainObject;end
-  class Head < Entity;end
+  class Root < Entity;end
   class ValueObject < DomainObject;end
   class StringField < ValueField;end
   class IntegerField < ValueField;end

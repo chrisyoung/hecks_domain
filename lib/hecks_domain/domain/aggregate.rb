@@ -1,13 +1,13 @@
 class HecksDomain
-  class Aggregate  
+  class Aggregate
     attr_reader :domain, :name, :domain_objects
-    attr_accessor :ruby_file, :head_file
+    attr_accessor :ruby_file, :root_file
 
     def initialize(name, domain, &block)
       @name = name
       @entities = []
       @value_objects = []
-      @head_file = HeadFile.new
+      @root_file = RootFile.new
       @domain = domain
       instance_eval(&block)
       @domain_objects = @entities + @value_objects
@@ -27,9 +27,9 @@ class HecksDomain
       name.to_s.underscore
     end
 
-    def head(name, &block)
-      @head = Head.new(name, self, &block).tap do |head|
-        @entities << head
+    def root(name, &block)
+      @root = Root.new(name, self, &block).tap do |root|
+        @entities << root
       end
     end
 

@@ -4,10 +4,10 @@ module <%= @domain_object.aggregate.domain.name %>
       class <%= @domain_object.name %>
         module Commands
           class <%= @name %>
-            attr_reader :head, :args
+            attr_reader :root, :args
 
-            def initialize(head)
-              @head = head
+            def initialize(root)
+              @root = root
             end
 
             def call

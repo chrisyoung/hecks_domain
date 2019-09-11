@@ -2,7 +2,7 @@ module SoccerSeason
   module Domain
     module Matches
       class Match
-        include Support::Head
+        include Support::Root
         include Support::DomainObject
 
         attr_reader :id, :fixture, :result, :pitch, :id
