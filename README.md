@@ -61,6 +61,7 @@ A Domain Specific Language for generating Domain Driven Designs.
 1. Generate spec files for commands
 
 ### Backlog
+1. Values are immutable, so provide equality
 1. Option to ignore commmands that already exist when generating
 1. Clean up event handlers to make more sense
 1. Hecks Domain Version in Domainfile
