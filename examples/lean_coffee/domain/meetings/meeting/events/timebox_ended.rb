@@ -1,12 +1,14 @@
 module LeanCoffee
-  module Meetings
-    class Meeting
-      module Events
-        class TimeboxEnded
-          attr_reader :head, :args
-          def initialize(head:, args:)
-            @head = head
-            @args = args
+  module Domain
+    module Meetings
+      class Meeting
+        module Events
+          class TimeboxEnded
+            attr_reader :root, :args
+            def initialize(root:, args:)
+              @root = root
+              @args = args
+            end
           end
         end
       end

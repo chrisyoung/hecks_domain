@@ -4,14 +4,14 @@ module LeanCoffee
       module Subscribers
         class TimeboxEnded
           def self.domain_event
-            LeanCoffee::Meetings::Meeting::Events::TimeboxEnded
+            LeanCoffee::Domain::Meetings::Meeting::Events::TimeboxEnded
           end
 
           def self.notify(event)
-            event.head.wait_for_next_phase!
+            event.root.wait_for_next_phase!
           end
 
-          HecksDomain::Events::DomainEventPublisher.subscribe(self)
+          Support::Events::DomainEventPublisher.subscribe(self)
         end
       end
     end

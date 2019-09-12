@@ -1,19 +1,21 @@
 module LeanCoffee
-  module Meetings
-    class Meeting
-      module Commands
-        class StartOrdering
-          attr_reader :args, :head
+  module Domain
+    module Meetings
+      class Meeting
+        module Commands
+          class StartOrdering
+            attr_reader :args, :root
 
-          def initialize(meeting)
-            @meeting = meeting
-            @head = meeting
-          end
+            def initialize(meeting)
+              @meeting = meeting
+              @root = meeting
+            end
 
-          def call
-            @meeting.instance_eval { @phase = :ordering }
-            Meeting::MeetingTimer.start(@meeting.timebox.ordering_duration, @meeting)
-            self
+            def call
+              @meeting.instance_eval { @phase = :ordering }
+              Meeting::MeetingTimer.start(@meeting.timebox.ordering_duration, @meeting)
+              self
+            end
           end
         end
       end

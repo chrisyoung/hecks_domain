@@ -15,10 +15,11 @@ domain(:LeanCoffee) do
       value(:timebox).as(:Timebox)
 
       operations %i[
-        StartCollecting AddTopic StartOrdering OrderByVotes MoveTopic
-        StartDiscussing StartVoting VoteForTopic WaitForTheNextPhase
-        WaitForTopicExtensionVote VotetoKeepTalking
-        VoteToStopTalking KeepTalking NextTopic
+        AddTopic DiscussNextTopic KeepTalking MoveTopicToBottom
+        MoveTopicToTop OrderByVotes Save
+        StartCollecting StartOrdering StartDiscussing StartVoting
+        VoteToKeepTalking VoteToStopTalking Vote WaitForExtensionVote
+        WaitForNextPhase
       ]
     end
 

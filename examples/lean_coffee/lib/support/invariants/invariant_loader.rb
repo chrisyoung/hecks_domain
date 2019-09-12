@@ -1,4 +1,4 @@
-class HecksDomain
+class Support
   module Invariants
     module InvariantLoader
       def self.included(base)

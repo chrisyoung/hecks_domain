@@ -1,21 +1,22 @@
 module LeanCoffee
-  module Meetings
-    class Meeting
-      module Commands
-        class VoteToStopTalking
-          attr_reader :args, :head
+  module Domain
+    module Meetings
+      class Meeting
+        module Commands
+          class VoteToStopTalking
+            attr_reader :args, :root
 
-          def initialize(head, participant)
-            @head = head
-            @participant = participant
-          end
+            def initialize(root, participant)
+              @root = root
+              @participant = participant
+            end
 
-          def call
-            self
+            def call
+              self
+            end
           end
         end
       end
     end
   end
 end
-

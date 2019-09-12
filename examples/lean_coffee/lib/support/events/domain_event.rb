@@ -1,10 +1,10 @@
-class HecksDomain
+class Support
   module Events
     class DomainEvent
-      attr_reader :type, :name, :command, :args, :head
+      attr_reader :type, :name, :command, :args, :root
       def initialize(command)
         @command = command
-        @head = @command.head
+        @root = @command.root
         @type = @command.class
         @name = @type.to_s.underscore
         @args = command.args

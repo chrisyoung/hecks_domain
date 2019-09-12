@@ -8,13 +8,13 @@ module LeanCoffee
           end
 
           def self.notify(event)
-            return unless event.head
-            return unless event.head.class == LeanCoffee::Meetings::Meeting
+            return unless event.root
+            return unless event.root.class == LeanCoffee::Meetings::Meeting
 
-            Services::SimpleStateMachine.new(event.head).verify!(event.command.command_to_run)
+            Services::SimpleStateMachine.new(event.root).verify!(event.command.command_to_run)
           end
 
-          HecksDomain::Events::DomainEventPublisher.subscribe(self)
+          Support::Events::DomainEventPublisher.subscribe(self)
         end
       end
     end

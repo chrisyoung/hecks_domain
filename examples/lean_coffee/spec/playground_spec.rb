@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe 'Playground' do
   let(:meeting) do
-    LeanCoffee::Meetings::Meeting.default(
+    LeanCoffee::Domain::Meetings::Meeting.default(
       allowed_votes: 5,
       timebox_extension: 1,
-      discussion: LeanCoffee::Meetings::Discussion.default,
+      discussion: LeanCoffee::Domain::Meetings::Discussion.default,
       time_boxes: { voting: 0, collection: 0, ordering: 0 },
       participants: [{ name: 'Angie' }, { name: 'Chris' }]
     )
@@ -21,17 +21,17 @@ describe 'Playground' do
 
   let(:topics) {
     {
-      lean_coffee: LeanCoffee::Meetings::Topic.default(
-        value: 'lean coffee', timebox: LeanCoffee::Meetings::Timebox.zeroed
+      lean_coffee: LeanCoffee::Domain::Meetings::Topic.default(
+        value: 'lean coffee', timebox: LeanCoffee::Domain::Meetings::Timebox.zeroed
       ),
-      retrospective: LeanCoffee::Meetings::Topic.default(
-        value: 'retrospective', timebox: LeanCoffee::Meetings::Timebox.zeroed
+      retrospective: LeanCoffee::Domain::Meetings::Topic.default(
+        value: 'retrospective', timebox: LeanCoffee::Domain::Meetings::Timebox.zeroed
       )
     }
   }
 
   it 'Example' do
-    LeanCoffee::Meetings::Meeting.example
+    LeanCoffee::Domain::Meetings::Meeting.example
   end
 
   it 'Play a game' do

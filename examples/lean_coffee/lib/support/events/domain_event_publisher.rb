@@ -1,4 +1,4 @@
-class HecksDomain
+class Support
   module Events
     class DomainEventPublisher
       include Singleton

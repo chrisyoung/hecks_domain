@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe LeanCoffee::Meetings::Meeting do
+describe LeanCoffee::Domain::Meetings::Meeting do
   let(:meeting) do
     described_class.default(
       allowed_votes: 5,
@@ -19,21 +19,21 @@ describe LeanCoffee::Meetings::Meeting do
   end
 
   let(:lean_coffee_topic) do
-    LeanCoffee::Meetings::Topic.new(
-      value: 'lean coffee', votes: 0, timebox: LeanCoffee::Meetings::TopicTimebox.zeroed
+    LeanCoffee::Domain::Meetings::Topic.new(
+      value: 'lean coffee', votes: 0, timebox: LeanCoffee::Domain::Meetings::TopicTimebox.zeroed
     )
   end
 
   let(:retrospective_topic) do
-    LeanCoffee::Meetings::Topic.new(
-      value: 'retrospective', votes: 0, timebox: LeanCoffee::Meetings::TopicTimebox.zeroed
+    LeanCoffee::Domain::Meetings::Topic.new(
+      value: 'retrospective', votes: 0, timebox: LeanCoffee::Domain::Meetings::TopicTimebox.zeroed
     )
   end
 
   describe '.example' do
     it 'Needs timeboxes' do
       expect(
-        LeanCoffee::Meetings::Meeting.example
+        LeanCoffee::Domain::Meetings::Meeting.example
       ).to be
     end
   end

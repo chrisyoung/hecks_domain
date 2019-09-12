@@ -1,23 +1,22 @@
-['factories'].each do |name|
-  Dir[File.dirname(__FILE__) + "/topic/#{name}/*.rb"].each { |file| require_relative file }
-end
-
 module LeanCoffee
-  module Meetings
-    class Topic
-      include HecksDomain::Factories::FactoryLoader
+  module Domain
+    module Meetings
+      class Topic
+        
+        include Support::DomainObject
 
-      attr_reader :value, :votes, :timebox
+        attr_reader :value, :votes, :timebox
 
-      def initialize(value:, votes:, timebox:)
-        @value = value
-        @votes = votes
-        @timebox = timebox
+        def initialize(value:, votes:, timebox:)
+          @value = value
+          @votes = votes
+          @timebox = timebox
+        end
+
+        private
+
+        attr_writer :value, :votes, :timebox
       end
-
-      private
-
-      attr_writer :value, :votes, :timebox
     end
   end
 end

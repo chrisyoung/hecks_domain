@@ -1,9 +1,8 @@
-class HecksDomain
+class Support
   module Factories
     module FactoryLoader
       def self.included(base)
         return unless base.constants.include?(:Factories)
-
         base::Factories.constants.each do |constant|
           base.class_eval "
             def #{constant.to_s.underscore}(*args)

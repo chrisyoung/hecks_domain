@@ -1,14 +1,16 @@
 module LeanCoffee
-  module Meetings
-    class Meeting
-      class ExtensionTimer
-        def self.start(meeting)
-          Thread.new do
-            sleep meeting.timebox.topic_extension_duration * 60
+  module Domain
+    module Meetings
+      class Meeting
+        class ExtensionTimer
+          def self.start(meeting)
+            Thread.new do
+              sleep meeting.timebox.topic_extension_duration * 60
 
-            HecksDomain::Events::DomainEventPublisher.emit(
-              Events::TopicExtensionTimeboxEnded.new(head: meeting, args: {})
-            )
+              Support::Events::DomainEventPublisher.emit(
+                Events::TopicExtensionTimeboxEnded.new(root: meeting, args: {})
+              )
+            end
           end
         end
       end

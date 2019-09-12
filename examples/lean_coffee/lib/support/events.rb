@@ -1,7 +1,7 @@
 require_relative 'events/domain_event_publisher'
 require_relative 'events/domain_event'
 
-class HecksDomain
+class Support
   module Events
     def self.subscribe(subscriber)
       DomainEventPublisher.subscribe(subscriber)

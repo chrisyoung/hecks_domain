@@ -1,25 +1,26 @@
 module LeanCoffee
-  module Meetings
-    class Meeting
-      module Commands
-        class StartDiscussing
-          attr_reader :args, :head
+  module Domain
+    module Meetings
+      class Meeting
+        module Commands
+          class StartDiscussing
+            attr_reader :args, :root
 
-          def initialize(meeting)
-            @meeting = meeting
-            @head = meeting
-          end
-
-          def call
-            @head.instance_eval do
-              @phase = :discussing
+            def initialize(meeting)
+              @meeting = meeting
+              @root = meeting
             end
 
-            self
+            def call
+              @root.instance_eval do
+                @phase = :discussing
+              end
+
+              self
+            end
           end
         end
       end
     end
   end
 end
-

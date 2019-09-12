@@ -7,8 +7,10 @@ require_relative 'topic_timebox'
 require_relative 'extension'
 
 module LeanCoffee
-  module Meetings
-    class Head < Meeting
+  module Domain
+    module Meetings
+      class Root < Meeting
+      end
     end
   end
 end

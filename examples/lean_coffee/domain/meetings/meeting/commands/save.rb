@@ -1,21 +1,22 @@
 module LeanCoffee
-  module Meetings
-    class Meeting
-      module Commands
-        class Save
-          attr_reader :args, :head
+  module Domain
+    module Meetings
+      class Meeting
+        module Commands
+          class Save
+            attr_reader :args, :root
 
-          def initialize(head)
-            @head = head
-          end
+            def initialize(root)
+              @root = root
+            end
 
-          def call
-            @id = @head.class::Repository.save(@head)
-            self
+            def call
+              @id = @root.class::Repository.save(@root)
+              self
+            end
           end
         end
       end
     end
   end
 end
-
