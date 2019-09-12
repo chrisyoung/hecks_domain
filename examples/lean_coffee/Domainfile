@@ -7,7 +7,7 @@ domain(:LeanCoffee) do
   homepage    'http://www.example.com'
 
   aggregate :Meetings do
-    head :Meeting do
+    root :Meeting do
       integer :timebox_extension
       optional string(:phase)
       list(:participants).as(:Participant)
@@ -15,10 +15,10 @@ domain(:LeanCoffee) do
       value(:timebox).as(:Timebox)
 
       operations %i[
-        start_collecting add_topic start_ordering order_by_votes move_topic
-        start_discussing start_voting vote_for_topic wait_for_the_next_phase
-        wait_for_topic_extension_vote vote_to_keep_talking
-        vote_to_stop_talking! keep_talking! next_topic!
+        StartCollecting AddTopic StartOrdering OrderByVotes MoveTopic
+        StartDiscussing StartVoting VoteForTopic WaitForTheNextPhase
+        WaitForTopicExtensionVote VotetoKeepTalking
+        VoteToStopTalking KeepTalking NextTopic
       ]
     end
 
