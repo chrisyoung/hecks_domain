@@ -8,7 +8,6 @@ domain(:LeanCoffee) do
 
   aggregate :Meetings do
     root :Meeting do
-      integer :timebox_extension
       optional string(:phase)
       list(:participants).as(:Participant)
       entity(:discussion).as(:Discussion)

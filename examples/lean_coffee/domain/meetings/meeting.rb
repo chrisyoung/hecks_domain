@@ -9,7 +9,6 @@ module LeanCoffee
 
         def initialize(id: nil, timebox_extension:, phase: nil, participants:, discussion:, timebox:)
           @id = id
-          @timebox_extension = timebox_extension
           @phase = phase
           @participants = participants
           @discussion = discussion
