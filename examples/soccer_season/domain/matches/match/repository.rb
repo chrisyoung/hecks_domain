@@ -26,7 +26,6 @@ module SoccerSeason
               self.class.to_s.gsub('::Repository', '')
             )
             domain_object = klass.default(match)
-            domain_object.test_invariants
             domain_object.tap(&:save)
           end
 
@@ -38,7 +37,6 @@ module SoccerSeason
 
           def save(match)
             domain_object = match
-            domain_object.test_invariants
             @objects[match.hash] = domain_object
 
             match.instance_eval do

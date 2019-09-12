@@ -95,7 +95,7 @@ describe 'Playground' do
     expect(meeting.phase).to eq :waiting_for_extension_vote
 
     meeting.discuss_next_topic!
-
+    
     expect(meeting.discussion.discussing).to eq(topics[:lean_coffee])
 
     sleep(0.001)
@@ -121,5 +121,7 @@ describe 'Playground' do
     meeting.vote_to_stop_talking!(participant: chris)
     meeting.vote_to_stop_talking!(participant: angie)
     meeting.discuss_next_topic!
+
+    meeting.save
   end
 end

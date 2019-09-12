@@ -26,7 +26,6 @@ module <%= @aggregate.domain.name %>
               self.class.to_s.gsub('::Repository', '')
             )
             domain_object = klass.default(<%= @name.to_s.underscore %>)
-            domain_object.test_invariants
             domain_object.tap(&:save)
           end
 
@@ -38,7 +37,6 @@ module <%= @aggregate.domain.name %>
 
           def save(<%= @name.to_s.underscore %>)
             domain_object = <%= @name.to_s.underscore %>
-            domain_object.test_invariants
             @objects[<%= @name.to_s.underscore %>.hash] = domain_object
 
             <%= @name.to_s.underscore %>.instance_eval do
