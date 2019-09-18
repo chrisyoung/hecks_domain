@@ -4,9 +4,10 @@ class HecksDomain
   class FileMaker
     attr_reader :domain
 
-    def initialize(domain)
+    def initialize(domain, skip_commands = true)
       @domain = domain
       @create_file = CreateFile.new
+      @skip_commands = skip_commands
     end
 
     def dump
@@ -47,7 +48,7 @@ class HecksDomain
             write_file(
               "domain/#{aggregate.folder_name}/#{domain_object.folder_name}/commands/", 
               parse_file("#{operation.name.to_s.underscore}.rb", 'domain_object/operation', operation.binding)
-            )
+            ) unless @skip_commands
           end
         end
       end
