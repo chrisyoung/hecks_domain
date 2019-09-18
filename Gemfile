@@ -1,4 +1,3 @@
-gem 'rspec'
+gemspec
 gem 'pry'
-gem 'erubis'
-gem 'thor'
+gem 'rspec'

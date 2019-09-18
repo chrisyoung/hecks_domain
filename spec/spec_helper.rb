@@ -1,1 +1,1 @@
-require_relative '../lib/hecks_domain'
+require_relative '../lib/hecks/domain'
