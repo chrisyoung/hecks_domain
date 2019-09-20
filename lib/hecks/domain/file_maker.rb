@@ -28,6 +28,11 @@ class HecksDomain
     end
 
     def dump_spec
+      if File.exist?('spec/spec_helper.rb')
+        puts '        ' + 'skip'.colorize(:light_yellow) + '       spec/spec_helper.rb'
+        return
+      end
+
       write_file('spec/', domain.spec_helper)
     end
 
@@ -59,7 +64,7 @@ class HecksDomain
         directory = "domain/#{aggregate.folder_name}/#{domain_object.folder_name}/commands/"
         file_name = "#{operation.name.to_s.underscore}.rb"
         if File.exist?(directory + file_name)
-          puts '   ' + 'skip'.colorize(:light_yellow) + '       ' + directory + file_name + ': ' + 'the command already exists, so skipping.'.colorize(:light_yellow)
+          puts '        ' + 'skip'.colorize(:light_yellow) + '       ' + directory + file_name
           next
         end
 

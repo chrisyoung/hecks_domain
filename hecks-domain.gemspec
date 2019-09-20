@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.files       = Dir['lib/**/*']
   s.homepage    = 'http://www.example.com'
 
-  s.add_runtime_dependency 'erubis'
-  s.add_runtime_dependency 'thor'
-  s.add_runtime_dependency 'colorize'
+  s.add_dependency 'colorize', '~> 0.8'
+  s.add_dependency 'erubis', '~> 2.7'
+  s.add_dependency 'thor', '~> 0.20'
 end
