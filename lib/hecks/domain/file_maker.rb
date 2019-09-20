@@ -4,10 +4,9 @@ class HecksDomain
   class FileMaker
     attr_reader :domain
 
-    def initialize(domain, skip_commands = true)
+    def initialize(domain)
       @domain = domain
       @create_file = CreateFile.new
-      @skip_commands = skip_commands
     end
 
     def dump
@@ -45,10 +44,14 @@ class HecksDomain
           write_file("domain/#{aggregate.folder_name}/#{domain_object.folder_name}/", domain_object.repository)
 
           domain_object.operations_get.each do |operation|
-            write_file(
-              "domain/#{aggregate.folder_name}/#{domain_object.folder_name}/commands/", 
-              parse_file("#{operation.name.to_s.underscore}.rb", 'domain_object/operation', operation.binding)
-            ) unless @skip_commands
+            directory = "domain/#{aggregate.folder_name}/#{domain_object.folder_name}/commands/"
+            file_name = "#{operation.name.to_s.underscore}.rb"
+            if File.exist?(directory + file_name)
+              puts '   ' + ColorizedString.new('exists').light_blue + '     ' + directory + file_name + ': ' + ColorizedString.new('the command already exists, so skipping.').light_blue
+              next
+            end
+
+            write_file(directory, parse_file(file_name, 'domain_object/operation', operation.binding))
           end
         end
       end
