@@ -59,7 +59,7 @@ class HecksDomain
         directory = "domain/#{aggregate.folder_name}/#{domain_object.folder_name}/commands/"
         file_name = "#{operation.name.to_s.underscore}.rb"
         if File.exist?(directory + file_name)
-          puts '   ' + 'exist'.colorize(:light_blue) + '      ' + directory + file_name + ': ' + 'the command already exists, so skipping.'.colorize(:light_blue)
+          puts '   ' + 'skip'.colorize(:light_yellow) + '       ' + directory + file_name + ': ' + 'the command already exists, so skipping.'.colorize(:light_yellow)
           next
         end
 

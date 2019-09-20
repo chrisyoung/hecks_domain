@@ -11,8 +11,7 @@ class Support
 
         base.instance_eval do
           def create(domain_object = nil)
-            test_invariants
-            self::Repository.create(domain_object)
+            self::Repository.create(domain_object).tap(&:test_invariants)
           end
 
           def fetch(fetchable)
