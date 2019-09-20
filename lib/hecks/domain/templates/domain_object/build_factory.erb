@@ -1,0 +1,27 @@
+module <%= @aggregate.domain.name %>
+  module Domain
+    module <%= @aggregate.name%>
+      class <%= @name %>
+        module Factories
+          class Build
+            def self.factory(args)
+              <%= @name %>.new(
+              <% @fields.each do |field| %>
+                <% if field.is_a?(ListField) %>
+                <%= field.name.to_s%>: (args[:<%= field.name.to_s %>] || []).map do |object|
+                  object.is_a?(Hash) ? <%= field.module_name.to_s %>.build(object) : object
+                end,
+                <% elsif field.module_name %>
+                <%= field.name.to_s %>: args[:<%= field.name.to_s %>].is_a?(Hash) ? <%= field.module_name.to_s %>.build(args[:<%= field.name.to_s %>]) : args[:<%= field.name.to_s %>],
+                <% else %>
+                <%= field.name.to_s %>: args[:<%= field.name.to_s %>],
+                <% end %>
+              <% end %>
+              )
+            end
+          end
+        end
+      end
+    end
+  end
+end

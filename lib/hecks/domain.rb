@@ -4,7 +4,6 @@ require 'erubis'
 require 'thor'
 require 'fileutils'
 
-
 require_relative 'domain/generator'
 require_relative 'domain/top_level_methods'
 require_relative 'domain/support'

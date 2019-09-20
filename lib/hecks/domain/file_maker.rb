@@ -39,21 +39,31 @@ class HecksDomain
       domain.aggregates.each do |aggregate|
         aggregate.domain_objects.each do |domain_object|
           write_file("domain/#{aggregate.folder_name}/", domain_object)
-
+          dump_factories(domain_object, aggregate)
           next unless domain_object.is_a?(Entity)
+
           write_file("domain/#{aggregate.folder_name}/#{domain_object.folder_name}/", domain_object.repository)
-
-          domain_object.operations_get.each do |operation|
-            directory = "domain/#{aggregate.folder_name}/#{domain_object.folder_name}/commands/"
-            file_name = "#{operation.name.to_s.underscore}.rb"
-            if File.exist?(directory + file_name)
-              puts '   ' + 'exist'.colorize(:light_blue) + '      ' + directory + file_name + ': ' + 'the command already exists, so skipping.'.colorize(:light_blue)
-              next
-            end
-
-            write_file(directory, parse_file(file_name, 'domain_object/operation', operation.binding))
-          end
+          dump_operations(domain_object, aggregate)
         end
+      end
+    end
+
+    def dump_factories(domain_object, aggregate)
+      directory = "domain/#{aggregate.folder_name}/#{domain_object.folder_name}/factories/"
+      file_name = 'build.rb'
+      write_file(directory, parse_file(file_name, 'domain_object/build_factory', domain_object.binding))
+    end
+
+    def dump_operations(domain_object, aggregate)
+      domain_object.operations_get.each do |operation|
+        directory = "domain/#{aggregate.folder_name}/#{domain_object.folder_name}/commands/"
+        file_name = "#{operation.name.to_s.underscore}.rb"
+        if File.exist?(directory + file_name)
+          puts '   ' + 'exist'.colorize(:light_blue) + '      ' + directory + file_name + ': ' + 'the command already exists, so skipping.'.colorize(:light_blue)
+          next
+        end
+
+        write_file(directory, parse_file(file_name, 'domain_object/operation', operation.binding))
       end
     end
 
