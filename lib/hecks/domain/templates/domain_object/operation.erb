@@ -6,8 +6,9 @@ module <%= @domain_object.aggregate.domain.name %>
           class <%= @name %>
             attr_reader :root, :args
 
-            def initialize(root)
+            def initialize(root, args={})
               @root = root
+              @args = args
             end
 
             def call
