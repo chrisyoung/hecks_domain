@@ -3,20 +3,30 @@ module <%= @aggregate.domain.name %>
     module <%= @aggregate.name%>
       class <%= @name %>
         module Factories
+          # Recursively build domain objects.  Used in the domain as the primary
+          # factory. The results of #build can be passed to any other build
+          # factory in the domain. Takes a hash, or a list of hashes.  If a list
+          # is given, it will return a list of the instantiated objects
           class Build
-            def self.factory(args)
+            def self.factory(args=nil)
+              return args if args.nil?
+              return args unless args.is_a?(Hash)
+
+              [args].flatten.map do |domain_object_args|
+                new_domain_object(domain_object_args)
+              end.tap do |result|
+                return result.first unless args.is_a?(Array)
+              end
+            end
+
+            def self.new_domain_object(args)
               <%= @name %>.new(
-              <% @fields.each do |field| %>
-                <% if field.is_a?(ListField) %>
-                <%= field.name.to_s%>: (args[:<%= field.name.to_s %>] || []).map do |object|
-                  object.is_a?(Hash) ? <%= field.module_name.to_s %>.build(object) : object
-                end,
-                <% elsif field.module_name %>
-                <%= field.name.to_s %>: args[:<%= field.name.to_s %>].is_a?(Hash) ? <%= field.module_name.to_s %>.build(args[:<%= field.name.to_s %>]) : args[:<%= field.name.to_s %>],
-                <% else %>
-                <%= field.name.to_s %>: args[:<%= field.name.to_s %>],
-                <% end %>
-              <% end %>
+                args.merge(
+                  <% @fields.each do |field| %>
+                  <% next unless (field.respond_to?(:module_name) && field.module_name)  %>
+                  <%= field.name.to_s%>: <%= field.module_name.is_a?(Hash) ? 'Domain::' + field.module_name.to_a.join('::').to_s : field.module_name.to_s %>.build(args[:<%= field.name.to_s%>]),
+                  <% end %>
+                )
               )
             end
           end
