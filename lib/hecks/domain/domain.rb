@@ -26,6 +26,7 @@ class HecksDomain
       @spec_helper = SpecHelper.new
       @factory_loader = FactoryLoader.new
       @string_support = StringSupport.new
+      @domain_version = nil
 
       instance_eval(&block)
     end
@@ -68,6 +69,10 @@ class HecksDomain
 
     def folder_name
       @folder_name = @name.to_s.underscore
+    end
+
+    def domain_version(value)
+      @domain_version = value
     end
   end
 end
