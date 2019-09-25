@@ -37,7 +37,7 @@ class HecksDomain
     end
 
     def dump_domain
-      write_file('lib/', parse_file('domain.rb', 'domain', domain.binding))
+      write_file('lib/', parse_file("#{domain.name.underscore}.rb", 'domain', domain.binding))
     end
 
     def dump_domain_objects
