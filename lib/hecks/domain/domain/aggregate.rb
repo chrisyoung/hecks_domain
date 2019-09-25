@@ -1,13 +1,11 @@
 class HecksDomain
   class Aggregate
     attr_reader :domain, :name, :domain_objects
-    attr_accessor :ruby_file, :root_file
 
     def initialize(name, domain, &block)
       @name = name
       @entities = []
       @value_objects = []
-      @root_file = RootFile.new
       @domain = domain
       instance_eval(&block)
       @domain_objects = @entities + @value_objects

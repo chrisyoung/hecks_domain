@@ -8,7 +8,6 @@ require_relative 'domain/generator'
 require_relative 'domain/top_level_methods'
 require_relative 'domain/support'
 require_relative 'domain/parser'
-require_relative 'domain/builder'
 require_relative 'domain/file_maker'
 
 class HecksDomain
@@ -18,7 +17,7 @@ class HecksDomain
   end
 
   def build
-    Builder.call(@parser.domain)
+    FileMaker.new(@parser.domain).dump
   end
 
   def dump

@@ -1,25 +1,15 @@
-require_relative 'domain_object/factories'
-require_relative 'domain_object/commands'
-require_relative 'domain_object/invariants'
-
 class HecksDomain
   class DomainObject
-    attr_accessor :ruby_file, :repository
-    attr_reader :name, :factories, :aggregate
+    attr_reader :name, :aggregate
 
     def initialize(name, aggregate, &block)
       @name = name
       @aggregate = aggregate
-      @repository = Repository.new
-      @factories = Factories.new
-      @commands = Commands.new
-      @invariants = Invariants.new
       @operations = []
       @fields = []
       if is_a?(Entity)
         add_field(:id, IntegerField).tap { |field| field.optional = true }
       end
-      @repository = Repository.new
       instance_eval(&block)
     end
 

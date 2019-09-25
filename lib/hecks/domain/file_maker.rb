@@ -33,21 +33,21 @@ class HecksDomain
         return
       end
 
-      write_file('spec/', domain.spec_helper)
+      write_file('spec/', parse_file('spec_helper.rb', 'spec_helper', domain.binding))
     end
 
     def dump_domain
-      write_file('lib/', domain)
+      write_file('lib/', parse_file('domain.rb', 'domain', domain.binding))
     end
 
     def dump_domain_objects
       domain.aggregates.each do |aggregate|
         aggregate.domain_objects.each do |domain_object|
-          write_file("domain/#{aggregate.folder_name}/", domain_object)
+          write_file("domain/#{aggregate.folder_name}/", parse_file("#{domain_object.name.to_s.underscore}.rb", 'domain_object', domain_object.binding))
           dump_factories(domain_object, aggregate)
           next unless domain_object.is_a?(Entity)
 
-          write_file("domain/#{aggregate.folder_name}/#{domain_object.folder_name}/", domain_object.repository)
+          write_file("domain/#{aggregate.folder_name}/#{domain_object.folder_name}/", parse_file('repository.rb', 'repository', domain_object.binding))
           dump_operations(domain_object, aggregate)
         end
       end
@@ -72,6 +72,15 @@ class HecksDomain
       end
     end
 
+    def dump_aggregates
+      domain.aggregates.each do |aggregate|
+        write_file('events/', parse_file('command_will_run.rb', 'events/command_will_run', domain.binding))
+        write_file("domain/#{aggregate.folder_name}/",  parse_file('root.rb', 'root', aggregate.binding))
+      end
+    end
+
+    private
+
     def build_file(name, context)
       Erubis::Eruby.new(read_template(name)).result(context)
     end
@@ -85,14 +94,9 @@ class HecksDomain
     end
 
     def parse_file(file_name, template_name, binding)
-      Struct.new(:file_name, :ruby_file)
-        .new(file_name, build_file(template_name, binding))
-    end
-
-    def dump_aggregates
-      domain.aggregates.each do |aggregate|
-        write_file("domain/#{aggregate.folder_name}/", aggregate.root_file)
-      end
+      Struct.new(:file_name, :ruby_file).new(
+        file_name, build_file(template_name, binding)
+      )
     end
 
     def write_file(path, object)
