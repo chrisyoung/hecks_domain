@@ -9,6 +9,7 @@ require_relative 'domain/top_level_methods'
 require_relative 'domain/support'
 require_relative 'domain/parser'
 require_relative 'domain/file_maker'
+require_relative 'commands/generate_commands'
 
 class HecksDomain
   def initialize(name, &block)

@@ -1,0 +1,9 @@
+domain('<%= domain_name.underscore %>') do
+  summary        '<FILL ME IN>'
+  description    '<FILL ME IN>'
+  version        '0.0.1'
+  authors        ['<FILL ME IN>']
+  email          '<FILL ME IN>'
+  homepage       'http://www.example.com'
+  domain_version '0.1.0'
+end
