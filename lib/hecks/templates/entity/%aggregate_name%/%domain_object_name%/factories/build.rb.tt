@@ -22,10 +22,10 @@ module <%= @domain.name %>
             def self.new_domain_object(args)
               <%= @domain_object.name %>.new(
                 args.merge(
-                  <% @domain_object.fields.each do |field| %>
-                  <% next unless (field.respond_to?(:module_name) && field.module_name)  %>
+<% @domain_object.fields.each do |field| -%>
+<% next unless (field.respond_to?(:module_name) && field.module_name) -%>
                   <%= field.name.to_s%>: <%= field.module_name.is_a?(Hash) ? 'Domain::' + field.module_name.to_a.join('::').to_s : field.module_name.to_s %>.build(args[:<%= field.name.to_s%>]),
-                  <% end %>
+<% end -%>
                 )
               )
             end

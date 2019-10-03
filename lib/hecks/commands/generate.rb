@@ -15,11 +15,12 @@ class HecksDomain
 
       desc 'new', 'Generate an empty domain project'
       argument :domain_name, optional: true
+      method_option :skip_operations, default: false, type: :boolean
       def new
         if domain_file
           generate_domain_objects(domain_get)
-          generate_operations(domain_get)
           generate_domain_files(domain_get)
+          generate_operations(domain_get) unless options[:skip_operations]
         else
           Generators::Domain.new([domain_name]).invoke_all
         end
@@ -56,7 +57,15 @@ class HecksDomain
       def generate_domain_objects(domain)
         domain.aggregates.each do |aggregate|
           aggregate.domain_objects.each do |domain_object|
-            Generators::DomainObject.new(
+            if domain_object.is_a?(HecksDomain::Entity)
+              Generators::Entity.new(
+                [domain, aggregate, domain_object]
+              ).invoke_all
+            end
+
+            next unless domain_object.is_a?(HecksDomain::ValueObject)
+
+            Generators::ValueObject.new(
               [domain, aggregate, domain_object]
             ).invoke_all
           end

@@ -1,6 +1,6 @@
 class HecksDomain
   module Generators
-    class DomainObject < Thor::Group
+    class Entity < Thor::Group
       include Thor::Actions
 
       attr_reader :aggregate_name, :domain_name, :domain_object_name, :domain, :aggregate, :domain_object
@@ -23,7 +23,7 @@ class HecksDomain
       end
 
       def write_aggregate_directory
-        directory('domain_object', 'domain')
+        directory('entity', 'domain')
       end
     end
   end

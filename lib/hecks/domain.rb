@@ -28,7 +28,7 @@ class HecksDomain
     raise @parser.domain.inspect
   end
 
-  def self.domain name, &block
+  def self.domain(name, &block)
     new name, &block
   end
 end
