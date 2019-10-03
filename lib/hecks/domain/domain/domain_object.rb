@@ -1,6 +1,6 @@
 class HecksDomain
   class DomainObject
-    attr_reader :name, :aggregate
+    attr_reader :name, :aggregate, :fields
 
     def initialize(name, aggregate, &block)
       @name = name

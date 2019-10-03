@@ -1,0 +1,21 @@
+module <%= @domain_object.aggregate.domain.name %>
+  module Domain
+    module <%= aggregate.name%>
+      class <%= domain_object.name %>
+        module Commands
+          class <%= operation.name %>
+            attr_reader :root, :args
+
+            def initialize(root, args={})
+              @root = root
+              @args = args
+            end
+
+            def call
+            end
+          end
+        end
+      end
+    end
+  end
+end

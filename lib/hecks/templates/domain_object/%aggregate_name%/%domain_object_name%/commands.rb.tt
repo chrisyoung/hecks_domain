@@ -1,0 +1,11 @@
+Dir[File.dirname(__FILE__) + '/commands/*.rb'].each {|file| require_relative file }
+module <%= @domain.name %>
+  module Domain
+    module <%= @aggregate.name %>
+      class <%= @domain_object.name %>
+        module Commands
+        end
+      end
+    end
+  end
+end
