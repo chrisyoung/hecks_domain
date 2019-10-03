@@ -1,0 +1,11 @@
+Gem::Specification.new do |s|
+  s.name        = '<%= domain_name %>'
+  s.version     = '<%= gemspec[:version] %>'
+  s.licenses    = ['MIT']
+  s.summary     = '<%= gemspec[:summary] %>'
+  s.description = '<%= gemspec[:description] %>'
+  s.authors     = <%= gemspec[:authors] %>
+  s.email       = '<%= gemspec[:email] %>'
+  s.files       = Dir['lib/**/*.rb', 'domain/**/*.rb', 'events/**/*.rb', 'Domainfile']
+  s.homepage    = '<%= gemspec[:homepage] %>'
+end

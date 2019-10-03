@@ -3,7 +3,7 @@ class HecksDomain
     class Domain < Thor::Group
       include Thor::Actions
 
-      argument :domain_name
+      argument :domain_name, optional: true
 
       def self.source_root
         File.dirname(__FILE__) + '/../templates'

@@ -33,6 +33,17 @@ class HecksDomain
       @version = value
     end
 
+    def gemspec
+      {
+        summary: @summary,
+        description: @description,
+        version: @version,
+        authors: @authors,
+        email: @email,
+        homepage: @homepage
+      }
+    end
+
     def authors(value)
       @authors = value
     end
