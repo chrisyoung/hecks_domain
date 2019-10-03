@@ -1,4 +1,4 @@
-domain('<%= domain_name.underscore %>') do
+domain(:<%= domain_name %>) do
   summary        '<FILL ME IN>'
   description    '<FILL ME IN>'
   version        '0.0.1'

@@ -11,7 +11,7 @@ require_relative 'domain/fields'
 
 class HecksDomain
   class Domain
-    attr_reader :name, :aggregates, :spec_helper, :string_support, 
+    attr_reader :name, :aggregates, :spec_helper, :string_support,
                 :repository_helper, :factory_loader
 
     def initialize(name, &block)
