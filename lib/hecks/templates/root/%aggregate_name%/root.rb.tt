@@ -1,0 +1,8 @@
+module <%= domain.name %>
+  module Domain
+    module <%= aggregate.name %>
+      class Root < <%= root.name %>
+      end
+    end
+  end
+end

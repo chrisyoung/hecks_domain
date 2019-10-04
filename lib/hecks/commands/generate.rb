@@ -20,6 +20,7 @@ class HecksDomain
         if domain_file
           generate_domain_objects(domain_get)
           generate_domain_files(domain_get)
+          generate_roots(domain_get)
           generate_operations(domain_get) unless options[:skip_operations]
         else
           Generators::Domain.new([domain_name]).invoke_all
@@ -27,6 +28,18 @@ class HecksDomain
       end
 
       private
+
+      def generate_roots(domain)
+        domain.aggregates.each do |aggregate|
+          aggregate.domain_objects.each do |domain_object|
+            next unless domain_object.is_a?(HecksDomain::Root)
+
+            Generators::Root.new(
+              [domain, aggregate, domain_object]
+            ).invoke_all
+          end
+        end
+      end
 
       def domain_get
         instance_eval(domain_file).domain
