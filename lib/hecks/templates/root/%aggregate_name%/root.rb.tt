@@ -1,3 +1,4 @@
+require_relative '<%= root.name.to_s.underscore %>'
 module <%= domain.name %>
   module Domain
     module <%= aggregate.name %>

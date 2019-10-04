@@ -21,6 +21,7 @@ class HecksDomain
 
       def write_gemspec
         template('%domain_name%.gemspec.tt')
+        directory('lib')
       end
     end
   end

@@ -1,8 +1,9 @@
 require_relative 'support'
 Dir[File.dirname(__FILE__) + "/../events/*.rb"].each { |file| require_relative file }
-require_relative '../domain/<%= aggregate_name %>/root'
-require_relative '../domain/meetings/root'
+<% domain.aggregates.each do |aggregate| -%>
+require_relative '../domain/<%= aggregate.folder_name %>/root'
+<% end -%>
 
-module LeanCoffee
+module <%= domain.name %>
   class InvariantViolationError < StandardError; end
 end
