@@ -1,0 +1,12 @@
+require 'spec_helper'
+
+describe <%= "#{domain.name}::Domain::#{aggregate.name}::#{root.name}" %> do
+  subject { described_class.new }
+
+<% root.operations_get.each do |operation| -%>
+  describe '#<%= operation.name.to_s.underscore %>' do
+    xit 'should behave' do
+    end
+  end
+<% end -%>
+end

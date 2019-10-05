@@ -1,24 +1,24 @@
 
-module <%= domain.name %>
+module TestApp
   module Domain
-    module <%= aggregate.name %>
-      class <%= domain_object.name %>
+    module Users
+      class User
         class Repository
           include Singleton
           def self.save(object)
             instance.save(object)
           end
 
-          def self.fetch(<%= domain_object_name %>)
-            instance.fetch(<%= domain_object_name %>)
+          def self.fetch(user)
+            instance.fetch(user)
           end
 
           def initialize
             @objects = {}
           end
 
-          def self.create(<%= domain_object_name %>)
-            instance.create(<%= domain_object_name %>)
+          def self.create(user)
+            instance.create(user)
           end
 
           def self.all
@@ -29,11 +29,11 @@ module <%= domain.name %>
             @objects.values
           end
 
-          def create(<%= domain_object_name %>)
+          def create(user)
             klass = self.class.const_get(
               self.class.to_s.gsub('::Repository', '')
             )
-            domain_object = klass.build(<%= domain_object_name %>)
+            domain_object = klass.build(user)
             domain_object.tap(&:save)
           end
 
@@ -43,15 +43,15 @@ module <%= domain.name %>
             @objects[fetchable]
           end
 
-          def save(<%= domain_object_name %>)
-            domain_object = <%= domain_object_name %>
-            @objects[<%= domain_object_name %>.hash] = domain_object
+          def save(user)
+            domain_object = user
+            @objects[user.hash] = domain_object
 
-            <%= domain_object_name %>.instance_eval do
-              @id = <%= domain_object_name %>.hash
+            user.instance_eval do
+              @id = user.hash
             end
 
-            <%= domain_object_name %>
+            user
           end
         end
       end

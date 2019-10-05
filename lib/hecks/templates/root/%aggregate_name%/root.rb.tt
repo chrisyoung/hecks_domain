@@ -1,4 +1,9 @@
 require_relative '<%= root.name.to_s.underscore %>'
+<% root.aggregate.domain_objects.each do |domain_object| -%>
+<% next if domain_object.is_a?(HecksDomain::Root) -%>
+require_relative '<%= domain_object.name.to_s.underscore %>'
+<% end -%>
+
 module <%= domain.name %>
   module Domain
     module <%= aggregate.name %>

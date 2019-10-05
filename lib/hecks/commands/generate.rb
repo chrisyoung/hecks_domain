@@ -22,6 +22,7 @@ class HecksDomain
           generate_domain_files(domain_get)
           generate_roots(domain_get)
           generate_operations(domain_get) unless options[:skip_operations]
+          generate_specs(domain_get)
         else
           Generators::Domain.new([domain_name]).invoke_all
         end
@@ -35,6 +36,18 @@ class HecksDomain
             next unless domain_object.is_a?(HecksDomain::Root)
 
             Generators::Root.new(
+              [domain, aggregate, domain_object]
+            ).invoke_all
+          end
+        end
+      end
+
+      def generate_specs(domain)
+        domain.aggregates.each do |aggregate|
+          aggregate.domain_objects.each do |domain_object|
+            next unless domain_object.is_a?(HecksDomain::Root)
+
+            Generators::Spec.new(
               [domain, aggregate, domain_object]
             ).invoke_all
           end

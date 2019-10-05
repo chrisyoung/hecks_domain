@@ -1,0 +1,15 @@
+domain(:TestApp) do
+  summary        'HecksDomain Test Application'
+  description    'Generated to help test Hecks Domain'
+  version        '0.0.1'
+  authors        ['Chris Young']
+  email          'hecks_team@gmail.com'
+  homepage       'https://github.com/thehecksteam'
+  domain_version '0.1.0'
+
+  aggregate :Users do
+    root :User do
+      string :name
+    end
+  end
+end
