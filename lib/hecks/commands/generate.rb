@@ -13,19 +13,14 @@ class HecksDomain
         File.dirname(__FILE__) + '/../templates'
       end
 
-      desc 'new', 'Generate an empty domain project'
-      argument :domain_name, optional: true
+      desc 'domain', 'Generate domain objects from a Domainfile'
       method_option :skip_operations, default: false, type: :boolean
-      def new
-        if domain_file
-          generate_domain_objects(domain_get)
-          generate_domain_files(domain_get)
-          generate_roots(domain_get)
-          generate_operations(domain_get) unless options[:skip_operations]
-          generate_specs(domain_get)
-        else
-          Generators::Domain.new([domain_name]).invoke_all
-        end
+      def domain_from_domain_file
+        generate_domain_objects(domain_get)
+        generate_domain_files(domain_get)
+        generate_roots(domain_get)
+        generate_operations(domain_get) unless options[:skip_operations]
+        generate_specs(domain_get)
       end
 
       private
