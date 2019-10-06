@@ -14,12 +14,12 @@ class HecksDomain
       end
 
       desc 'domain', 'Generate domain objects from a Domainfile'
-      method_option :skip_operations, default: false, type: :boolean
+      method_option :skip_operations, default: true, type: :boolean
       def domain_from_domain_file
         generate_domain_objects(domain_get)
         generate_domain_files(domain_get)
         generate_roots(domain_get)
-        generate_operations(domain_get) unless options[:skip_operations]
+        generate_operations(domain_get, options)
         generate_specs(domain_get)
       end
 
@@ -63,12 +63,12 @@ class HecksDomain
         Generators::DomainFiles.new([domain]).invoke_all
       end
 
-      def generate_operations(domain)
+      def generate_operations(domain, options)
         domain.aggregates.each do |aggregate|
           aggregate.domain_objects.each do |domain_object|
             domain_object.operations_get.each do |operation|
               Generators::Operation.new(
-                [domain, aggregate, domain_object, operation]
+                [domain, aggregate, domain_object, operation], skip: options[:skip_operations]
               ).invoke_all
             end
           end

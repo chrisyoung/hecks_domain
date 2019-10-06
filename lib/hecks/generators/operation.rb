@@ -5,7 +5,7 @@ class HecksDomain
 
       attr_reader :aggregate_name, :domain_name, :operation_name, :domain_object_name, :domain, :aggregate, :domain_object, :operation
 
-      def initialize(args)
+      def initialize(args, options)
         @domain = args[0]
         @aggregate = args[1]
         @domain_object = args[2]
@@ -15,7 +15,7 @@ class HecksDomain
         @aggregate_name = @aggregate.name.to_s.underscore
         @domain_object_name = @domain_object.name.to_s.underscore
         @operation_name = @operation.name.to_s.underscore
-        super
+        super(args, options)
       end
 
       argument :name
