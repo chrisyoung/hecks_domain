@@ -2,7 +2,7 @@ module <%= domain.name %>
   module Domain
     module <%= aggregate.name %>
       class <%= domain_object.name %>
-        <%= 'include Support::Root' if domain_object.is_a?(HecksDomain::Root) %>
+        <%= 'include Support::Root' if domain_object.is_a?(HecksDomain::Parser::Root) %>
         include Support::DomainObject
 
         attr_reader <%= domain_object.public_accessors %>

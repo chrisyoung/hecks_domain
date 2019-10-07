@@ -29,7 +29,7 @@ class HecksDomain
       def generate_roots(domain)
         domain.aggregates.each do |aggregate|
           aggregate.domain_objects.each do |domain_object|
-            next unless domain_object.is_a?(HecksDomain::Root)
+            next unless domain_object.is_a?(HecksDomain::Parser::Root)
 
             Generators::Root.new(
               [domain, aggregate, domain_object]
@@ -40,7 +40,7 @@ class HecksDomain
 
       def generate_specs(domain, options)
         domain.for_each_domain_object do |aggregate, domain_object|
-          next unless domain_object.is_a?(HecksDomain::Root)
+          next unless domain_object.is_a?(HecksDomain::Parser::Root)
 
           Generators::Spec.new(
             [domain, aggregate, domain_object], options
@@ -79,7 +79,7 @@ class HecksDomain
       end
 
       def generate_value_object(domain, aggregate, domain_object)
-        return unless domain_object.is_a?(HecksDomain::ValueObject)
+        return unless domain_object.is_a?(HecksDomain::Parser::ValueObject)
 
         Generators::ValueObject.new(
           [domain, aggregate, domain_object]
@@ -87,7 +87,7 @@ class HecksDomain
       end
 
       def generate_entity(domain, aggregate, domain_object)
-        return unless domain_object.is_a?(HecksDomain::Entity)
+        return unless domain_object.is_a?(HecksDomain::Parser::Entity)
 
         Generators::Entity.new(
           [domain, aggregate, domain_object]

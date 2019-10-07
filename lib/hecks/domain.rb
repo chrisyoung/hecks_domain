@@ -7,17 +7,16 @@ require 'fileutils'
 require_relative 'domain/top_level_methods'
 require_relative 'domain/support'
 require_relative 'domain/parser'
-require_relative 'generators'
-require_relative 'commands'
+require_relative 'domain/generators'
+require_relative 'domain/commands'
 
 class HecksDomain
   attr_reader :domain
   def initialize(name, &block)
-    @parser = Parser.new(name, &block)
-    @domain = @parser.domain
+    @domain = Parser.new(name, &block)
   end
 
-  def self.domain(name, &block)
+  def self.parser(name, &block)
     new name, &block
   end
 end
