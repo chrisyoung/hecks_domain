@@ -15,12 +15,13 @@ class HecksDomain
 
       desc 'domain', 'Generate domain objects from a Domainfile'
       method_option :skip_operations, default: true, type: :boolean
+      method_option :skip_spec_generation, default: true, type: :boolean
       def domain_from_domain_file
         generate_domain_objects(domain_get)
         generate_domain_files(domain_get)
         generate_roots(domain_get)
         generate_operations(domain_get, options)
-        generate_specs(domain_get)
+        generate_specs(domain_get, options)
       end
 
       private
@@ -37,15 +38,13 @@ class HecksDomain
         end
       end
 
-      def generate_specs(domain)
-        domain.aggregates.each do |aggregate|
-          aggregate.domain_objects.each do |domain_object|
-            next unless domain_object.is_a?(HecksDomain::Root)
+      def generate_specs(domain, options)
+        domain.for_each_domain_object do |aggregate, domain_object|
+          next unless domain_object.is_a?(HecksDomain::Root)
 
-            Generators::Spec.new(
-              [domain, aggregate, domain_object]
-            ).invoke_all
-          end
+          Generators::Spec.new(
+            [domain, aggregate, domain_object], options
+          ).invoke_all
         end
       end
 
@@ -64,33 +63,35 @@ class HecksDomain
       end
 
       def generate_operations(domain, options)
-        domain.aggregates.each do |aggregate|
-          aggregate.domain_objects.each do |domain_object|
-            domain_object.operations_get.each do |operation|
-              Generators::Operation.new(
-                [domain, aggregate, domain_object, operation], skip: options[:skip_operations]
-              ).invoke_all
-            end
-          end
+        domain.for_each_operation do |aggregate, domain_object, operation|
+          Generators::Operation.new(
+            [domain, aggregate, domain_object, operation],
+            skip: options[:skip_operations]
+          ).invoke_all
         end
       end
 
       def generate_domain_objects(domain)
-        domain.aggregates.each do |aggregate|
-          aggregate.domain_objects.each do |domain_object|
-            if domain_object.is_a?(HecksDomain::Entity)
-              Generators::Entity.new(
-                [domain, aggregate, domain_object]
-              ).invoke_all
-            end
-
-            next unless domain_object.is_a?(HecksDomain::ValueObject)
-
-            Generators::ValueObject.new(
-              [domain, aggregate, domain_object]
-            ).invoke_all
-          end
+        domain.for_each_domain_object do |aggregate, domain_object|
+          generate_entity(domain, aggregate, domain_object)
+          generate_value_object(domain, aggregate, domain_object)
         end
+      end
+
+      def generate_value_object(domain, aggregate, domain_object)
+        return unless domain_object.is_a?(HecksDomain::ValueObject)
+
+        Generators::ValueObject.new(
+          [domain, aggregate, domain_object]
+        ).invoke_all
+      end
+
+      def generate_entity(domain, aggregate, domain_object)
+        return unless domain_object.is_a?(HecksDomain::Entity)
+
+        Generators::Entity.new(
+          [domain, aggregate, domain_object]
+        ).invoke_all
       end
     end
   end

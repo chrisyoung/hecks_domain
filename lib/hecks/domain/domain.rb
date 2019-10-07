@@ -75,5 +75,21 @@ class HecksDomain
     def domain_version(value)
       @domain_version = value
     end
+
+    def for_each_domain_object
+      aggregates.each do |aggregate|
+        aggregate.domain_objects.each do |domain_object|
+          yield aggregate, domain_object
+        end
+      end
+    end
+
+    def for_each_operation
+      for_each_domain_object do |aggregate, domain_object|
+        domain_object.operations_get.each do |operation|
+          yield aggregate, domain_object, operation
+        end
+      end
+    end
   end
 end

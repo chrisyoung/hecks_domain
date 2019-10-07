@@ -5,7 +5,7 @@ class HecksDomain
 
       attr_reader :aggregate_name, :domain_name, :root_name, :domain, :aggregate, :root
 
-      def initialize(args)
+      def initialize(args, options)
         @domain = args[0]
         @aggregate = args[1]
         @root = args[2]
@@ -23,7 +23,7 @@ class HecksDomain
       end
 
       def write_directory
-        directory('spec')
+        directory('spec', skip: options[:skip_spec_generation])
       end
     end
   end
