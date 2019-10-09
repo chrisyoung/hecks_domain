@@ -25,8 +25,16 @@ module TestApp
             instance.all
           end
 
+          def self.destroy(user)
+            instance.destroy(user)
+          end
+
           def all
             @objects.values
+          end
+
+          def destroy(user)
+            @objects.delete(user.id)
           end
 
           def create(user)

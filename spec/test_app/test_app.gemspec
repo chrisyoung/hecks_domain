@@ -8,4 +8,5 @@ Gem::Specification.new do |s|
   s.email       = 'hecks_team@gmail.com'
   s.files       = Dir['lib/**/*.rb', 'domain/**/*.rb', 'events/**/*.rb', 'Domainfile']
   s.homepage    = 'https://github.com/thehecksteam'
+  s.metadata    = { 'hecks_domain' => 'true' }
 end

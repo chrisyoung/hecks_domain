@@ -25,8 +25,16 @@ module <%= domain.name %>
             instance.all
           end
 
+          def self.destroy(<%= domain_object_name %>)
+            instance.destroy(<%= domain_object_name %>)
+          end
+
           def all
             @objects.values
+          end
+
+          def destroy(<%= domain_object_name %>)
+            @objects.delete(<%= domain_object_name %>.id)
           end
 
           def create(<%= domain_object_name %>)
