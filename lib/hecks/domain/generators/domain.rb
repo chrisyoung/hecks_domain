@@ -9,8 +9,12 @@ class HecksDomain
         File.dirname(__FILE__) + '/../templates'
       end
 
+      def folder_name
+        domain_name.underscore
+      end
+
       def write_domain_directory
-        directory('%domain_name%')
+        directory('%folder_name%')
       end
     end
   end
