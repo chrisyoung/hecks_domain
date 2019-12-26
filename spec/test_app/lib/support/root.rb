@@ -3,8 +3,8 @@ module DomainSupport
     TYPES = %w[commands services invariants queries events subscribers].freeze
 
     LOADERS = [
-      Support::Commands::CommandLoader, Support::Queries::QueryLoader,
-      Support::Repositories::RepositoryLoader
+      Commands::CommandLoader, Queries::QueryLoader,
+      Repositories::RepositoryLoader
     ].freeze
 
     def self.included(base)
