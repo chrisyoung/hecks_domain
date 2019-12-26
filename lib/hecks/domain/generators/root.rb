@@ -23,7 +23,7 @@ class HecksDomain
       end
 
       def write_aggregate_directory
-        directory('root', 'domain')
+        directory('root', 'app')
       end
     end
   end
