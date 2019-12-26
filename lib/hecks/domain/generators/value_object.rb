@@ -23,6 +23,7 @@ class HecksDomain
       end
 
       def write_aggregate_directory
+        directory('app_value_object', 'app')
         directory('value_object', 'domain')
       end
     end

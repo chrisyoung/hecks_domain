@@ -1,26 +1,26 @@
 module <%= domain.name %>
-  class <%= aggregate.name %>
+  class <%= domain_object.aggregate.name %>
     class <%= domain_object.name %>
       <%= 'include Support::Root' if domain_object.is_a?(HecksDomain::Parser::Root) %>
       attr_reader <%= domain_object.public_accessors %>
 
       def initialize(<%= domain_object.initializer_attributes %>)
-<% domain_object.fields.each do |field| -%>
+  <% domain_object.fields.each do |field| -%>
         <%= "@#{field.name} = #{field.initial_state}" %>
-<% end -%>
+  <% end -%>
       end
-<% domain_object.boolean_accessors.each do |field| -%>
+  <% domain_object.boolean_accessors.each do |field| -%>
 
       def <%= field.name %>?
         @<%= field.name %>
       end
-<% end -%>
-<% domain_object.list_accessors.each do |field| -%>
+  <% end -%>
+  <% domain_object.list_accessors.each do |field| -%>
 
       def <%= field.name %>
         @<%= field.name %>.clone.freeze
       end
-<% end -%>
+  <% end -%>
 
       private
 

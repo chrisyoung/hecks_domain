@@ -24,6 +24,7 @@ class HecksDomain
 
       def write_aggregate_directory
         directory('entity', 'domain')
+        directory('app_entity', 'app')
       end
     end
   end

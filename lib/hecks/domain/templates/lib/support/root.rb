@@ -1,13 +1,13 @@
 module DomainSupport 
   module Root
-    TYPES = {
-      services: 'app',
-      invariants: 'app',
-      queries: 'app', 
-      events: 'app',
-      subscribers: 'app',
-      repository: 'app'
-    }.freeze
+    TYPES = [
+      :services,
+      :invariants,
+      :queries, 
+      :events,
+      :subscribers,
+      :repository
+    ].freeze
 
     LOADERS = [
       Queries::QueryLoader,
@@ -17,9 +17,7 @@ module DomainSupport
     def self.included(base)
       TYPES.each do |name, root_path|
         path = [
-          '../..', 
-          root_path, 
-          base.to_s.gsub('TrusonaDomain', '').underscore
+          '../../app/', base.to_s.gsub('TrusonaDomain', '').underscore
         ].join('/')
         require_relative path + '/repository.rb' if name.to_s == 'repository' 
 
