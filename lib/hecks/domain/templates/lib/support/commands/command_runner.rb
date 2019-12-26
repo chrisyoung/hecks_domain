@@ -1,4 +1,4 @@
-class Support
+module DomainSupport
   module Commands
     module CommandRunner
       def self.run(command, &block)

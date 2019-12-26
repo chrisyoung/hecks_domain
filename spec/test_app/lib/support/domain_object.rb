@@ -1,4 +1,4 @@
-class Support
+module DomainSupport
   module DomainObject
     TYPES = %w[services invariants factories].freeze
 

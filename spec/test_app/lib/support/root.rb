@@ -1,4 +1,4 @@
-class Support
+module DomainSupport
   module Root
     TYPES = %w[commands services invariants queries events subscribers].freeze
 

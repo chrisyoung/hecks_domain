@@ -1,4 +1,4 @@
-class Support
+module DomainSupport
   module Invariants
     module InvariantLoader
       def self.included(base)

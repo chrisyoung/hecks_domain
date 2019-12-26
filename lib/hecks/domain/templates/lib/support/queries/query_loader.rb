@@ -1,4 +1,4 @@
-class Support
+module DomainSupport
   module Queries
     module QueryLoader
       def self.included(base)

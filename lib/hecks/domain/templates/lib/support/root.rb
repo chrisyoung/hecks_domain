@@ -1,26 +1,32 @@
-class Support
+module DomainSupport 
   module Root
-    TYPES = %w[commands services invariants queries events subscribers].freeze
+    TYPES = {
+      services: 'app',
+      invariants: 'app',
+      queries: 'app', 
+      events: 'app',
+      subscribers: 'app',
+      repository: 'app'
+    }.freeze
 
     LOADERS = [
-      Support::Commands::CommandLoader, Support::Queries::QueryLoader,
-      Support::Repositories::RepositoryLoader
+      Queries::QueryLoader,
+      Repositories::RepositoryLoader,  
     ].freeze
 
     def self.included(base)
-      path = [
-        '../../domain',
-        base.to_s.split('::')[-2].underscore.downcase,
-        base.to_s.split('::')[-1].underscore.downcase
-      ].join('/')
+      TYPES.each do |name, root_path|
+        path = [
+          '../..', 
+          root_path, 
+          base.to_s.gsub('TrusonaDomain', '').underscore
+        ].join('/')
+        require_relative path + '/repository.rb' if name.to_s == 'repository' 
 
-      require_relative path + '/repository'
-
-      TYPES.each do |name|
-        Dir[File.dirname(__FILE__) + "/#{path}/" + name + '/*.rb']
+        Dir[File.dirname(__FILE__) + "/#{path}/" + name.to_s + '/*.rb']
           .each { |file| require_relative file }
       end
-
+      
       LOADERS.each { |loader| base.include(loader) }
     end
   end

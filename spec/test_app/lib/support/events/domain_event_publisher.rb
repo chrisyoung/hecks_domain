@@ -1,4 +1,4 @@
-class Support
+module DomainSupport
   module Events
     class DomainEventPublisher
       include Singleton

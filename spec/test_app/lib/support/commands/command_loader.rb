@@ -1,4 +1,4 @@
-class Support
+module DomainSupport
   module Commands
     module CommandLoader
       def self.included(base)
