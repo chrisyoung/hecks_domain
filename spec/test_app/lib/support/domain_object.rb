@@ -1,9 +1,9 @@
-class Support
+module DomainSupport
   module DomainObject
     TYPES = %w[services invariants factories].freeze
 
     LOADERS = [
-      Support::Factories::FactoryLoader, Support::Invariants::InvariantLoader
+      Factories::FactoryLoader, Invariants::InvariantLoader
     ].freeze
 
     def self.included(base)

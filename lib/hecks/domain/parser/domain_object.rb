@@ -8,9 +8,6 @@ class HecksDomain
         @aggregate = aggregate
         @operations = []
         @fields = []
-        if is_a?(Entity)
-          add_field(:id, IntegerField).tap { |field| field.optional = true }
-        end
         instance_eval(&block)
       end
 
@@ -37,8 +34,6 @@ class HecksDomain
       def public_accessors
         @fields.map do |field|
           field.public_accessor
-        end.tap do |fields|
-          fields << ':id' if is_a?(Entity)
         end.compact.join(', ')
       end
 

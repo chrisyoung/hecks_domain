@@ -19,24 +19,11 @@ class HecksDomain
       def domain_from_domain_file
         generate_domain_objects(domain_get)
         generate_domain_files(domain_get)
-        generate_roots(domain_get)
         generate_operations(domain_get, options)
         generate_specs(domain_get, options)
       end
 
       private
-
-      def generate_roots(domain)
-        domain.aggregates.each do |aggregate|
-          aggregate.domain_objects.each do |domain_object|
-            next unless domain_object.is_a?(HecksDomain::Parser::Root)
-
-            Generators::Root.new(
-              [domain, aggregate, domain_object]
-            ).invoke_all
-          end
-        end
-      end
 
       def generate_specs(domain, options)
         domain.for_each_domain_object do |aggregate, domain_object|

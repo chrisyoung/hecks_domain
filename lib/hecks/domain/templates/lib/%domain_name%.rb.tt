@@ -1,8 +1,8 @@
 require_relative 'support'
 Dir[File.dirname(__FILE__) + "/../events/*.rb"].each { |file| require_relative file }
-<% domain.aggregates.each do |aggregate| -%>
-require_relative '../domain/<%= aggregate.folder_name %>/root'
-<% end -%>
+
+require_relative '../domain'
+require_relative '../app/'
 
 module <%= domain.name %>
   class InvariantViolationError < StandardError; end

@@ -1,4 +1,4 @@
-class Support
+module DomainSupport
   module Repositories
     module RepositoryLoader
       def self.included(base)

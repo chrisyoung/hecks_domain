@@ -1,0 +1,63 @@
+module <%= domain.name %>
+  class <%= domain_object.name %>
+    class Repository
+      include Singleton
+      def self.save(object)
+        instance.save(object)
+      end
+
+      def self.fetch(<%= domain_object_name %>)
+        instance.fetch(<%= domain_object_name %>)
+      end
+
+      def initialize
+        @objects = {}
+      end
+
+      def self.create(<%= domain_object_name %>)
+        instance.create(<%= domain_object_name %>)
+      end
+
+      def self.all
+        instance.all
+      end
+
+      def self.destroy(<%= domain_object_name %>)
+        instance.destroy(<%= domain_object_name %>)
+      end
+
+      def all
+        @objects.values
+      end
+
+      def destroy(<%= domain_object_name %>)
+        @objects.delete(<%= domain_object_name %>.id)
+      end
+
+      def create(<%= domain_object_name %>)
+        klass = self.class.const_get(
+          self.class.to_s.gsub('::Repository', '')
+        )
+        domain_object = klass.build(<%= domain_object_name %>)
+        domain_object.tap(&:save)
+      end
+
+      def fetch(fetchable)
+        return @objects[fetchable.id] if fetchable.respond_to?(:id)
+
+        @objects[fetchable]
+      end
+
+      def save(<%= domain_object_name %>)
+        domain_object = <%= domain_object_name %>
+        @objects[<%= domain_object_name %>.hash.to_s] = domain_object
+
+        <%= domain_object_name %>.instance_eval do
+          @id = <%= domain_object_name %>.hash.to_s
+        end
+
+        <%= domain_object_name %>
+      end
+    end
+  end
+end

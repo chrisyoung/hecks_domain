@@ -1,4 +1,4 @@
-class Support
+module DomainSupport
   module Factories
     module FactoryLoader
       def self.included(base)

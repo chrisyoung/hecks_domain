@@ -1,4 +1,4 @@
-class Support
+module DomainSupport
   module Events
     class DomainEvent
       attr_reader :type, :name, :command, :args, :root
