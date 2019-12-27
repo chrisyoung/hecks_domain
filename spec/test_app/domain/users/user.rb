@@ -2,8 +2,8 @@ module TestApp
   module Domain
     module Users
       class User
-        include Support::Root
-        include Support::DomainObject
+        include DomainSupport::Root
+        include DomainSupport::DomainObject
 
         attr_reader :id, :name, :id
 
