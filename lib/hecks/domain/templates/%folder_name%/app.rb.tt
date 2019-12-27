@@ -1,0 +1,28 @@
+Dir[File.join(__dir__, 'app', '**', '*.rb')].each { |file| require file }
+
+objects = []
+<%= domain_name %>.constants.each do |constant_name|
+  root = <%= domain_name %>.const_get(constant_name)
+  objects << root
+  
+  root.constants.each do |domain_object|
+    objects << root.const_get(domain_object)
+  end
+end
+
+# "Extend all the domain objects"
+objects.each do |domain_object|
+  domain_object.include(DomainSupport::DomainObject)
+end
+
+<%= domain_name %>.constants.each do |constant_name|
+  domain_constant = <%= domain_name %>.const_get(constant_name)
+  
+  # "Move everything to the root namespace.  This could be made configurable"
+  root_constant = Object.const_set(constant_name, domain_constant.dup)
+  
+  # Decorate with root services like repositories and factories
+  unless constant_name == :Events
+    root_constant.include(DomainSupport::Root)     
+  end
+end

@@ -1,6 +1,0 @@
-module <%= domain.name %>  
-  class <%= root.name %>
-    class Root < <%= root.name %>
-    end
-  end
-end
