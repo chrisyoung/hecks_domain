@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'hecks-domain'
-  s.version     = '0.2.0'
+  s.version     = '1.0.0'
   s.licenses    = ['MIT']
   s.summary     = '3DSL'
   s.description = 'A Domain Specific Language for generating Domain Driven Designs'
